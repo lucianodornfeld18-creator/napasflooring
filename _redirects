@@ -1,0 +1,36 @@
+# Force HTTPS (Cloudflare typically handles this already, but explicit)
+http://napasflooring.com/* https://napasflooring.com/:splat 301!
+http://www.napasflooring.com/* https://napasflooring.com/:splat 301!
+https://www.napasflooring.com/* https://napasflooring.com/:splat 301!
+
+# Common typos / variations
+/services/* /:splat 301
+/service-areas/* /:splat 301
+/areas/* /:splat 301
+
+# Service slug variations
+/hardwood/* /hardwood-flooring/:splat 301
+/wood-floor/* /hardwood-flooring/:splat 301
+/wood-flooring/* /hardwood-flooring/:splat 301
+/vinyl/* /vinyl-plank-flooring/:splat 301
+/lvp/* /vinyl-plank-flooring/:splat 301
+/spc/* /vinyl-plank-flooring/:splat 301
+/luxury-vinyl/* /vinyl-plank-flooring/:splat 301
+/tile/* /tile-installation/:splat 301
+/porcelain/* /tile-installation/:splat 301
+/ceramic/* /tile-installation/:splat 301
+/laminate/* /laminate-flooring/:splat 301
+/stairs/* /stair-treads/:splat 301
+/staircase/* /stair-treads/:splat 301
+/repair/* /floor-repair/:splat 301
+/floor-installation/* /:splat 301
+
+# City variations
+/st-pete/* /st-petersburg/:splat 301
+/saint-petersburg/* /st-petersburg/:splat 301
+/saint-pete/* /st-petersburg/:splat 301
+/lakewoodranch/* /lakewood-ranch/:splat 301
+/lakewood/* /lakewood-ranch/:splat 301
+
+# 404 fallback
+/* /404.html 404
