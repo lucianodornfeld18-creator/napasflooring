@@ -580,15 +580,10 @@ def header(active=""):
     a_about = nav_active.get("about","") if active == "about" else ""
     a_cont = nav_active.get("contact","") if active == "contact" else ""
 
-    return f'''<div class="top-bar"><div class="top-bar-inner">
-<a href="{TEL_LINK}">📞 {BUSINESS["phone_display"]}</a>
-<span class="top-bar-edition">Bradenton · Sarasota · Tampa Bay · Est. {BUSINESS["year_founded"]}</span>
-<a href="mailto:{BUSINESS["email"]}">✉ {BUSINESS["email"]}</a>
-</div></div>
-<header class="site-header">
+    return f'''<header class="site-header">
   <nav class="nav-bar" aria-label="Main">
     <a href="/" class="brand" aria-label="{BUSINESS["name"]} home">
-      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" height="52" width="auto" loading="eager">
+      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" height="64" width="auto" loading="eager">
     </a>
     <ul class="nav-menu" id="navMenu">
       <li{' class="active"' if active=="home" else ''}><a href="/">Home</a></li>
