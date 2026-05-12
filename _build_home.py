@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
-"""Generate /index.html — the homepage. Bold editorial showcase."""
+"""Generate /index.html — homepage with real photos and orange+white design."""
 import os, sys
 sys.path.insert(0, '/home/claude/napas')
 from _gen import *
 
 OUT = "/home/claude/napas/index.html"
 
-# ============================================================================
-# SEO META — title 50–65 chars, desc 130–158 chars
-# ============================================================================
-TITLE = f"Flooring Contractor Bradenton FL · Tampa Bay · Napa's Flooring"  # 62 chars
+TITLE = "Flooring Contractor Bradenton FL · Tampa Bay · Napa's Flooring"
 DESC = (
-    f"Hardwood, vinyl plank, tile, laminate &amp; stair tread installation across "
-    f"Bradenton, Sarasota, Tampa &amp; the Gulf Coast. {BUSINESS['review_count']}× 5★ Google · Free estimate in 24 hrs."
-)  # ~158 chars
+    "Hardwood, vinyl plank, tile, laminate & stair tread installation across "
+    "Bradenton, Sarasota, Tampa & the Gulf Coast. "
+    f"{BUSINESS['review_count']}× 5★ Google · Free estimate in 24 hrs."
+)[:158]
 CANONICAL = f"{SITE}/"
 
-# ============================================================================
-# SCHEMAS — homepage carries Org + Website + LocalBusiness
-# ============================================================================
 SCHEMAS = [
     schema_website(),
     schema_organization(),
@@ -26,78 +21,62 @@ SCHEMAS = [
     schema_breadcrumb([("Home", SITE + "/")]),
 ]
 
-# ============================================================================
-# HERO
-# ============================================================================
+# HERO — photo background + real work photos grid
 hero = f'''<section class="hero">
+  <img class="hero-bg" src="/images/photo-lvp-living.jpg" alt="Wood-look flooring installed in a Florida living room by Napa's Flooring" loading="eager" fetchpriority="high">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-label">Issue 06 · 2026 — A Tampa Bay Flooring Journal</div>
-      <h1 class="hero-h1">Floors built<br>for <em>Florida<span class="stop">.</span></em></h1>
-      <p class="hero-sub">Napa&rsquo;s is a small, craft-first flooring crew working out of east {BUSINESS["city"]}. We measure twice, acclimate properly, and finish the work we started — every plank, every transition, every baseboard reset. {BUSINESS["unique_stat_full"]}.</p>
+      <div class="hero-label">Bradenton · Sarasota · Tampa · Serving Tampa Bay Since {BUSINESS["year_founded"]}</div>
+      <h1 class="hero-h1">Flooring built<br><em>right</em>, finished<br><em>proud.</em></h1>
+      <p class="hero-sub">Napa&rsquo;s is a small, craft-first flooring crew based in east Bradenton. Hardwood, vinyl plank, tile, laminate, stair treads — installed by the same two people who measured your home, every time.</p>
       <div class="hero-cta">
-        <a href="/contact/#quote" class="btn btn-orange">Get a free estimate <span class="btn-arrow"></span></a>
+        <a href="/contact/#quote" class="btn btn-orange">Get a Free Estimate <span class="btn-arrow"></span></a>
         <a href="{TEL_LINK}" class="btn btn-outline-light">{BUSINESS["phone_display"]}</a>
       </div>
       <div class="hero-meta">
-        <div><strong>{BUSINESS["unique_stat_number"]}</strong><span>Tampa Bay floors</span></div>
+        <div><strong>{BUSINESS["unique_stat_number"]}</strong><span>Tampa Bay Floors</span></div>
         <div><strong>{BUSINESS["rating"]}★</strong><span>Google · {BUSINESS["review_count"]} reviews</span></div>
-        <div><strong>{2026 - BUSINESS["year_founded"]} yrs</strong><span>Crew-led · est {BUSINESS["year_founded"]}</span></div>
-        <div><strong>24h</strong><span>To written estimate</span></div>
+        <div><strong>{2026 - BUSINESS["year_founded"]} yrs</strong><span>In Business</span></div>
+        <div><strong>24h</strong><span>Written Estimate</span></div>
       </div>
     </div>
     <div class="hero-art">
-      <img src="https://images.unsplash.com/photo-1622372738946-62e02505feb3?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Wide-plank European white oak hardwood floor installed by Napa's Flooring in a Lakewood Ranch home" width="900" height="1200" loading="eager" fetchpriority="high">
-      <div class="hero-art-tag">Now Installing</div>
-      <div class="hero-art-caption"><span>Cover Photo</span><span>Lakewood Ranch · Engineered White Oak · 7&prime;&prime; Plank</span></div>
+      <div class="hero-photo">
+        <img src="/images/photo-hardwood-dark.jpg" alt="Dark hardwood floor installed by Napa's Flooring" loading="eager">
+      </div>
+      <div class="hero-photo">
+        <img src="/images/photo-tile-marble.jpg" alt="Marble-look tile bathroom by Napa's Flooring" loading="lazy">
+      </div>
+      <div class="hero-photo">
+        <img src="/images/photo-lvp-landing.jpg" alt="LVP flooring on a stair landing by Napa's Flooring" loading="lazy">
+      </div>
     </div>
   </div>
 </section>'''
 
-# ============================================================================
-# TICKER (animated marquee under hero)
-# ============================================================================
+# TICKER
 ticker = ticker_bar()
 
-# ============================================================================
-# SOCIAL PROOF STRIP
-# ============================================================================
-proof = f'''<section class="proof-strip tight" style="padding:36px 0">
+# PROOF STRIP
+proof = f'''<section class="proof-strip tight">
   <div class="proof-grid">
-    <div class="proof-item">
-      <div class="proof-num">{BUSINESS["unique_stat_number"]}</div>
-      <div class="proof-label">Floors finished · Tampa Bay</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">{BUSINESS["rating"]}★</div>
-      <div class="proof-label">Google · {BUSINESS["review_count"]} verified reviews</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">47</div>
-      <div class="proof-label">Point install standard</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">12mo</div>
-      <div class="proof-label">Workmanship warranty</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">24h</div>
-      <div class="proof-label">Free written estimate</div>
-    </div>
+    <div class="proof-item"><div class="proof-num">{BUSINESS["unique_stat_number"]}</div><div class="proof-label">Floors in Tampa Bay</div></div>
+    <div class="proof-item"><div class="proof-num">{BUSINESS["rating"]}★</div><div class="proof-label">Google · {BUSINESS["review_count"]} reviews</div></div>
+    <div class="proof-item"><div class="proof-num">47 pts</div><div class="proof-label">Install standard</div></div>
+    <div class="proof-item"><div class="proof-num">12 mo</div><div class="proof-label">Workmanship warranty</div></div>
+    <div class="proof-item"><div class="proof-num">24h</div><div class="proof-label">Written estimate</div></div>
   </div>
 </section>'''
 
-# ============================================================================
-# SERVICES GRID — 6 service cards, magazine block layout
-# ============================================================================
-service_cards_html = ""
+# SERVICES GRID
+svc_cards = ""
 for slug in SERVICE_ORDER:
     s = SERVICES[slug]
-    service_cards_html += f'''<a href="/{slug}/" class="service-card">
-  <div class="service-card-num">{s["icon"]} / {s["short"]}</div>
+    svc_cards += f'''<a href="/{slug}/" class="service-card">
+  <div class="service-card-num">{s["icon"]} — {s["short"]}</div>
   <h3>{s["h1_phrase"]}</h3>
   <p class="service-card-desc">{s["intro_lead"]}</p>
-  <span class="service-card-cta">See {s["short"]} Work</span>
+  <span class="service-card-cta">View {s["short"]} work</span>
 </a>'''
 
 services = f'''<section class="services-section">
@@ -105,21 +84,59 @@ services = f'''<section class="services-section">
     <div class="section-head">
       <div class="section-head-num">01</div>
       <div class="section-head-meta">
-        <span class="mono-label">The Work · Six Disciplines</span>
-        <h2>Six things we install. <em>One way</em> we install them.</h2>
-        <div class="section-head-text"><p>Hardwood, vinyl, tile, laminate, stair treads, repair &mdash; every one of them gets the same {CHECKLIST["points"]}-point standard, the same two installers, the same acclimation log, and the same 12-month workmanship warranty.</p></div>
+        <span class="mono-label">Six Services · Same Crew · Same Standard</span>
+        <h2>Every floor we install — <em>done right</em>.</h2>
+        <div class="section-head-text"><p>Hardwood, vinyl plank, tile, laminate, stair treads, and repair. Every one gets the same 47-point standard, two installers, acclimation log, and 12-month workmanship warranty.</p></div>
       </div>
     </div>
-    <div class="services-grid">{service_cards_html}</div>
+    <div class="services-grid">{svc_cards}</div>
   </div>
 </section>'''
 
-# ============================================================================
-# WHY US — 6 numbered items
-# ============================================================================
-why_items_html = ""
+# REAL WORK GALLERY
+gallery = f'''<section style="background:var(--white)">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="section-head-num">02</div>
+      <div class="section-head-meta">
+        <span class="mono-label">Our Work · Tampa Bay Homes</span>
+        <h2>Real floors. Real <em>Tampa Bay homes</em>.</h2>
+        <div class="section-head-text"><p>These are jobs we installed — no stock photos, no renderings. Vinyl plank, hardwood, tile, marble-look porcelain, shower tile, backsplash. This is what Napa&rsquo;s work looks like.</p></div>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/photo-lvp-living.jpg" alt="Wood-look LVP in a Florida living room with water view" loading="lazy">
+        <div class="gallery-caption">Vinyl Plank · Gulf Coast Condo</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-hardwood-espresso.jpg" alt="Dark espresso hardwood floor" loading="lazy">
+        <div class="gallery-caption">Hardwood · Espresso Stain</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-tile-shower.jpg" alt="Vertical tile shower with wood mosaic floor" loading="lazy">
+        <div class="gallery-caption">Tile · Custom Shower · Vertical Stack</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-lvp-sunroom.jpg" alt="Gray LVP in a sunroom" loading="lazy">
+        <div class="gallery-caption">Vinyl Plank · Sunroom Install</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-hardwood-dark.jpg" alt="Dark and honey hardwood floor contrast" loading="lazy">
+        <div class="gallery-caption">Hardwood · Two-tone Transition</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-tile-marble.jpg" alt="Marble-look porcelain tile bathroom" loading="lazy">
+        <div class="gallery-caption">Tile · Calacatta Marble-look Porcelain</div>
+      </div>
+    </div>
+  </div>
+</section>'''
+
+# WHY US
+why_items = ""
 for w in WHY_US_POINTS:
-    why_items_html += f'''<div class="why-item">
+    why_items += f'''<div class="why-item">
   <div class="why-num">{w["num"]}</div>
   <div>
     <h3>{w["title"]}</h3>
@@ -127,109 +144,99 @@ for w in WHY_US_POINTS:
   </div>
 </div>'''
 
-why_us = f'''<section class="why-section">
+why = f'''<section class="why-section">
   <div class="container">
     <div class="section-head">
-      <div class="section-head-num">02</div>
+      <div class="section-head-num">03</div>
       <div class="section-head-meta">
-        <span class="mono-label">Why It Costs What It Costs</span>
-        <h2>The reasons we&rsquo;re <em>different</em>, in plain English.</h2>
-        <div class="section-head-text"><p>Six things you should ask every flooring contractor about. We&rsquo;ve put our answers in writing here so you don&rsquo;t have to ask.</p></div>
+        <span class="mono-label">Why Napa&rsquo;s · Six Reasons</span>
+        <h2>What makes us <em>different</em> — in plain English.</h2>
+        <div class="section-head-text"><p>Six things you should ask every flooring contractor. We put our answers in writing so you don&rsquo;t have to ask.</p></div>
       </div>
     </div>
-    <div class="why-grid">{why_items_html}</div>
+    <div class="why-grid">{why_items}</div>
   </div>
 </section>'''
 
-# ============================================================================
-# PULL QUOTE — editorial signature
-# ============================================================================
-pull_quote = f'''<div class="container"><blockquote class="pull-quote">
-<p>A flooring job is finish carpentry pretending to be flooring. Treat it that way, and the floor lasts. Treat it like flooring, and it doesn&rsquo;t.</p>
-<cite>— The Napa&rsquo;s Crew · Est. {BUSINESS["year_founded"]}</cite>
-</blockquote></div>'''
-
-# ============================================================================
-# SERVICE AREAS GRID — 8 cities
-# ============================================================================
-area_cards_html = ""
+# AREAS
+area_cards = ""
 for slug, c in CITIES.items():
-    area_cards_html += f'''<a href="/{slug}/" class="area-card">
+    area_cards += f'''<a href="/{slug}/" class="area-card">
   <div class="area-card-name">{c["name"]}, FL</div>
   <div class="area-card-meta">{c["county"]} · {len(c["zips"])} ZIPs</div>
-  <span class="area-card-arrow">See {c["name"]} Work →</span>
+  <span class="area-card-arrow">See {c["name"]} →</span>
 </a>'''
 
 areas = f'''<section class="areas-section">
   <div class="container-wide">
     <div class="section-head">
-      <div class="section-head-num">03</div>
+      <div class="section-head-num">04</div>
       <div class="section-head-meta">
         <span class="mono-label on-dark">Service Map · Eight Cities</span>
-        <h2>Eight cities. <em>One crew.</em></h2>
-        <div class="section-head-text"><p>From Anna Maria Island to Hyde Park, from Snell Isle to Wellen Park &mdash; we work the Gulf Coast corridor that the locals know and the tourists don&rsquo;t. Pick your city to see the bairros and ZIPs we cover.</p></div>
+        <h2 style="color:var(--white)">Eight cities. <em style="color:var(--orange);font-style:normal">One crew.</em></h2>
+        <div class="section-head-text"><p style="color:rgba(255,255,255,.65)">From Anna Maria Island to Hyde Park, from Snell Isle to Wellen Park — we work the Gulf Coast corridor. Pick your city for local pricing, neighborhoods, and a tailored FAQ.</p></div>
       </div>
     </div>
-    <div class="areas-grid">{area_cards_html}</div>
+    <div class="areas-grid">{area_cards}</div>
   </div>
 </section>'''
 
-# ============================================================================
-# PROCESS — 4 steps
-# ============================================================================
+# PROCESS
 process_html = ""
 for p in PROCESS_STEPS:
-    process_html += f'''<div class="process-step">
-  <div class="process-num">{p["num"]}</div>
-  <h3>{p["title"]}</h3>
-  <p>{p["body"]}</p>
-</div>'''
+    process_html += f'<div class="process-step" data-num="{p["num"]}"><div class="process-num">{p["num"]}</div><h3>{p["title"]}</h3><p>{p["body"]}</p></div>'
 
 process = f'''<section class="process-section">
   <div class="container">
     <div class="section-head">
-      <div class="section-head-num">04</div>
+      <div class="section-head-num">05</div>
       <div class="section-head-meta">
-        <span class="mono-label">How It Goes · Four Stages</span>
-        <h2>What happens between the call and the <em>clean floor</em>.</h2>
-        <div class="section-head-text"><p>No surprises. No pressure. No subcontractors. Here&rsquo;s the entire process, from first estimate to final walkthrough.</p></div>
+        <span class="mono-label">How It Works · Four Steps</span>
+        <h2>Estimate to <em>clean floor</em> — no surprises.</h2>
+        <div class="section-head-text"><p>No pressure, no subcontractors. Here&rsquo;s everything that happens between the first call and the final walkthrough.</p></div>
       </div>
     </div>
     <div class="process-grid">{process_html}</div>
   </div>
 </section>'''
 
-# ============================================================================
-# REVIEWS section
-# ============================================================================
-reviews = reviews_section(limit=6, headline="What homeowners actually say.")
+# REVIEWS
+reviews = reviews_section(limit=6)
+reviews = reviews.replace('<div class="section-head-num">06</div>','<div class="section-head-num">06</div>')
 
-# Replace generated section number to 05 (it ships as 06 by default)
-reviews = reviews.replace('<div class="section-head-num">06</div>', '<div class="section-head-num">05</div>')
+# ADDITIONAL GALLERY ROW
+gallery2 = f'''<section style="background:var(--gray-bg)">
+  <div class="container-wide">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/photo-tile-backsplash.jpg" alt="Gray glass subway tile backsplash" loading="lazy">
+        <div class="gallery-caption">Tile · Glass Subway Backsplash</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-lvp-landing.jpg" alt="Natural oak LVP on stair landing" loading="lazy">
+        <div class="gallery-caption">Vinyl Plank · Stair Landing</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/photo-tile-marble3.jpg" alt="Warm wood-look LVP living room" loading="lazy">
+        <div class="gallery-caption">Vinyl Plank · Waterfront Condo</div>
+      </div>
+    </div>
+  </div>
+</section>'''
 
-# ============================================================================
-# CTA BAND (between reviews and final)
-# ============================================================================
-cta_banner = f'''<div class="container">{contact_banner()}</div>'''
-
-# ============================================================================
-# FINAL CTA
-# ============================================================================
 final = final_cta(
-    headline="Ready when you are.",
-    sub="Send us the room, the rough size, and what you&rsquo;d like installed. We&rsquo;ll come measure, talk through options, and email you a written line-itemized quote within 24 hours."
+    headline="Free estimate on your Tampa Bay floor.",
+    sub=f"In-home measure, transparent pricing, written quote within 24 hours. We respond to every inquiry, every day."
 )
 
-# ============================================================================
-# ASSEMBLE
-# ============================================================================
-body = "\n".join([hero, ticker, proof, services, pull_quote, why_us, areas, process, reviews, cta_banner, final])
+body = "\n".join([hero, ticker, proof, services, gallery, why, areas, process, reviews, gallery2, f'<div class="container">{contact_banner()}</div>', final])
+
 head_html = head(TITLE, DESC, CANONICAL,
     og_image=f"{SITE}/images/og-default.jpg",
     og_type="website",
     json_ld=SCHEMAS,
+    extra_meta='<link rel="preload" href="/images/photo-lvp-living.jpg" as="image">'
 )
-header_html = header(active="home")
 
-write_page(OUT, head_html, header_html, body)
-print(f"Wrote {OUT}")
+write_page(OUT, head_html, header(active="home"), body)
+print(f"Wrote {OUT} ({len(open(OUT).read())//1024}KB)")
