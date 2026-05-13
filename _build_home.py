@@ -24,8 +24,8 @@ ticker = ticker_bar()   # already built in _gen.py
 # ──────────────────────────────────────────────────────────────────
 hero = f'''<section class="hero">
   <img class="hero-bg-img"
-       src="/images/real-hardwood-white-oak.jpg"
-       alt="Wide-plank white oak hardwood floor installed by Napa's Flooring in a new construction home"
+       src="/images/real-stair-oak-living.jpg"
+       alt="Oak stair treads and hardwood floor installed by Napa's Flooring"
        loading="eager" fetchpriority="high">
   <div class="hero-inner">
     <div class="hero-left">
@@ -229,69 +229,70 @@ EXTRA_CSS = """
 /* ── HERO: static single photo ── */
 .hero{
   position:relative;
-  height:calc(100vh - 92px - 46px); /* hero fills viewport: nav≈92 + ticker≈46 = below fold */
+  height:calc(100vh - 92px - 46px);
   min-height:480px;
   max-height:900px;
   display:flex;
   align-items:center;
   overflow:hidden;
-  background:#111;
+  background:#ddd;
 }
 .hero-bg-img{
   position:absolute;inset:0;
   width:100%;height:100%;
-  object-fit:cover;object-position:center;
+  object-fit:cover;
+  object-position:center 40%;
 }
-.hero::after{
-  content:"";position:absolute;inset:0;
-  /* gradient only on left side where text is — photo visible on right */
-  background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 38%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.0) 100%);
-  z-index:1;pointer-events:none;
-}
+/* NO full-page overlay — text gets a frosted card instead */
+.hero::after{ display:none }
 .hero-inner{
   position:relative;z-index:2;
   max-width:var(--container);
   margin:0 auto;padding:0 28px;
   width:100%;
 }
-.hero-left{display:flex;flex-direction:column;max-width:680px}
+.hero-left{
+  display:flex;flex-direction:column;
+  max-width:600px;
+  background:rgba(10,10,10,.58);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-radius:16px;
+  padding:36px 40px;
+  border:1px solid rgba(255,255,255,.1);
+}
 .hero-label{
   display:flex;align-items:center;gap:10px;
   font-size:.76rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:#FFC84A;
-  margin-bottom:16px;text-shadow:0 1px 6px rgba(0,0,0,1);
+  margin-bottom:16px;
 }
 .hero-label::before{content:"";width:22px;height:2px;background:#FFC84A;flex-shrink:0}
 .hero-h1{
   font-family:var(--font-head);font-weight:800;
-  font-size:clamp(2.4rem,5vw,4rem);
+  font-size:clamp(2rem,4vw,3.2rem);
   line-height:1.08;letter-spacing:-.03em;
-  color:#FFFFFF;margin-bottom:1rem;
-  text-shadow:0 2px 16px rgba(0,0,0,1);
+  color:#FFFFFF;margin-bottom:.9rem;
 }
 .hero-h1 em{font-style:normal;color:#FFC84A}
 .hero-sub{
-  font-size:1.05rem;line-height:1.65;
-  color:#FFFFFF;margin-bottom:1.6rem;
-  text-shadow:0 1px 10px rgba(0,0,0,1);
-  font-weight:500;
+  font-size:.98rem;line-height:1.65;
+  color:rgba(255,255,255,.92);margin-bottom:1.5rem;
 }
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.8rem}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.6rem}
 .hero-meta{
-  display:flex;flex-wrap:wrap;gap:16px 32px;
-  border-top:1px solid rgba(255,255,255,.35);
-  padding-top:1.4rem;
+  display:flex;flex-wrap:wrap;gap:14px 24px;
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:1.2rem;
 }
-.hero-meta div{display:flex;flex-direction:column;gap:3px}
+.hero-meta div{display:flex;flex-direction:column;gap:2px}
 .hero-meta strong{
-  font-family:var(--font-head);font-size:1.5rem;
+  font-family:var(--font-head);font-size:1.35rem;
   color:#FFFFFF;font-weight:800;line-height:1;
-  text-shadow:0 1px 10px rgba(0,0,0,1);
 }
 .hero-meta span{
-  font-size:.7rem;letter-spacing:.1em;
-  text-transform:uppercase;color:#FFFFFF;
-  font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,1);
+  font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.75);
 }
 
 /* ── SERVICES compact ── */
@@ -371,14 +372,16 @@ EXTRA_CSS = """
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   .hero{height:calc(100vh - 80px - 44px);min-height:440px}
-  .hero-h1{font-size:clamp(2rem,6vw,3rem)}
+  .hero-left{padding:24px 22px;max-width:100%;border-radius:12px}
+  .hero-h1{font-size:clamp(1.9rem,6vw,2.8rem)}
   .gallery-grid{grid-template-columns:1fr 1fr}
   .rv-card{padding:24px 20px}
   .rv-text{font-size:.97rem}
 }
 @media(max-width:520px){
   .hero{height:calc(100vh - 72px - 44px);min-height:400px}
-  .hero-inner{padding:0 16px}
+  .hero-inner{padding:0 12px}
+  .hero-left{padding:20px 18px}
   .rv-card{padding:20px 16px}
   .gallery-grid{grid-template-columns:1fr 1fr}
 }
@@ -444,7 +447,7 @@ body = "\n".join([
 ])
 
 extra = (f'<style>{EXTRA_CSS}</style>'
-         '<link rel="preload" href="/images/real-hardwood-white-oak.jpg" as="image">')
+         '<link rel="preload" href="/images/real-stair-oak-living.jpg" as="image">')
 
 head_html = head(TITLE, DESC, CANONICAL, json_ld=SCHEMAS, extra_meta=extra)
 write_page(OUT, head_html, header(active="home"), body)
