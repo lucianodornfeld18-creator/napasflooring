@@ -223,10 +223,10 @@ section.tight{padding:48px 0}
 
 /* PHOTO GALLERY (homepage portfolio section) */
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:4/3;position:relative}
+.gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:1/1;position:relative}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .gallery-item:hover img{transform:scale(1.06)}
-.gallery-item:first-child{grid-column:span 1;aspect-ratio:4/3}
+.gallery-item:first-child{grid-column:span 1;aspect-ratio:1/1}
 .gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);color:#fff;padding:14px 16px 12px;font-size:.82rem;font-weight:600;letter-spacing:.04em;opacity:0;transition:opacity .3s}
 .gallery-item:hover .gallery-caption{opacity:1}
 
@@ -488,12 +488,18 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 @media(max-width:768px){
   .top-bar-inner{justify-content:center;gap:12px}
   .top-bar-edition{display:none}
-  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--white);border-top:1px solid var(--gray-border);border-bottom:1px solid var(--gray-border);align-items:stretch;gap:0;box-shadow:var(--shadow-lg);z-index:200}
+  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--white);border-top:1px solid var(--gray-border);border-bottom:1px solid var(--gray-border);align-items:stretch;gap:0;box-shadow:var(--shadow-lg);z-index:200;max-height:calc(100vh - 92px);overflow-y:auto;-webkit-overflow-scrolling:touch}
   .nav-menu.open{display:flex}
-  .nav-menu>li{border-bottom:1px solid var(--gray-border)}
-  .nav-menu>li>a{display:block;padding:14px 24px;font-size:.98rem}
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:var(--gray-bg);border:none;border-radius:0}
-  .dropdown a{padding:10px 40px;font-size:.9rem}
+  .nav-menu>li{border-bottom:1px solid var(--gray-border);position:relative}
+  .nav-menu>li>a{display:block;padding:16px 24px;font-size:1rem}
+  /* dropdowns collapsed by default on mobile */
+  .nav-menu .dropdown{position:static;opacity:0;visibility:hidden;transform:none;box-shadow:none;background:var(--gray-bg);border:none;border-radius:0;max-height:0;overflow:hidden;padding:0;transition:max-height .25s ease,opacity .15s ease}
+  .nav-menu>li.mobile-open>.dropdown{opacity:1;visibility:visible;max-height:80vh;padding:6px 0}
+  .nav-menu .dropdown a{padding:11px 40px;font-size:.92rem;display:block}
+  /* arrow indicator on parents with dropdowns */
+  .nav-menu>li.has-dropdown>a::before{content:"+";float:right;color:var(--orange);font-weight:400;font-size:1.2rem;line-height:1;margin-left:8px;transition:transform .25s}
+  .nav-menu>li.has-dropdown.mobile-open>a::before{content:"−"}
+  .nav-menu>li.has-dropdown>a::after{display:none}
   .menu-toggle{display:block}
   .nav-phone span{display:none}
   .brand-tag{display:none}
@@ -779,7 +785,37 @@ A typical 1,200&ndash;1,500 sq ft stair tread install in Venice costs $6,000&nda
   </a>
 </div>
 <script>
-(function(){var t=document.getElementById("menuToggle"),m=document.getElementById("navMenu");if(t&&m){t.addEventListener("click",function(){var o=m.classList.toggle("open");t.setAttribute("aria-expanded",o)})}})();
+(function(){
+  var t=document.getElementById("menuToggle"), m=document.getElementById("navMenu");
+  if(t&&m){
+    t.addEventListener("click", function(){
+      var o = m.classList.toggle("open");
+      t.setAttribute("aria-expanded", o);
+      // close any open dropdowns when menu closes
+      if(!o) m.querySelectorAll("li.mobile-open").forEach(function(li){ li.classList.remove("mobile-open"); });
+    });
+
+    // Mark parents that have dropdowns + handle tap-to-expand on mobile
+    var parents = m.querySelectorAll("li");
+    parents.forEach(function(li){
+      var dd = li.querySelector(".dropdown");
+      if(!dd) return;
+      li.classList.add("has-dropdown");
+      var link = li.querySelector(":scope > a");
+      if(!link) return;
+      link.addEventListener("click", function(e){
+        // only intercept on mobile
+        if(window.innerWidth <= 768){
+          e.preventDefault();
+          // close siblings
+          var siblings = li.parentNode.querySelectorAll("li.mobile-open");
+          siblings.forEach(function(s){ if(s !== li) s.classList.remove("mobile-open"); });
+          li.classList.toggle("mobile-open");
+        }
+      });
+    });
+  }
+})();
 </script>
 </body>
 </html>
