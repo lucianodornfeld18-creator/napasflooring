@@ -188,28 +188,50 @@ process = f'''<section class="process-section">
   </div>
 </section>'''
 
-# ── PROJECT CAROUSEL (replaces reviews section)
+# ── REVIEWS CAROUSEL
+rev_slides = ""
+rev_dots = ""
+for i, r in enumerate(REVIEWS):
+    stars = "★" * r["rating"] + "☆" * (5 - r["rating"])
+    active = " rv-active" if i == 0 else ""
+    rev_slides += f'''<div class="rv-slide{active}">
+  <div class="rv-card">
+    <div class="rv-stars">{stars}</div>
+    <p class="rv-text">"{r["text"]}"</p>
+    <div class="rv-meta">
+      <strong class="rv-name">{r["name"]}</strong>
+      <span class="rv-where">{r["city"]}, FL · {r["service"]} · {r["date"]}</span>
+      <span class="rv-verified">✓ Verified Google Review</span>
+    </div>
+  </div>
+</div>'''
+    rev_dots += f'<button class="rv-dot{" rv-active" if i==0 else ""}" data-rv="{i}" aria-label="Review {i+1}"></button>'
+
 portfolio = f'''<section style="background:var(--dark);padding:80px 0">
   <div class="container-wide">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
       <div>
-        <span class="mono-label on-dark">Portfolio · Tampa Bay Projects</span>
-        <h2 style="color:var(--white);margin-top:.5rem">Our work, <em style="color:var(--orange);font-style:normal">up close.</em></h2>
+        <span class="mono-label on-dark">Google Reviews · Verified</span>
+        <h2 style="color:var(--white);margin-top:.5rem">What homeowners <em style="color:var(--orange);font-style:normal">actually say.</em></h2>
       </div>
-      <div style="display:flex;gap:12px">
-        <button id="pjPrev" class="pj-arrow">&#8592;</button>
-        <button id="pjNext" class="pj-arrow">&#8594;</button>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:var(--orange);font-size:1.1rem;letter-spacing:2px">★★★★★</span>
+          <span style="color:#fff;font-family:var(--font-head);font-size:1.3rem;font-weight:800">{BUSINESS["rating"]}</span>
+          <span style="color:rgba(255,255,255,.5);font-size:.82rem">· {BUSINESS["review_count"]} reviews</span>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button id="rvPrev" class="pj-arrow">&#8592;</button>
+          <button id="rvNext" class="pj-arrow">&#8594;</button>
+        </div>
       </div>
     </div>
-    <div class="pj-track-wrap">
-      <div class="pj-track" id="pjTrack">{proj_slides}</div>
+    <div class="rv-track-wrap">
+      <div class="rv-track" id="rvTrack">{rev_slides}</div>
     </div>
-    <div class="pj-dots">{proj_dots}</div>
-    <div style="margin-top:2rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;flex-wrap:wrap;gap:16px 36px">
-      <span style="color:var(--orange);font-size:1.2rem;letter-spacing:3px">★★★★★</span>
-      <span style="color:var(--white);font-family:var(--font-head);font-size:1.4rem;font-weight:800">{BUSINESS["rating"]}</span>
-      <span style="color:rgba(255,255,255,.5);font-size:.84rem">{BUSINESS["review_count"]} verified Google reviews</span>
-      <a href="{BUSINESS["google_profile"]}" target="_blank" rel="noopener" style="color:var(--orange);font-size:.85rem;font-weight:600;margin-left:auto">Ver no Google →</a>
+    <div class="rv-dots">{rev_dots}</div>
+    <div style="margin-top:2rem;text-align:center">
+      <a href="{BUSINESS["google_profile"]}" target="_blank" rel="noopener" class="btn btn-outline-light" style="display:inline-flex">Ver todos no Google →</a>
     </div>
   </div>
 </section>'''
@@ -233,19 +255,19 @@ EXTRA_CSS = """
 .cs-arrow:hover{background:rgba(245,166,35,.9);color:#1a1a1a}
 /* HERO LAYOUT */
 .hero{position:relative;height:calc(100vh - 72px);min-height:520px;max-height:960px;display:flex;align-items:center;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,10,10,.80) 0%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.15) 100%);z-index:2;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.60) 50%,rgba(0,0,0,.20) 100%);z-index:2;pointer-events:none}
 .hero-inner{position:relative;z-index:3;max-width:var(--container-wide);margin:0 auto;padding:0 32px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .hero-left{display:flex;flex-direction:column}
-.hero-label{display:flex;align-items:center;gap:10px;font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
-.hero-label::before{content:"";width:22px;height:2px;background:var(--orange);flex-shrink:0}
-.hero-h1{font-family:var(--font-head);font-weight:800;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.08;letter-spacing:-.03em;color:#fff;margin-bottom:1rem}
-.hero-h1 em{font-style:normal;color:var(--orange)}
-.hero-sub{font-size:1rem;line-height:1.6;color:rgba(255,255,255,.8);margin-bottom:1.5rem;max-width:500px}
+.hero-label{display:flex;align-items:center;gap:10px;font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFC84A;margin-bottom:16px;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.hero-label::before{content:"";width:22px;height:2px;background:#FFC84A;flex-shrink:0}
+.hero-h1{font-family:var(--font-head);font-weight:800;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.08;letter-spacing:-.03em;color:#FFFFFF;margin-bottom:1rem;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.hero-h1 em{font-style:normal;color:#FFC84A}
+.hero-sub{font-size:1rem;line-height:1.6;color:#FFFFFF;margin-bottom:1.5rem;max-width:500px;text-shadow:0 1px 8px rgba(0,0,0,.9)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.6rem}
-.hero-meta{display:flex;flex-wrap:wrap;gap:16px 26px;border-top:1px solid rgba(255,255,255,.18);padding-top:1.3rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:16px 26px;border-top:1px solid rgba(255,255,255,.35);padding-top:1.3rem}
 .hero-meta div{display:flex;flex-direction:column;gap:2px}
-.hero-meta strong{font-family:var(--font-head);font-size:1.4rem;color:#fff;font-weight:800;line-height:1}
-.hero-meta span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.hero-meta strong{font-family:var(--font-head);font-size:1.4rem;color:#FFFFFF;font-weight:800;line-height:1;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.hero-meta span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 6px rgba(0,0,0,.9)}
 /* TRUST CARD */
 .hero-trust-card{background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;max-width:380px;margin-left:auto}
 .htc-stars{color:var(--orange);font-size:1.1rem;letter-spacing:2px}
@@ -267,7 +289,22 @@ EXTRA_CSS = """
 .pj-dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
 .pj-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.25);cursor:pointer;padding:0;transition:all .22s}
 .pj-dot.pj-active{background:var(--orange);transform:scale(1.3)}
-/* SERVICES COMPACT */
+/* REVIEWS CAROUSEL */
+.rv-track-wrap{overflow:hidden}
+.rv-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.rv-slide{min-width:33.333%;padding:0 8px;box-sizing:border-box;flex-shrink:0}
+.rv-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 22px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rv-stars{color:var(--orange);font-size:1rem;letter-spacing:2px}
+.rv-text{color:rgba(255,255,255,.92);font-size:.95rem;line-height:1.62;font-style:italic;flex-grow:1;margin:0}
+.rv-meta{display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;margin-top:auto}
+.rv-name{color:#fff;font-size:.9rem;font-weight:700;font-style:normal}
+.rv-where{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.rv-verified{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+.rv-dots{display:flex;gap:8px;justify-content:center;margin-top:18px}
+.rv-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.2);cursor:pointer;padding:0;transition:all .22s}
+.rv-dot.rv-active{background:var(--orange);transform:scale(1.3)}
+@media(max-width:900px){.rv-slide{min-width:50%}}
+@media(max-width:600px){.rv-slide{min-width:100%}}
 .home-services{padding:60px 0;background:var(--gray-bg)}
 .home-services .services-grid{grid-template-columns:repeat(3,1fr);gap:14px}
 .home-services .service-card{min-height:220px;padding:24px 20px}
@@ -304,25 +341,26 @@ SCRIPTS = """<script>
   document.getElementById('csPrev').addEventListener('click', function(){ cGo(cCur-1); clearInterval(cTimer); cTimer=setInterval(function(){cGo(cCur+1);},4500); });
   document.getElementById('csNext').addEventListener('click', function(){ cGo(cCur+1); clearInterval(cTimer); cTimer=setInterval(function(){cGo(cCur+1);},4500); });
 
-  // ── Project carousel
-  var pTrack = document.getElementById('pjTrack');
-  if (!pTrack) return;
-  var pDots = document.querySelectorAll('.pj-dot');
-  var pCur  = 0, pVisible, pTotal = 8, pTimer;
-  function pVis(){ return window.innerWidth > 1100 ? 3 : window.innerWidth > 768 ? 2 : 1; }
-  function pGo(n){
-    pVisible = pVis();
-    pCur = Math.max(0, Math.min(n, pTotal - pVisible));
-    pTrack.style.transform = 'translateX(-' + (pCur * (100/pVisible)) + '%)';
-    pDots.forEach(function(d,i){ d.classList.toggle('pj-active', i===pCur); });
+  // ── Reviews carousel
+  var rvTrack = document.getElementById('rvTrack');
+  if (rvTrack) {
+    var rvDots = document.querySelectorAll('.rv-dot');
+    var rvCur = 0, rvTotal = 15, rvTimer;
+    function rvVis(){ return window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1; }
+    function rvGo(n){
+      var v = rvVis();
+      rvCur = Math.max(0, Math.min(n, rvTotal - v));
+      rvTrack.style.transform = 'translateX(-' + (rvCur * (100/v)) + '%)';
+      rvDots.forEach(function(d,i){ d.classList.toggle('rv-active', i===rvCur); });
+    }
+    function rvNext(){ rvGo(rvCur + rvVis() <= rvTotal - rvVis() ? rvCur + 1 : 0); }
+    rvTimer = setInterval(rvNext, 4000);
+    document.getElementById('rvPrev').addEventListener('click', function(){ rvGo(rvCur-1); clearInterval(rvTimer); rvTimer=setInterval(rvNext,4000); });
+    document.getElementById('rvNext').addEventListener('click', function(){ rvGo(rvCur+1); clearInterval(rvTimer); rvTimer=setInterval(rvNext,4000); });
+    rvDots.forEach(function(d){ d.addEventListener('click', function(){ rvGo(+this.dataset.rv); clearInterval(rvTimer); rvTimer=setInterval(rvNext,4000); }); });
+    rvTrack.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+    rvTrack.addEventListener('mouseleave', function(){ rvTimer=setInterval(rvNext,4000); });
   }
-  function pNext(){ pGo(pCur + 1 <= pTotal - pVis() ? pCur + 1 : 0); }
-  pTimer = setInterval(pNext, 3800);
-  document.getElementById('pjPrev').addEventListener('click', function(){ pGo(pCur-1); clearInterval(pTimer); pTimer=setInterval(pNext,3800); });
-  document.getElementById('pjNext').addEventListener('click', function(){ pGo(pCur+1); clearInterval(pTimer); pTimer=setInterval(pNext,3800); });
-  pDots.forEach(function(d){ d.addEventListener('click', function(){ pGo(+this.dataset.pj); clearInterval(pTimer); pTimer=setInterval(pNext,3800); }); });
-  pTrack.addEventListener('mouseenter', function(){ clearInterval(pTimer); });
-  pTrack.addEventListener('mouseleave', function(){ pTimer=setInterval(pNext,3800); });
 })();
 </script>"""
 
