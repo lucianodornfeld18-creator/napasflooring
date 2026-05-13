@@ -645,8 +645,9 @@ def footer():
   <div class="footer-grid">
     <div class="footer-col footer-brand">
       <div class="footer-brand-bar">
-        <span class="footer-brand-mark"><span>N</span></span>
-        <strong>Napa&rsquo;s Flooring</strong>
+        <a href="/" style="display:block;text-decoration:none;margin-bottom:.2rem">
+          <img src="/images/logo-dark-header.png" alt="{BUSINESS["name"]}" height="60" width="auto">
+        </a>
       </div>
       <p>{BUSINESS["tagline_long"]}</p>
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">{BUSINESS["unique_stat_full"]}</p>

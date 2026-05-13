@@ -114,7 +114,9 @@ ul,ol{margin:0;padding:0}
 
 /* HEADER */
 .site-header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-border);box-shadow:var(--shadow-sm)}
-.nav-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--container-wide);margin:0 auto;gap:1.2rem}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:var(--container-wide);margin:0 auto;gap:1.2rem}
+.brand{display:flex;align-items:center;gap:4px;text-decoration:none;flex-shrink:0}
+.brand img{height:72px;width:auto}
 .brand{display:flex;align-items:center;gap:4px;text-decoration:none;flex-shrink:0}
 .brand img{height:52px;width:auto}
 .brand-mark{width:44px;height:44px;background:var(--orange);display:grid;place-items:center;border-radius:6px;flex-shrink:0}
@@ -224,7 +226,7 @@ section.tight{padding:48px 0}
 .gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:4/3;position:relative}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .gallery-item:hover img{transform:scale(1.06)}
-.gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gallery-item:first-child{grid-column:span 1;aspect-ratio:4/3}
 .gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);color:#fff;padding:14px 16px 12px;font-size:.82rem;font-weight:600;letter-spacing:.04em;opacity:0;transition:opacity .3s}
 .gallery-item:hover .gallery-caption{opacity:1}
 
@@ -503,7 +505,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   .proof-item:nth-child(5){display:none}
   .services-grid,.areas-grid,.process-grid,.reviews-grid,.blog-grid,.checklist-grid{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr 1fr}
-  .gallery-item:first-child{grid-column:span 2}
+  .gallery-item:first-child{grid-column:span 1}
   .footer-grid{grid-template-columns:1fr;gap:28px}
   .related-box ul{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
@@ -529,15 +531,10 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is luxury vinyl plank really waterproof?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 fully. Modern LVP and SPC planks are 100% waterproof through the core; you can submerge a plank for days and it won't swell, warp, or delaminate. The seams where two planks meet are tight enough that surface water (a dishwasher leak, a pet accident, a hurricane-driven AC condensate overflow) won't penetrate to the subfloor for hours. That said: waterproof flooring doesn't make a waterproof house. Standing water against a baseboard for days will still get into the wall cavity behind the floor \u2014 the plank itself won't fail, but adjacent assemblies can."}},{"@type":"Question","name":"Click-lock vs. glue-down \u2014 which is right for me?","acceptedAnswer":{"@type":"Answer","text":"Click-lock (floating) is faster to install, easier to repair (you can pop up a damaged plank and swap it), and gentler on subfloors with minor imperfections. Glue-down is more permanent, has zero flex underfoot (which feels closer to tile or real hardwood), and is the right answer for open-plan spaces over 800 sq ft, for commercial buildings, and for spaces with very heavy furniture (pool tables, gun safes, commercial-grade appliances). For most Florida residential work we install click-lock; for STRs and commercial, we glue down."}},{"@type":"Question","name":"Do you do quotes specifically for Venice?","acceptedAnswer":{"@type":"Answer","text":"Yes &mdash; every Venice project gets an in-home measure, a baseline moisture reading on the subfloor, and a written line-itemized quote within 24 hours. We&rsquo;re based in east Bradenton and work Venice every week, so the schedule turnaround is fast."}}]}</script>
 </head>
 <body>
-<div class="top-bar"><div class="top-bar-inner">
-<a href="tel:+14076279533">📞 (407) 627-9533</a>
-<span class="top-bar-edition">Bradenton · Sarasota · Tampa Bay · Est. 2020</span>
-<a href="mailto:napasflooring@gmail.com">✉ napasflooring@gmail.com</a>
-</div></div>
 <header class="site-header">
   <nav class="nav-bar" aria-label="Main">
     <a href="/" class="brand" aria-label="Napa's Flooring home">
-      <img src="/images/logo-white-bg.png" alt="Napa's Flooring" height="52" width="auto" loading="eager">
+      <img src="/images/logo-white-bg.png" alt="Napa's Flooring" height="72" width="auto" loading="eager">
     </a>
     <ul class="nav-menu" id="navMenu">
       <li><a href="/">Home</a></li>
@@ -733,8 +730,9 @@ A typical 1,200&ndash;1,500 sq ft vinyl plank flooring install in Venice costs $
   <div class="footer-grid">
     <div class="footer-col footer-brand">
       <div class="footer-brand-bar">
-        <span class="footer-brand-mark"><span>N</span></span>
-        <strong>Napa&rsquo;s Flooring</strong>
+        <a href="/" style="display:block;text-decoration:none;margin-bottom:.2rem">
+          <img src="/images/logo-dark-header.png" alt="Napa's Flooring" height="60" width="auto">
+        </a>
       </div>
       <p>Tampa Bay's craft-first flooring crew — hardwood, vinyl, tile, laminate and stair treads installed by hand.</p>
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>

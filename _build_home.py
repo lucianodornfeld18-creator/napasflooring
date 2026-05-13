@@ -221,7 +221,7 @@ EXTRA_CSS = """
 /* ── HERO: static single photo ── */
 .hero{
   position:relative;
-  height:calc(100vh - 92px - 46px); /* nav≈92px + ticker≈46px */
+  height:calc(100vh - 92px - 46px); /* hero fills viewport: nav≈92 + ticker≈46 = below fold */
   min-height:480px;
   max-height:900px;
   display:flex;
@@ -236,7 +236,8 @@ EXTRA_CSS = """
 }
 .hero::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.60) 55%,rgba(0,0,0,.18) 100%);
+  /* gradient only on left side where text is — right side shows photo clearly */
+  background:linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.60) 38%,rgba(0,0,0,.20) 65%,rgba(0,0,0,.0) 100%);
   z-index:1;pointer-events:none;
 }
 .hero-inner{
@@ -421,8 +422,8 @@ final_cta_html = final_cta(
     "In-home measure, transparent pricing, written quote within 24 hours.")
 
 body = "\n".join([
-    ticker,          # ← BEFORE hero = visible above the fold
-    hero,
+    hero,            # hero fills (100vh - nav - ticker height)
+    ticker,          # ← ticker sits at bottom of viewport, fully visible
     services,
     gallery,
     why,

@@ -35,7 +35,7 @@
 /* ── HERO: static single photo ── */
 .hero{
   position:relative;
-  height:calc(100vh - 92px - 46px); /* nav≈92px + ticker≈46px */
+  height:calc(100vh - 92px - 46px); /* hero fills viewport: nav≈92 + ticker≈46 = below fold */
   min-height:480px;
   max-height:900px;
   display:flex;
@@ -50,7 +50,8 @@
 }
 .hero::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.60) 55%,rgba(0,0,0,.18) 100%);
+  /* gradient only on left side where text is — right side shows photo clearly */
+  background:linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.60) 38%,rgba(0,0,0,.20) 65%,rgba(0,0,0,.0) 100%);
   z-index:1;pointer-events:none;
 }
 .hero-inner{
@@ -719,7 +720,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 </header>
 
 <main>
-<div class="ticker"><div class="ticker-inner"><span>300+ Tampa Bay floors finished since 2020</span><span>15 × 5★ Google reviews</span><span>Free estimate in 24 hrs</span><span>Licensed &amp; Insured</span><span>12-month workmanship warranty</span><span>Two installers · same crew · start to finish</span><span>TCNA-spec tile · IRC-spec framing</span><span>Acclimation log on every install</span><span>300+ Tampa Bay floors finished since 2020</span><span>15 × 5★ Google reviews</span><span>Free estimate in 24 hrs</span><span>Licensed &amp; Insured</span><span>12-month workmanship warranty</span><span>Two installers · same crew · start to finish</span><span>TCNA-spec tile · IRC-spec framing</span><span>Acclimation log on every install</span></div></div>
 <section class="hero">
   <img class="hero-bg-img"
        src="/images/photo-lvp-living.jpg"
@@ -744,6 +744,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
     </div>
   </div>
 </section>
+<div class="ticker"><div class="ticker-inner"><span>300+ Tampa Bay floors finished since 2020</span><span>15 × 5★ Google reviews</span><span>Free estimate in 24 hrs</span><span>Licensed &amp; Insured</span><span>12-month workmanship warranty</span><span>Two installers · same crew · start to finish</span><span>TCNA-spec tile · IRC-spec framing</span><span>Acclimation log on every install</span><span>300+ Tampa Bay floors finished since 2020</span><span>15 × 5★ Google reviews</span><span>Free estimate in 24 hrs</span><span>Licensed &amp; Insured</span><span>12-month workmanship warranty</span><span>Two installers · same crew · start to finish</span><span>TCNA-spec tile · IRC-spec framing</span><span>Acclimation log on every install</span></div></div>
 <section class="home-services">
   <div class="container-wide">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
@@ -1208,8 +1209,9 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   <div class="footer-grid">
     <div class="footer-col footer-brand">
       <div class="footer-brand-bar">
-        <span class="footer-brand-mark"><span>N</span></span>
-        <strong>Napa&rsquo;s Flooring</strong>
+        <a href="/" style="display:block;text-decoration:none;margin-bottom:.2rem">
+          <img src="/images/logo-dark-header.png" alt="Napa's Flooring" height="60" width="auto">
+        </a>
       </div>
       <p>Tampa Bay's craft-first flooring crew — hardwood, vinyl, tile, laminate and stair treads installed by hand.</p>
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>
