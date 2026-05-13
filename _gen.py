@@ -204,10 +204,10 @@ section.tight{padding:48px 0}
 
 /* PHOTO GALLERY (homepage portfolio section) */
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:4/3;position:relative}
+.gallery-item{overflow:hidden;border-radius:var(--radius);aspect-ratio:1/1;position:relative}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .gallery-item:hover img{transform:scale(1.06)}
-.gallery-item:first-child{grid-column:span 1;aspect-ratio:4/3}
+.gallery-item:first-child{grid-column:span 1;aspect-ratio:1/1}
 .gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);color:#fff;padding:14px 16px 12px;font-size:.82rem;font-weight:600;letter-spacing:.04em;opacity:0;transition:opacity .3s}
 .gallery-item:hover .gallery-caption{opacity:1}
 
