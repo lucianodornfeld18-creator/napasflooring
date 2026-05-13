@@ -158,7 +158,12 @@ def build_contact():
         <h2 style="font-family:var(--font-editorial);font-weight:500;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.1;letter-spacing:-.02em;margin:.6rem 0 1.6rem">Or send us the <em>details</em>.</h2>
         <p style="font-size:1rem;color:var(--gray);margin-bottom:1.4rem">Tell us about the space and the rough timeline. The more detail, the better the first response. We&rsquo;ll reply within 4 business hours.</p>
 
-        <form class="form-wrap" action="https://formspree.io/f/your-form-id" method="POST">
+        <form class="form-wrap" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="d98ab5ee-2d5c-4932-bf67-874a4c35a5ed">
+          <input type="hidden" name="subject" value="New Quote Request — napasflooring.com">
+          <input type="hidden" name="from_name" value="Napa's Flooring Website">
+          <input type="hidden" name="redirect" value="https://napasflooring.com/thanks/">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-grid">
             <label>Name<input type="text" name="name" required></label>
             <label>Phone<input type="tel" name="phone" required></label>
@@ -184,7 +189,6 @@ def build_contact():
               <option>Not sure yet</option>
             </select></label>
             <label class="full">Tell us about the project<textarea name="message" placeholder="Rooms, current floor, timeline, anything else worth mentioning."></textarea></label>
-            <input type="hidden" name="_subject" value="Free Quote Request from napasflooring.com">
             <button type="submit" class="btn btn-orange form-submit">Send Request <span class="btn-arrow"></span></button>
           </div>
         </form>
