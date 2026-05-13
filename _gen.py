@@ -95,7 +95,9 @@ ul,ol{margin:0;padding:0}
 
 /* HEADER */
 .site-header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-border);box-shadow:var(--shadow-sm)}
-.nav-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--container-wide);margin:0 auto;gap:1.2rem}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:var(--container-wide);margin:0 auto;gap:1.2rem}
+.brand{display:flex;align-items:center;gap:4px;text-decoration:none;flex-shrink:0}
+.brand img{height:72px;width:auto}
 .brand{display:flex;align-items:center;gap:4px;text-decoration:none;flex-shrink:0}
 .brand img{height:52px;width:auto}
 .brand-mark{width:44px;height:44px;background:var(--orange);display:grid;place-items:center;border-radius:6px;flex-shrink:0}
@@ -583,7 +585,7 @@ def header(active=""):
     return f'''<header class="site-header">
   <nav class="nav-bar" aria-label="Main">
     <a href="/" class="brand" aria-label="{BUSINESS["name"]} home">
-      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" height="64" width="auto" loading="eager">
+      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" height="72" width="auto" loading="eager">
     </a>
     <ul class="nav-menu" id="navMenu">
       <li{' class="active"' if active=="home" else ''}><a href="/">Home</a></li>
