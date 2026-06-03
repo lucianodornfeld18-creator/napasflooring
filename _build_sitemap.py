@@ -2,7 +2,7 @@
 """Generate sitemap.xml, robots.txt, _headers, _redirects."""
 import os, sys
 from datetime import date
-sys.path.insert(0, '/home/claude/napas')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _data import BUSINESS, CITIES, SERVICES, SERVICE_ORDER, GENERAL_BLOG_POSTS, COST_BLOG_POSTS
 
 DOMAIN = BUSINESS["domain"]
@@ -53,40 +53,139 @@ def build_sitemap():
 {rows}
 </urlset>
 '''
-    with open("/home/claude/napas/sitemap.xml", "w", encoding="utf-8") as f:
+    with open("sitemap.xml", "w", encoding="utf-8") as f:
         f.write(xml)
     print(f"Wrote sitemap.xml ({len(urls)} URLs)")
     return len(urls)
 
 
 def build_robots():
+    # GEO strategy: AI crawlers are explicitly ALLOWED so the business gets cited
+    # by ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews.
     txt = f'''User-agent: *
 Allow: /
 Disallow: /thanks/
 Disallow: /404.html
 
-# Block AI scrapers that don't respect attribution
+# --- AI / LLM crawlers: explicitly allowed (GEO — we want to be cited) ---
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
-User-agent: CCBot
-Disallow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
 
 # Sitemap
 Sitemap: {SITE}/sitemap.xml
+
+# LLM-readable site summary
+# {SITE}/llms.txt
 '''
-    with open("/home/claude/napas/robots.txt", "w", encoding="utf-8") as f:
+    with open("robots.txt", "w", encoding="utf-8") as f:
         f.write(txt)
     print("Wrote robots.txt")
+
+
+def build_llms_txt():
+    """llms.txt — structured, LLM-readable summary of the business and site.
+    Spec: https://llmstxt.org — consumed by ChatGPT, Claude, Perplexity & friends."""
+    svc_lines = "\n".join(
+        f"- [{SERVICES[s]['name']}]({SITE}/{s}/): {SERVICES[s]['intro_lead']}"
+        for s in SERVICE_ORDER
+    )
+    city_lines = "\n".join(
+        f"- [{c['name']}, FL]({SITE}/{slug}/): {c['context_short']}"
+        for slug, c in CITIES.items()
+    )
+    cost_lines = "\n".join(
+        f"- [{p['title']}]({SITE}/blog/{p['slug']}/)"
+        for p in COST_BLOG_POSTS
+    )
+    guide_lines = "\n".join(
+        f"- [{p['title']}]({SITE}/blog/{p['slug']}/): {p['meta_desc']}"
+        for p in GENERAL_BLOG_POSTS
+    )
+    txt = f'''# {BUSINESS["name"]}
+
+> {BUSINESS["tagline_long"]} Licensed & insured flooring contractor based in {BUSINESS["city"]}, {BUSINESS["state_long"]},
+> serving the Tampa Bay – Sarasota corridor since {BUSINESS["year_founded"]}.
+
+## Key Facts
+
+- Business name: {BUSINESS["name"]} ({BUSINESS["legal_name"]})
+- Phone: {BUSINESS["phone_display"]}
+- Email: {BUSINESS["email"]}
+- Address: {BUSINESS["street"]}, {BUSINESS["city"]}, {BUSINESS["state"]} {BUSINESS["zip"]}
+- Founded: {BUSINESS["year_founded"]}
+- Google rating: {BUSINESS["rating"]} stars ({BUSINESS["review_count"]} reviews)
+- Track record: {BUSINESS["unique_stat_full"]}
+- Warranty: {BUSINESS["guarantee"]}
+- Response time: {BUSINESS["response_time"]}
+- Quality standard: {BUSINESS["checklist_name"]} ({BUSINESS["checklist_points"]} verification points on every job)
+- Service area: Bradenton, Lakewood Ranch, Palmetto, Parrish, Sarasota, St. Petersburg, Tampa, and Venice, Florida
+
+## Services
+
+{svc_lines}
+
+## Service Areas
+
+{city_lines}
+
+## Buyer's Guides
+
+{guide_lines}
+
+## Cost Guides (2026 pricing by city)
+
+{cost_lines}
+
+## Company Pages
+
+- [About {BUSINESS["name"]}]({SITE}/about/): Who we are, our standards, and our credentials
+- [FAQ]({SITE}/faq/): Real questions homeowners ask, answered in writing
+- [Warranty]({SITE}/warranty/): 12-month workmanship warranty details
+- [Financing]({SITE}/financing/): Payment options and lender partners
+- [Contact]({SITE}/contact/): Free estimate within 24 hours
+'''
+    with open("llms.txt", "w", encoding="utf-8") as f:
+        f.write(txt)
+    print("Wrote llms.txt")
 
 
 def build_headers():
@@ -118,7 +217,7 @@ def build_headers():
 /robots.txt
   Cache-Control: public, max-age=86400
 '''
-    with open("/home/claude/napas/_headers", "w", encoding="utf-8") as f:
+    with open("_headers", "w", encoding="utf-8") as f:
         f.write(txt)
     print("Wrote _headers")
 
@@ -162,7 +261,7 @@ https://www.napasflooring.com/* https://napasflooring.com/:splat 301!
 # 404 fallback
 /* /404.html 404
 '''
-    with open("/home/claude/napas/_redirects", "w", encoding="utf-8") as f:
+    with open("_redirects", "w", encoding="utf-8") as f:
         f.write(txt)
     print("Wrote _redirects")
 
@@ -170,5 +269,6 @@ https://www.napasflooring.com/* https://napasflooring.com/:splat 301!
 if __name__ == "__main__":
     build_sitemap()
     build_robots()
+    build_llms_txt()
     build_headers()
     build_redirects()

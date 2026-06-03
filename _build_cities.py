@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate /[city]/ hub pages — one per city in CITIES."""
 import os, sys
-sys.path.insert(0, '/home/claude/napas')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
 # ============================================================================
@@ -269,7 +269,7 @@ def build_city(slug):
     body = "\n".join([hero, intro, why_here, services_grid_html, checklist_html, neigh_html, reviews_html, faq_html, related_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page(f"/home/claude/napas/{slug}/index.html", head_html, header(active="areas"), body, breadcrumbs_html=bc)
+    write_page(f"{slug}/index.html", head_html, header(active="areas"), body, breadcrumbs_html=bc)
     print(f"Wrote /{slug}/index.html")
 
 

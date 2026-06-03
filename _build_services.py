@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate /[service]/ hub pages + /[service]/[city]/ pages."""
 import os, sys
-sys.path.insert(0, '/home/claude/napas')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
 # ============================================================================
@@ -325,7 +325,7 @@ def build_service_city(service_slug, city_slug):
     body = "\n".join([hero, lead, scope_html, checklist_html, neigh_html, mistakes_html, pricing_html, reviews_html, faq_html, related_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    out = f"/home/claude/napas/{service_slug}/{city_slug}/index.html"
+    out = f"{service_slug}/{city_slug}/index.html"
     write_page(out, head_html, header(active="services"), body, breadcrumbs_html=bc)
 
 
@@ -441,7 +441,7 @@ def build_service_hub(service_slug):
     body = "\n".join([hero, lead, scope_html, checklist_html, mistakes_html, pricing_html, cities_html, reviews_html, faq_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    out = f"/home/claude/napas/{service_slug}/index.html"
+    out = f"{service_slug}/index.html"
     write_page(out, head_html, header(active="services"), body, breadcrumbs_html=bc)
 
 

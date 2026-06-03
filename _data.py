@@ -38,7 +38,7 @@ BUSINESS = {
     "response_time": "Free estimate within 24 hours, often same-day.",
     "google_profile": "https://g.page/napas-flooring",   # placeholder — user can update later
     "google_review_url": "https://g.page/r/napas-flooring/review",
-    "facebook": "",
+    "facebook": "https://www.facebook.com/p/Napas-Flooring-100070103477156/",
     "instagram": "",
     "yelp": "",
     "thumbtack": "",

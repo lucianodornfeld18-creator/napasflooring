@@ -3,21 +3,51 @@ Allow: /
 Disallow: /thanks/
 Disallow: /404.html
 
-# Block AI scrapers that don't respect attribution
+# --- AI / LLM crawlers: explicitly allowed (GEO — we want to be cited) ---
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
-User-agent: CCBot
-Disallow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
 
 # Sitemap
 Sitemap: https://napasflooring.com/sitemap.xml
+
+# LLM-readable site summary
+# https://napasflooring.com/llms.txt

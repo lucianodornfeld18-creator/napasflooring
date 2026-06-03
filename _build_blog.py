@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate /blog/ index + ~53 blog posts (5 general + 48 cost-per-service-per-city)."""
 import os, sys
-sys.path.insert(0, '/home/claude/napas')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
 ALL_POSTS = []  # we'll assemble as we go for the index
@@ -87,7 +87,7 @@ def post_shell(post, lede, sections_html, faqs=None, related_links=None, has_tab
 {final_cta(headline=post.get("cta_headline", "Got a project this article would help with?"), sub="Free in-home measure. Written quote within 24 hours.")}'''
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas, og_type="article")
-    out = f"/home/claude/napas/blog/{post['slug']}/index.html"
+    out = f"blog/{post['slug']}/index.html"
     write_page(out, head_html, header(active="blog"), body, breadcrumbs_html=bc)
     ALL_POSTS.append(post)
 
@@ -728,6 +728,25 @@ def build_blog_index():
   </div>
 </section>'''
 
+    intro = f'''<section>
+  <div class="container">
+    <article class="page-article">
+      <p class="post-lede">Most flooring &ldquo;advice&rdquo; online is written by people who have never set a plank, acclimated a box of hardwood, or pulled a calcium-chloride reading on a Florida slab. This journal is the opposite. Every guide here comes out of jobs we&rsquo;ve actually run across {len(CITIES)} Gulf Coast cities since {BUSINESS["year_founded"]} &mdash; the failures we&rsquo;ve been called to fix as much as the floors we&rsquo;ve installed.</p>
+
+      <p>If you&rsquo;re researching a floor for a Tampa Bay or Sarasota home, three questions decide almost everything: <strong>what survives the humidity</strong>, <strong>what it actually costs installed in your city</strong>, and <strong>what fails early when the install is rushed</strong>. We&rsquo;ve organized the journal around exactly those.</p>
+
+      <h2>Start with the big decisions</h2>
+      <p>The five featured pieces below cover the choices that cost the most to get wrong &mdash; the humidity-tolerance question every Florida buyer faces, the engineered-hardwood-versus-SPC debate that comes up on nearly every quote, the short-term-rental durability math for Anna Maria and Siesta Key owners, and the honest reality of refinishing pre-war oak. Read those first if you&rsquo;re early in the process.</p>
+
+      <h2>Then price it for your city</h2>
+      <p>Below the features sit {len(COST_BLOG_POSTS)} cost guides &mdash; one for each of our six services in each of the eight cities we serve. Pricing genuinely changes by city: a slab home in Parrish prices differently than a 1940s bungalow in St. Petersburg that needs subfloor remediation first, and a barrier-island install in Venice carries moisture-barrier work that an inland Lakewood Ranch job doesn&rsquo;t. The guides give you a real {2026} installed range by material grade, not a national average that means nothing on the Gulf Coast.</p>
+
+      <h2>Why trust an installer&rsquo;s numbers</h2>
+      <p>Because we publish our pricing on every service page, follow the {BUSINESS["checklist_name"]} on every job, hand you the acclimation and moisture logs at closeout, and back the work with a {BUSINESS["guarantee"].lower()} The same standard runs through everything we write here. If a guide tells you a floor is the wrong call for your home, it&rsquo;s because we&rsquo;ve seen that exact floor fail in that exact condition &mdash; not because it&rsquo;s the cheaper recommendation.</p>
+    </article>
+  </div>
+</section>'''
+
     # Combine all posts, sorted by date desc
     combined = list(GENERAL_BLOG_POSTS) + list(COST_BLOG_POSTS)
     combined.sort(key=lambda p: p["date_published"], reverse=True)
@@ -783,10 +802,10 @@ def build_blog_index():
   </div>
 </section>'''
 
-    body = "\n".join([hero, featured, cost_section, f'<div class="container">{contact_banner()}</div>', final_cta()])
+    body = "\n".join([hero, intro, featured, cost_section, f'<div class="container">{contact_banner()}</div>', final_cta()])
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page("/home/claude/napas/blog/index.html", head_html, header(active="blog"), body, breadcrumbs_html=bc)
+    write_page("blog/index.html", head_html, header(active="blog"), body, breadcrumbs_html=bc)
     print("Wrote /blog/index.html")
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate /about, /contact, /faq, /financing, /warranty, /thanks and /404.html"""
 import os, sys
-sys.path.insert(0, '/home/claude/napas')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
 # ============================================================================
@@ -90,8 +90,8 @@ def build_about():
 {final_cta(headline="Meet the crew. See the work.", sub="Free in-home measure. Written quote within 24 hours. No high-pressure sales, no obligation, no tricks.")}'''
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas, og_type="article")
-    body = body_content
-    write_page("/home/claude/napas/about/index.html", head_html, header(active="about"), body, breadcrumbs_html=bc)
+    body = hero + body_content
+    write_page("about/index.html", head_html, header(active="about"), body, breadcrumbs_html=bc)
     print("Wrote /about/index.html")
 
 
@@ -203,7 +203,7 @@ def build_contact():
 {final_cta()}'''
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page("/home/claude/napas/contact/index.html", head_html, header(active="contact"), contact_grid, breadcrumbs_html=bc)
+    write_page("contact/index.html", head_html, header(active="contact"), hero + contact_grid, breadcrumbs_html=bc)
     print("Wrote /contact/index.html")
 
 
@@ -252,7 +252,7 @@ def build_faq():
 
     body = hero + faq_html + f'<div class="container">{contact_banner()}</div>' + final_cta()
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page("/home/claude/napas/faq/index.html", head_html, header(active=""), body, breadcrumbs_html=bc)
+    write_page("faq/index.html", head_html, header(active=""), body, breadcrumbs_html=bc)
     print("Wrote /faq/index.html")
 
 
@@ -329,7 +329,7 @@ def build_financing():
 {final_cta(headline="Numbers work? Let&rsquo;s schedule the measure.", sub="Free estimate first. Financing conversation after, only if you want one.")}'''
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page("/home/claude/napas/financing/index.html", head_html, header(active=""), body_content, breadcrumbs_html=bc)
+    write_page("financing/index.html", head_html, header(active=""), hero + body_content, breadcrumbs_html=bc)
     print("Wrote /financing/index.html")
 
 
@@ -426,7 +426,7 @@ def build_warranty():
 {final_cta(headline="Warranty work you&rsquo;ll never need.", sub="The best warranty claim is the one that never gets filed. That&rsquo;s the install we&rsquo;re trying to do.")}'''
 
     head_html = head(TITLE, DESC, URL, json_ld=schemas)
-    write_page("/home/claude/napas/warranty/index.html", head_html, header(active=""), body_content, breadcrumbs_html=bc)
+    write_page("warranty/index.html", head_html, header(active=""), hero + body_content, breadcrumbs_html=bc)
     print("Wrote /warranty/index.html")
 
 
@@ -463,7 +463,7 @@ def build_thanks():
 </section>'''
 
     head_html = head(TITLE, DESC, URL, indexable=False, json_ld=schemas)
-    write_page("/home/claude/napas/thanks/index.html", head_html, header(active=""), body, breadcrumbs_html=bc)
+    write_page("thanks/index.html", head_html, header(active=""), body, breadcrumbs_html=bc)
     print("Wrote /thanks/index.html")
 
 
@@ -489,7 +489,7 @@ def build_404():
 </section>'''
 
     head_html = head("404 · Page Not Found · Napa's Flooring", "Page not found. Try a service link or call.", f"{SITE}/404.html", indexable=False)
-    out = "/home/claude/napas/404.html"
+    out = "404.html"
     html = wrap_page(head_html, header(active=""), body)
     with open(out, "w", encoding="utf-8") as f:
         f.write(html)

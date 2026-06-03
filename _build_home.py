@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Homepage: static hero, ticker before hero, reviews carousel 1-at-a-time, logo maior."""
-import sys
-sys.path.insert(0, '/home/claude/napas')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
-OUT = "/home/claude/napas/index.html"
+OUT = "index.html"
 TITLE = "Flooring Contractor Bradenton FL · Tampa Bay · Napa's Flooring"
 DESC = (f"Hardwood, vinyl plank, tile, laminate & stair tread installation across "
         f"Bradenton, Sarasota, Tampa & the Gulf Coast. "
@@ -24,7 +24,7 @@ ticker = ticker_bar()   # already built in _gen.py
 # ──────────────────────────────────────────────────────────────────
 hero = f'''<section class="hero">
   <img class="hero-bg-img"
-       src="/images/real-lvp-beige-room.jpg?v=2"
+       src="/images/real-lvp-beige-room.webp"
        alt="Wide-plank LVP flooring installed in a bright open living room by Napa's Flooring"
        loading="eager" fetchpriority="high">
   <div class="hero-inner">
@@ -80,20 +80,20 @@ gallery = f'''<section style="background:var(--gray-bg);padding:60px 0">
       <h2 style="margin-top:.6rem;font-size:clamp(1.4rem,3vw,2rem)">Real floors. Real <em style="font-style:normal;color:var(--orange-dark)">results.</em></h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="/images/real-stair-oak-natural.jpg?v=2"   alt="Natural oak stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Natural Oak</div></div>
-      <div class="gallery-item"><img src="/images/real-hardwood-waterfront.jpg?v=2" alt="Warm honey hardwood waterfront" loading="lazy"><div class="gallery-caption">Hardwood · Waterfront Home</div></div>
-      <div class="gallery-item"><img src="/images/real-tile-marble-bath.jpg?v=2"    alt="Marble tile bathroom shower" loading="lazy"><div class="gallery-caption">Tile · Marble-look Full Bath</div></div>
-      <div class="gallery-item"><img src="/images/real-lvp-beige-room.jpg?v=2"      alt="LVP beige open floor plan" loading="lazy"><div class="gallery-caption">Vinyl Plank · Open Floor Plan</div></div>
-      <div class="gallery-item"><img src="/images/real-stair-espresso.jpg?v=2"      alt="Espresso stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Espresso</div></div>
-      <div class="gallery-item"><img src="/images/real-tile-patio-gray.jpg?v=2"     alt="Large format patio tile" loading="lazy"><div class="gallery-caption">Tile · Outdoor Patio</div></div>
+      <div class="gallery-item"><img src="/images/real-stair-oak-natural.webp"   alt="Natural oak stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Natural Oak</div></div>
+      <div class="gallery-item"><img src="/images/real-hardwood-waterfront.webp" alt="Warm honey hardwood waterfront" loading="lazy"><div class="gallery-caption">Hardwood · Waterfront Home</div></div>
+      <div class="gallery-item"><img src="/images/real-tile-marble-bath.webp"    alt="Marble tile bathroom shower" loading="lazy"><div class="gallery-caption">Tile · Marble-look Full Bath</div></div>
+      <div class="gallery-item"><img src="/images/real-lvp-beige-room.webp"      alt="LVP beige open floor plan" loading="lazy"><div class="gallery-caption">Vinyl Plank · Open Floor Plan</div></div>
+      <div class="gallery-item"><img src="/images/real-stair-espresso.webp"      alt="Espresso stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Espresso</div></div>
+      <div class="gallery-item"><img src="/images/real-tile-patio-gray.webp"     alt="Large format patio tile" loading="lazy"><div class="gallery-caption">Tile · Outdoor Patio</div></div>
     </div>
     <div class="gallery-grid" style="margin-top:14px">
-      <div class="gallery-item"><img src="/images/real-hardwood-white-oak.jpg?v=2"  alt="White oak wide plank hardwood" loading="lazy"><div class="gallery-caption">Hardwood · White Oak Wide Plank</div></div>
-      <div class="gallery-item"><img src="/images/real-stair-oak-living.jpg?v=2"    alt="Oak stair treads living room" loading="lazy"><div class="gallery-caption">Stair Treads · Oak w/ Wainscoting</div></div>
-      <div class="gallery-item"><img src="/images/real-lvp-hallway.jpg?v=2"         alt="LVP multi-room hallway" loading="lazy"><div class="gallery-caption">Vinyl Plank · Whole-Home Install</div></div>
-      <div class="gallery-item"><img src="/images/real-stair-gray-new.jpg?v=2"      alt="Gray LVP stairs new construction" loading="lazy"><div class="gallery-caption">Stair Treads · Gray LVP</div></div>
-      <div class="gallery-item"><img src="/images/real-tile-cream-gloss.jpg?v=2"    alt="Cream gloss tile floor" loading="lazy"><div class="gallery-caption">Tile · Cream Gloss Porcelain</div></div>
-      <div class="gallery-item"><img src="/images/real-stair-dark-wood.jpg?v=2"     alt="Dark wood stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Dark Walnut</div></div>
+      <div class="gallery-item"><img src="/images/real-hardwood-white-oak.webp"  alt="White oak wide plank hardwood" loading="lazy"><div class="gallery-caption">Hardwood · White Oak Wide Plank</div></div>
+      <div class="gallery-item"><img src="/images/real-stair-oak-living.webp"    alt="Oak stair treads living room" loading="lazy"><div class="gallery-caption">Stair Treads · Oak w/ Wainscoting</div></div>
+      <div class="gallery-item"><img src="/images/real-lvp-hallway.webp"         alt="LVP multi-room hallway" loading="lazy"><div class="gallery-caption">Vinyl Plank · Whole-Home Install</div></div>
+      <div class="gallery-item"><img src="/images/real-stair-gray-new.webp"      alt="Gray LVP stairs new construction" loading="lazy"><div class="gallery-caption">Stair Treads · Gray LVP</div></div>
+      <div class="gallery-item"><img src="/images/real-tile-cream-gloss.webp"    alt="Cream gloss tile floor" loading="lazy"><div class="gallery-caption">Tile · Cream Gloss Porcelain</div></div>
+      <div class="gallery-item"><img src="/images/real-stair-dark-wood.webp"     alt="Dark wood stair treads" loading="lazy"><div class="gallery-caption">Stair Treads · Dark Walnut</div></div>
     </div>
   </div>
 </section>'''
@@ -469,7 +469,7 @@ body = "\n".join([
 ])
 
 extra = (f'<style>{EXTRA_CSS}</style>'
-         '<link rel="preload" href="/images/real-lvp-beige-room.jpg?v=2" as="image">')
+         '<link rel="preload" href="/images/real-lvp-beige-room.webp" as="image">')
 
 head_html = head(TITLE, DESC, CANONICAL, json_ld=SCHEMAS, extra_meta=extra)
 write_page(OUT, head_html, header(active="home"), body)

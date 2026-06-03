@@ -600,7 +600,7 @@ def header(active=""):
     return f'''<header class="site-header">
   <nav class="nav-bar" aria-label="Main">
     <a href="/" class="brand" aria-label="{BUSINESS["name"]} home">
-      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" height="72" width="auto" loading="eager">
+      <img src="/images/logo-white-bg.png" alt="{BUSINESS["name"]}" width="159" height="72" loading="eager">
     </a>
     <ul class="nav-menu" id="navMenu">
       <li{' class="active"' if active=="home" else ''}><a href="/">Home</a></li>
@@ -661,7 +661,7 @@ def footer():
     <div class="footer-col footer-brand">
       <div class="footer-brand-bar">
         <a href="/" style="display:block;text-decoration:none;margin-bottom:.2rem">
-          <img src="/images/logo-dark-header.png" alt="{BUSINESS["name"]}" height="60" width="auto">
+          <img src="/images/logo-dark-header.png" alt="{BUSINESS["name"]}" width="144" height="60" loading="lazy">
         </a>
       </div>
       <p>{BUSINESS["tagline_long"]}</p>
@@ -931,6 +931,7 @@ def schema_organization():
         "email": BUSINESS["email"],
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": BUSINESS["street"],
             "addressLocality": BUSINESS["city"],
             "addressRegion": BUSINESS["state"],
             "postalCode": BUSINESS["zip"],
@@ -939,13 +940,6 @@ def schema_organization():
         "geo": {"@type":"GeoCoordinates","latitude":BUSINESS["lat"],"longitude":BUSINESS["lng"]},
         "areaServed": [{"@type":"City","name":c["name"]} for c in CITIES.values()],
         "sameAs": same_as,
-        "aggregateRating": {
-            "@type":"AggregateRating",
-            "ratingValue":BUSINESS["rating"],
-            "reviewCount":str(BUSINESS["review_count"]),
-            "bestRating":"5",
-            "worstRating":"1",
-        },
         "openingHoursSpecification": [
             {"@type":"OpeningHoursSpecification","dayOfWeek":d,"opens":o,"closes":c}
             for d,o,c in BUSINESS["hours"]
@@ -976,9 +970,10 @@ def schema_local_business(page_url, page_name, city=None, service=None, image=No
         "description": desc,
         "address": {
             "@type":"PostalAddress",
-            "addressLocality": city or BUSINESS["city"],
+            "streetAddress": BUSINESS["street"],
+            "addressLocality": BUSINESS["city"],
             "addressRegion": BUSINESS["state"],
-            "postalCode": BUSINESS["zip"] if not city else "",
+            "postalCode": BUSINESS["zip"],
             "addressCountry": BUSINESS["country"],
         },
         "geo": {"@type":"GeoCoordinates","latitude":BUSINESS["lat"],"longitude":BUSINESS["lng"]},
