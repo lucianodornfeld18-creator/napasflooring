@@ -36,8 +36,8 @@ BUSINESS = {
     "checklist_points": 47,
     "guarantee": "12-month workmanship warranty on every installation.",
     "response_time": "Free estimate within 24 hours, often same-day.",
-    "google_profile": "https://g.page/napas-flooring",   # placeholder — user can update later
-    "google_review_url": "https://g.page/r/napas-flooring/review",
+    "google_profile": "https://share.google/6ZiLBnQqDXLEHQezV",   # official Google share link for the GBP
+    "google_review_url": "https://share.google/6ZiLBnQqDXLEHQezV",  # TODO: trocar pelo link direto "escrever avaliação" do GBP
     "facebook": "https://www.facebook.com/p/Napas-Flooring-100070103477156/",
     "instagram": "",
     "yelp": "",
