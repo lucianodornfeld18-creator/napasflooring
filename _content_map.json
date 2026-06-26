@@ -1,0 +1,1307 @@
+{
+  "site": "napasflooring.com",
+  "generated": "2026-06-26",
+  "purpose": "Anti-cannibalization ledger. Documents the intent split between transactional service-city hubs and informational blog-cost posts so the two pages targeting each head term reinforce rather than compete.",
+  "policy": {
+    "head_term_canonical_owner": "transactional service-city hub",
+    "cost_post_role": "informational long-tail ('... cost ...' modifier) — never duplicates the hub's intent",
+    "title_must_differ": true,
+    "meta_desc_must_differ": true,
+    "one_h1_keyword_owner_per_head_term": true,
+    "cross_link": "bidirectional (hub <-> cost post), no orphan pages",
+    "guides_rule": "decision guides stay top-of-funnel; they never target a [service]/[city] or cost head term"
+  },
+  "overlap_resolutions": [
+    {
+      "topic": "Hardwood refinishing vs. floor repair",
+      "note": "Sand-and-refinish appears as a line item under /floor-repair/ (repair context) but the canonical hub for the 'hardwood floor refinishing [city]' head term is /hardwood-refinishing/. floor-repair pages link to hardwood-refinishing for refinish-led intent.",
+      "canonical": "/hardwood-refinishing/"
+    },
+    {
+      "topic": "Refinish blog guide vs. refinishing service",
+      "note": "/blog/refinishing-old-oak-floors-tampa-bay/ is the informational restoration guide; /hardwood-refinishing/ is the transactional hub. Guide links to the hub for booking.",
+      "canonical_for_booking": "/hardwood-refinishing/"
+    }
+  ],
+  "counts": {
+    "services": 7,
+    "cities": 8,
+    "transactional_hubs": 63,
+    "cost_posts": 56,
+    "decision_guides": 6,
+    "general_posts": 5,
+    "pairs_mapped": 56
+  },
+  "pairs": [
+    {
+      "service": "hardwood-flooring",
+      "city": "bradenton",
+      "head_term": "hardwood flooring bradenton",
+      "transactional": {
+        "url": "/hardwood-flooring/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring bradenton fl",
+        "title_pattern": "Hardwood Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost bradenton",
+        "title_pattern": "Hardwood Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "lakewood-ranch",
+      "head_term": "hardwood flooring lakewood ranch",
+      "transactional": {
+        "url": "/hardwood-flooring/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring lakewood ranch fl",
+        "title_pattern": "Hardwood Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost lakewood ranch",
+        "title_pattern": "Hardwood Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "palmetto",
+      "head_term": "hardwood flooring palmetto",
+      "transactional": {
+        "url": "/hardwood-flooring/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring palmetto fl",
+        "title_pattern": "Hardwood Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost palmetto",
+        "title_pattern": "Hardwood Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "parrish",
+      "head_term": "hardwood flooring parrish",
+      "transactional": {
+        "url": "/hardwood-flooring/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring parrish fl",
+        "title_pattern": "Hardwood Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost parrish",
+        "title_pattern": "Hardwood Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "sarasota",
+      "head_term": "hardwood flooring sarasota",
+      "transactional": {
+        "url": "/hardwood-flooring/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring sarasota fl",
+        "title_pattern": "Hardwood Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost sarasota",
+        "title_pattern": "Hardwood Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "st-petersburg",
+      "head_term": "hardwood flooring st. petersburg",
+      "transactional": {
+        "url": "/hardwood-flooring/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring st. petersburg fl",
+        "title_pattern": "Hardwood St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost st. petersburg",
+        "title_pattern": "Hardwood Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "tampa",
+      "head_term": "hardwood flooring tampa",
+      "transactional": {
+        "url": "/hardwood-flooring/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring tampa fl",
+        "title_pattern": "Hardwood Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost tampa",
+        "title_pattern": "Hardwood Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-flooring",
+      "city": "venice",
+      "head_term": "hardwood flooring venice",
+      "transactional": {
+        "url": "/hardwood-flooring/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood flooring venice fl",
+        "title_pattern": "Hardwood Venice FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-flooring-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood flooring cost venice",
+        "title_pattern": "Hardwood Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "bradenton",
+      "head_term": "hardwood floor refinishing bradenton",
+      "transactional": {
+        "url": "/hardwood-refinishing/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing bradenton fl",
+        "title_pattern": "Refinishing Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost bradenton",
+        "title_pattern": "Refinishing Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "lakewood-ranch",
+      "head_term": "hardwood floor refinishing lakewood ranch",
+      "transactional": {
+        "url": "/hardwood-refinishing/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing lakewood ranch fl",
+        "title_pattern": "Refinishing Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost lakewood ranch",
+        "title_pattern": "Refinishing Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "palmetto",
+      "head_term": "hardwood floor refinishing palmetto",
+      "transactional": {
+        "url": "/hardwood-refinishing/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing palmetto fl",
+        "title_pattern": "Refinishing Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost palmetto",
+        "title_pattern": "Refinishing Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "parrish",
+      "head_term": "hardwood floor refinishing parrish",
+      "transactional": {
+        "url": "/hardwood-refinishing/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing parrish fl",
+        "title_pattern": "Refinishing Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost parrish",
+        "title_pattern": "Refinishing Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "sarasota",
+      "head_term": "hardwood floor refinishing sarasota",
+      "transactional": {
+        "url": "/hardwood-refinishing/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing sarasota fl",
+        "title_pattern": "Refinishing Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost sarasota",
+        "title_pattern": "Refinishing Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "st-petersburg",
+      "head_term": "hardwood floor refinishing st. petersburg",
+      "transactional": {
+        "url": "/hardwood-refinishing/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing st. petersburg fl",
+        "title_pattern": "Refinishing St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost st. petersburg",
+        "title_pattern": "Refinishing Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "tampa",
+      "head_term": "hardwood floor refinishing tampa",
+      "transactional": {
+        "url": "/hardwood-refinishing/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing tampa fl",
+        "title_pattern": "Refinishing Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost tampa",
+        "title_pattern": "Refinishing Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "hardwood-refinishing",
+      "city": "venice",
+      "head_term": "hardwood floor refinishing venice",
+      "transactional": {
+        "url": "/hardwood-refinishing/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "hardwood floor refinishing venice fl",
+        "title_pattern": "Refinishing Venice FL"
+      },
+      "informational": {
+        "url": "/blog/hardwood-refinishing-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "hardwood floor refinishing cost venice",
+        "title_pattern": "Refinishing Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "bradenton",
+      "head_term": "vinyl plank flooring bradenton",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring bradenton fl",
+        "title_pattern": "Vinyl Plank Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost bradenton",
+        "title_pattern": "Vinyl Plank Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "lakewood-ranch",
+      "head_term": "vinyl plank flooring lakewood ranch",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring lakewood ranch fl",
+        "title_pattern": "Vinyl Plank Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost lakewood ranch",
+        "title_pattern": "Vinyl Plank Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "palmetto",
+      "head_term": "vinyl plank flooring palmetto",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring palmetto fl",
+        "title_pattern": "Vinyl Plank Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost palmetto",
+        "title_pattern": "Vinyl Plank Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "parrish",
+      "head_term": "vinyl plank flooring parrish",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring parrish fl",
+        "title_pattern": "Vinyl Plank Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost parrish",
+        "title_pattern": "Vinyl Plank Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "sarasota",
+      "head_term": "vinyl plank flooring sarasota",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring sarasota fl",
+        "title_pattern": "Vinyl Plank Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost sarasota",
+        "title_pattern": "Vinyl Plank Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "st-petersburg",
+      "head_term": "vinyl plank flooring st. petersburg",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring st. petersburg fl",
+        "title_pattern": "Vinyl Plank St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost st. petersburg",
+        "title_pattern": "Vinyl Plank Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "tampa",
+      "head_term": "vinyl plank flooring tampa",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring tampa fl",
+        "title_pattern": "Vinyl Plank Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost tampa",
+        "title_pattern": "Vinyl Plank Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "vinyl-plank-flooring",
+      "city": "venice",
+      "head_term": "vinyl plank flooring venice",
+      "transactional": {
+        "url": "/vinyl-plank-flooring/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "vinyl plank flooring venice fl",
+        "title_pattern": "Vinyl Plank Venice FL"
+      },
+      "informational": {
+        "url": "/blog/vinyl-plank-flooring-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "vinyl plank flooring cost venice",
+        "title_pattern": "Vinyl Plank Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "bradenton",
+      "head_term": "tile installation bradenton",
+      "transactional": {
+        "url": "/tile-installation/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation bradenton fl",
+        "title_pattern": "Tile Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost bradenton",
+        "title_pattern": "Tile Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "lakewood-ranch",
+      "head_term": "tile installation lakewood ranch",
+      "transactional": {
+        "url": "/tile-installation/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation lakewood ranch fl",
+        "title_pattern": "Tile Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost lakewood ranch",
+        "title_pattern": "Tile Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "palmetto",
+      "head_term": "tile installation palmetto",
+      "transactional": {
+        "url": "/tile-installation/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation palmetto fl",
+        "title_pattern": "Tile Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost palmetto",
+        "title_pattern": "Tile Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "parrish",
+      "head_term": "tile installation parrish",
+      "transactional": {
+        "url": "/tile-installation/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation parrish fl",
+        "title_pattern": "Tile Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost parrish",
+        "title_pattern": "Tile Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "sarasota",
+      "head_term": "tile installation sarasota",
+      "transactional": {
+        "url": "/tile-installation/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation sarasota fl",
+        "title_pattern": "Tile Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost sarasota",
+        "title_pattern": "Tile Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "st-petersburg",
+      "head_term": "tile installation st. petersburg",
+      "transactional": {
+        "url": "/tile-installation/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation st. petersburg fl",
+        "title_pattern": "Tile St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost st. petersburg",
+        "title_pattern": "Tile Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "tampa",
+      "head_term": "tile installation tampa",
+      "transactional": {
+        "url": "/tile-installation/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation tampa fl",
+        "title_pattern": "Tile Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost tampa",
+        "title_pattern": "Tile Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "tile-installation",
+      "city": "venice",
+      "head_term": "tile installation venice",
+      "transactional": {
+        "url": "/tile-installation/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "tile installation venice fl",
+        "title_pattern": "Tile Venice FL"
+      },
+      "informational": {
+        "url": "/blog/tile-installation-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "tile installation cost venice",
+        "title_pattern": "Tile Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "bradenton",
+      "head_term": "laminate flooring bradenton",
+      "transactional": {
+        "url": "/laminate-flooring/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring bradenton fl",
+        "title_pattern": "Laminate Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost bradenton",
+        "title_pattern": "Laminate Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "lakewood-ranch",
+      "head_term": "laminate flooring lakewood ranch",
+      "transactional": {
+        "url": "/laminate-flooring/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring lakewood ranch fl",
+        "title_pattern": "Laminate Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost lakewood ranch",
+        "title_pattern": "Laminate Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "palmetto",
+      "head_term": "laminate flooring palmetto",
+      "transactional": {
+        "url": "/laminate-flooring/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring palmetto fl",
+        "title_pattern": "Laminate Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost palmetto",
+        "title_pattern": "Laminate Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "parrish",
+      "head_term": "laminate flooring parrish",
+      "transactional": {
+        "url": "/laminate-flooring/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring parrish fl",
+        "title_pattern": "Laminate Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost parrish",
+        "title_pattern": "Laminate Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "sarasota",
+      "head_term": "laminate flooring sarasota",
+      "transactional": {
+        "url": "/laminate-flooring/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring sarasota fl",
+        "title_pattern": "Laminate Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost sarasota",
+        "title_pattern": "Laminate Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "st-petersburg",
+      "head_term": "laminate flooring st. petersburg",
+      "transactional": {
+        "url": "/laminate-flooring/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring st. petersburg fl",
+        "title_pattern": "Laminate St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost st. petersburg",
+        "title_pattern": "Laminate Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "tampa",
+      "head_term": "laminate flooring tampa",
+      "transactional": {
+        "url": "/laminate-flooring/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring tampa fl",
+        "title_pattern": "Laminate Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost tampa",
+        "title_pattern": "Laminate Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "laminate-flooring",
+      "city": "venice",
+      "head_term": "laminate flooring venice",
+      "transactional": {
+        "url": "/laminate-flooring/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "laminate flooring venice fl",
+        "title_pattern": "Laminate Venice FL"
+      },
+      "informational": {
+        "url": "/blog/laminate-flooring-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "laminate flooring cost venice",
+        "title_pattern": "Laminate Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "bradenton",
+      "head_term": "stair tread bradenton",
+      "transactional": {
+        "url": "/stair-treads/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread bradenton fl",
+        "title_pattern": "Stairs Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost bradenton",
+        "title_pattern": "Stairs Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "lakewood-ranch",
+      "head_term": "stair tread lakewood ranch",
+      "transactional": {
+        "url": "/stair-treads/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread lakewood ranch fl",
+        "title_pattern": "Stairs Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost lakewood ranch",
+        "title_pattern": "Stairs Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "palmetto",
+      "head_term": "stair tread palmetto",
+      "transactional": {
+        "url": "/stair-treads/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread palmetto fl",
+        "title_pattern": "Stairs Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost palmetto",
+        "title_pattern": "Stairs Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "parrish",
+      "head_term": "stair tread parrish",
+      "transactional": {
+        "url": "/stair-treads/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread parrish fl",
+        "title_pattern": "Stairs Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost parrish",
+        "title_pattern": "Stairs Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "sarasota",
+      "head_term": "stair tread sarasota",
+      "transactional": {
+        "url": "/stair-treads/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread sarasota fl",
+        "title_pattern": "Stairs Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost sarasota",
+        "title_pattern": "Stairs Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "st-petersburg",
+      "head_term": "stair tread st. petersburg",
+      "transactional": {
+        "url": "/stair-treads/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread st. petersburg fl",
+        "title_pattern": "Stairs St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost st. petersburg",
+        "title_pattern": "Stairs Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "tampa",
+      "head_term": "stair tread tampa",
+      "transactional": {
+        "url": "/stair-treads/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread tampa fl",
+        "title_pattern": "Stairs Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost tampa",
+        "title_pattern": "Stairs Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "stair-treads",
+      "city": "venice",
+      "head_term": "stair tread venice",
+      "transactional": {
+        "url": "/stair-treads/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "stair tread venice fl",
+        "title_pattern": "Stairs Venice FL"
+      },
+      "informational": {
+        "url": "/blog/stair-treads-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "stair tread cost venice",
+        "title_pattern": "Stairs Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "bradenton",
+      "head_term": "floor repair bradenton",
+      "transactional": {
+        "url": "/floor-repair/bradenton/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair bradenton fl",
+        "title_pattern": "Repair Bradenton FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-bradenton/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost bradenton",
+        "title_pattern": "Repair Cost in Bradenton, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "lakewood-ranch",
+      "head_term": "floor repair lakewood ranch",
+      "transactional": {
+        "url": "/floor-repair/lakewood-ranch/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair lakewood ranch fl",
+        "title_pattern": "Repair Lakewood Ranch FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-lakewood-ranch/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost lakewood ranch",
+        "title_pattern": "Repair Cost in Lakewood Ranch, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "palmetto",
+      "head_term": "floor repair palmetto",
+      "transactional": {
+        "url": "/floor-repair/palmetto/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair palmetto fl",
+        "title_pattern": "Repair Palmetto FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-palmetto/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost palmetto",
+        "title_pattern": "Repair Cost in Palmetto, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "parrish",
+      "head_term": "floor repair parrish",
+      "transactional": {
+        "url": "/floor-repair/parrish/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair parrish fl",
+        "title_pattern": "Repair Parrish FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-parrish/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost parrish",
+        "title_pattern": "Repair Cost in Parrish, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "sarasota",
+      "head_term": "floor repair sarasota",
+      "transactional": {
+        "url": "/floor-repair/sarasota/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair sarasota fl",
+        "title_pattern": "Repair Sarasota FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-sarasota/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost sarasota",
+        "title_pattern": "Repair Cost in Sarasota, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "st-petersburg",
+      "head_term": "floor repair st. petersburg",
+      "transactional": {
+        "url": "/floor-repair/st-petersburg/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair st. petersburg fl",
+        "title_pattern": "Repair St. Petersburg FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-st-petersburg/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost st. petersburg",
+        "title_pattern": "Repair Cost in St. Petersburg, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "tampa",
+      "head_term": "floor repair tampa",
+      "transactional": {
+        "url": "/floor-repair/tampa/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair tampa fl",
+        "title_pattern": "Repair Tampa FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-tampa/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost tampa",
+        "title_pattern": "Repair Cost in Tampa, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    },
+    {
+      "service": "floor-repair",
+      "city": "venice",
+      "head_term": "floor repair venice",
+      "transactional": {
+        "url": "/floor-repair/venice/",
+        "intent": "transactional (hire / request a quote)",
+        "primary_keyword": "floor repair venice fl",
+        "title_pattern": "Repair Venice FL"
+      },
+      "informational": {
+        "url": "/blog/floor-repair-cost-venice/",
+        "intent": "informational (research cost / what it includes)",
+        "primary_keyword": "floor repair cost venice",
+        "title_pattern": "Repair Cost in Venice, FL (2026)"
+      },
+      "canonical_owner_of_head_term": "transactional",
+      "internal_links": {
+        "informational_to_transactional": "CTA + related box → the service-city hub (capture the booking)",
+        "transactional_to_informational": "pricing section → the cost post (deep-dive on numbers)"
+      }
+    }
+  ],
+  "guides": [
+    {
+      "url": "/guides/is-herringbone-worth-it/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "Is Herringbone Worth the Premium? (Tampa Bay, 2026)",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    },
+    {
+      "url": "/guides/porcelain-vs-lvp-florida-kitchen/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "Porcelain vs. LVP in a Florida Kitchen: Which Wins?",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    },
+    {
+      "url": "/guides/how-to-read-a-flooring-quote/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "How to Read a Flooring Quote (and Spot the Padding)",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    },
+    {
+      "url": "/guides/wide-plank-vs-standard-width/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "Wide-Plank vs. Standard Width: What Actually Changes",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    },
+    {
+      "url": "/guides/slab-moisture-explained/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "Slab Moisture, Explained: Why Florida Floors Fail",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    },
+    {
+      "url": "/guides/hoa-condo-flooring-rules/",
+      "intent": "decision / consideration (top-of-funnel)",
+      "title": "Flooring an HOA Condo in Tampa Bay: Rules & Approvals",
+      "does_not_target": "any [service] [city] head term or [service] cost [city] term"
+    }
+  ]
+}

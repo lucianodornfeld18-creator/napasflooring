@@ -5,10 +5,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _gen import *
 
 OUT = "index.html"
-TITLE = "Flooring Contractor Bradenton FL · Tampa Bay · Napa's Flooring"
-DESC = (f"Hardwood, vinyl plank, tile, laminate & stair tread installation across "
+TITLE = "Flooring Contractor Bradenton FL · Napa's Flooring"
+DESC = clip_desc(f"Hardwood, vinyl plank, tile, laminate & stair tread installation across "
         f"Bradenton, Sarasota, Tampa & the Gulf Coast. "
-        f"{BUSINESS['review_count']}× 5★ Google · Free estimate in 24 hrs.")[:158]
+        f"{BUSINESS['review_count']}× 5★ Google · Free estimate in 24 hrs.")
 CANONICAL = f"{SITE}/"
 SCHEMAS = [schema_website(), schema_organization(),
            schema_local_business(CANONICAL, "Napa's Flooring"),
@@ -30,8 +30,8 @@ hero = f'''<section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-label">Bradenton · Sarasota · Tampa · Since {BUSINESS["year_founded"]}</div>
-      <h1 class="hero-h1">Flooring built <em>right</em>,<br>finished <em>proud.</em></h1>
-      <p class="hero-sub">A small, craft-first crew based in east Bradenton. Hardwood, vinyl plank, tile, laminate &amp; stair treads — installed by the same people who measured your home.</p>
+      <h1 class="hero-h1">Flooring Contractor in<br><em>Bradenton</em>, FL<span class="stop">.</span></h1>
+      <p class="hero-sub"><strong style="color:#FFC84A">Flooring built right, finished proud.</strong> A small, craft-first crew in east Bradenton — hardwood, refinishing, vinyl plank, tile, laminate &amp; stair treads, installed by the same people who measured your home.</p>
       <div class="hero-cta">
         <a href="/contact/#quote" class="btn btn-orange">Free Estimate <span class="btn-arrow"></span></a>
         <a href="{TEL_LINK}" class="btn btn-outline-light">{BUSINESS["phone_display"]}</a>
@@ -61,7 +61,7 @@ services = f'''<section class="home-services">
   <div class="container-wide">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
       <div>
-        <span class="mono-label">Six Services · Tampa Bay</span>
+        <span class="mono-label">Seven Services · Tampa Bay</span>
         <h2 style="margin-top:.5rem;font-size:clamp(1.4rem,3vw,2rem)">Every floor we install — <em style="font-style:normal;color:var(--orange-dark)">done right.</em></h2>
       </div>
       <a href="/contact/#quote" class="btn btn-orange" style="flex-shrink:0">Get Free Estimate <span class="btn-arrow"></span></a>
@@ -471,6 +471,6 @@ body = "\n".join([
 extra = (f'<style>{EXTRA_CSS}</style>'
          '<link rel="preload" href="/images/real-lvp-beige-room.webp" as="image">')
 
-head_html = head(TITLE, DESC, CANONICAL, json_ld=SCHEMAS, extra_meta=extra)
+head_html = head(TITLE, DESC, CANONICAL, og_image=og_url("vinyl-plank-flooring"), json_ld=SCHEMAS, extra_meta=extra)
 write_page(OUT, head_html, header(active="home"), body)
 print(f"✓ {OUT} — {open(OUT).read().count(chr(10))} lines")

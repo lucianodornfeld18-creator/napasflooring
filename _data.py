@@ -5,6 +5,29 @@ All cities, services, neighborhoods, FAQs, pricing tables, business info.
 Used by every _build_*.py script.
 """
 
+
+# ============================================================================
+# META-DESCRIPTION HELPER
+# Trim a meta description at a word boundary (never mid-word) and append an
+# ellipsis only when it was actually shortened. Replaces the old `[:158]`/
+# `[:155]` slices that cut strings like "...free q" or "...factors. 5".
+# ============================================================================
+def clip_desc(s, n=155):
+    s = " ".join(str(s).split())          # normalize whitespace
+    if len(s) <= n:
+        return s
+    return s[:n].rsplit(" ", 1)[0].rstrip(" ,·") + "…"
+
+
+def clip_title(s, n=60):
+    """Trim a <title> at a word boundary, no ellipsis — keeps tags <=60 chars
+    without cutting mid-word (e.g. avoids '...Napa's Floori')."""
+    s = " ".join(str(s).split())
+    if len(s) <= n:
+        return s
+    return s[:n].rsplit(" ", 1)[0].rstrip(" ·|-—–,:")
+
+
 # ============================================================================
 # BUSINESS IDENTITY
 # ============================================================================
@@ -255,7 +278,7 @@ CITY_ORDER = ["bradenton","lakewood-ranch","palmetto","parrish","sarasota","st-p
 
 
 # ============================================================================
-# SERVICES — six core
+# SERVICES — seven core (hardwood, refinishing, vinyl, tile, laminate, stairs, repair)
 # ============================================================================
 SERVICES = {
     "hardwood-flooring": {
@@ -266,8 +289,8 @@ SERVICES = {
         "card_image": "card-hardwood.webp",
         "icon": "01",
         "intro_lead": "Solid plank, engineered plank, and wide-board European white oak — installed by hand, acclimated for the Gulf Coast, and finished to outlast the next twenty years of Tampa Bay living.",
-        "intro_long_p1": "Hardwood is still the most resale-defensible floor you can install in a Florida home — but only if the installation respects how wood behaves in a sub-tropical climate. The biggest mistake we see in repair calls across Bradenton, Sarasota, and Tampa is rushed acclimation. Florida dew points run between 65 and 75 degrees from May through October; the air inside a properly conditioned home runs closer to 45 to 55 percent relative humidity. When a hardwood plank moves from a humid warehouse straight into a cold-conditioned living room, it expands, contracts, and gaps inside the first summer. Every Napa's install acclimates for seventy-two hours minimum on the actual jobsite, with digital hygrometer logging.",
-        "intro_long_p2": "We install both <strong>solid hardwood</strong> (three-quarter-inch thick, sandable up to eight times in its lifetime, our pick for second-floor and above-grade plywood subfloors) and <strong>engineered hardwood</strong> (multi-ply construction with a real-wood top veneer, dramatically more dimensionally stable, the right answer for ninety percent of slab-on-grade homes in our service area). Species we work with regularly include European White Oak, American White Oak, Red Oak, Hickory, Walnut, Maple, and Acacia. Widths from three inches up through ten inches; flat, hand-scraped, and wire-brushed surface textures.",
+        "intro_long_p1": "Hardwood is the one floor that still moves an appraisal in our core Bradenton and Sarasota market — buyers walking a Country Club East listing, a West-of-Trail bungalow, or a Bayshore renovation read real wood as a signal that the whole house was looked after. The catch is that hardwood only behaves in a Gulf Coast home when the crew respects the slab underneath it. We walked away from a River Strand job last spring because the homeowner wanted three-quarter-inch solid oak glued straight onto a slab that came back at 6.8 lbs on the calcium-chloride test; that floor would have cupped by its first August, and a cupped floor is a liability, not an asset. The moisture gates and acclimation checks that prevent exactly that are written into our 47-Point Installation Standard, and the readings get printed into the job file you keep. When a tight budget is the reason a homeowner is tempted to skip that prep, we'd rather walk them through our financing options than cut the step that keeps the floor flat for twenty years.",
+        "intro_long_p2": "We build on two products and pick between them honestly. <strong>Solid hardwood</strong> — a full three-quarter inch thick, good for a half-dozen refinishes across its life — is our call for above-grade plywood subfloors, true second floors, and the pre-war oak we restore in neighborhoods like Old Northeast and Hyde Park. <strong>Engineered hardwood</strong> — a genuine oak wear layer bonded over a cross-ply core that barely registers Florida's humidity swing — is what goes into roughly nine of every ten slab homes we floor from Parrish down to Venice. We keep European and American white oak, red oak, hickory, walnut, maple, and acacia in rotation, in widths from a tight three-inch board to a ten-inch wide plank, in flat, hand-scraped, and wire-brushed textures. We bring the real samples to your kitchen table and tell you which one actually earns its premium in your specific home — instead of selling you up.",
         "scope_items": [
             "Solid hardwood installation (3/4″ tongue-and-groove, nail-down on plywood)",
             "Engineered hardwood installation (5″–9″ widths, glue-down or floating)",
@@ -286,20 +309,65 @@ SERVICES = {
             "Toilet pull-and-reset, appliance moves, debris haul-away",
         ],
         "pricing_rows": [
-            ("Engineered Hardwood (5″ wide)", "$8.50–$11/sq ft installed", "Glue-down or nail-down"),
-            ("Engineered Hardwood (7–9″ wide)", "$10–$14/sq ft installed", "Most-installed in Lakewood Ranch"),
-            ("Solid Hardwood (3/4″, 3–5″ wide)", "$9–$13/sq ft installed", "Nail-down on plywood subfloor only"),
-            ("Premium European White Oak (wide plank)", "$13–$18/sq ft installed", "Character-grade, 7–10″ width"),
-            ("Custom Herringbone Laydown", "$15–$22/sq ft installed", "Labor doubles vs. straight plank"),
-            ("Custom Chevron Laydown", "$17–$24/sq ft installed", "Our most-premium hardwood install"),
-            ("Subfloor Self-Leveling (per room)", "$200–$600", "When pin-meter shows 1/4″+ dip"),
-            ("Old Flooring Removal &amp; Haul", "$1.50–$3/sq ft", "Carpet, laminate, or tile demo"),
+            ("Engineered Hardwood (5″ wide)", "$7.75–$10.50/sq ft installed", "Glue-down or nail-down"),
+            ("Engineered Hardwood (7–9″ wide)", "$10.75–$14.50/sq ft installed", "Our Bradenton &amp; Lakewood Ranch volume pick"),
+            ("Solid Hardwood (3/4″, 3–5″ wide)", "$9.75–$13.50/sq ft installed", "Nail-down on plywood subfloor only"),
+            ("Premium European White Oak (wide plank)", "$13.75–$19.50/sq ft installed", "Character-grade, 7–10″ width"),
+            ("Custom Herringbone Laydown", "$16.50–$23.50/sq ft installed", "Roughly 2× the labor of straight plank"),
+            ("Custom Chevron Laydown", "$18.50–$26/sq ft installed", "Our most premium hardwood install"),
+            ("Subfloor Self-Leveling (per room)", "$225–$650", "When the straightedge shows 1/4″+ dip"),
+            ("Old Flooring Removal &amp; Haul", "$1.75–$3.25/sq ft", "Carpet, laminate, or tile demo"),
         ],
         "faqs": [
-            ("Can I install solid hardwood on a Florida slab?", "We don't recommend it. The combination of slab moisture and Gulf Coast humidity makes solid hardwood prone to cupping, gapping, and crowning when it's glued or nailed directly to concrete. Engineered hardwood (with a multi-ply core that resists dimensional movement) is the right call for 95% of slab-on-grade homes in our service area. The few exceptions are homes where we can install a 5/8″ plywood underlayment over the slab first — but that raises the finished floor height by an inch, which affects door clearance, transitions, and baseboard returns."),
-            ("How long does hardwood acclimate before install?", "Seventy-two hours is our floor. The boxes get opened on the jobsite, the planks get cross-stacked so air circulates around every face, and a digital hygrometer logs jobsite humidity for the entire acclimation window. If your home was just turned over by a builder and the HVAC has been off, we'll often want longer — sometimes a full week — before installation begins."),
-            ("Engineered vs. solid — what's actually different?", "Solid hardwood is one piece of wood, 3/4″ thick. It can be sanded and refinished up to eight times over its lifetime, which is why it's still the standard for premium plywood-subfloor installs. Engineered hardwood is a real-wood top veneer (typically 2–6 mm) bonded to a multi-ply substrate underneath; it's far more dimensionally stable, can be installed below grade, and can usually be refinished once or twice. For Florida slab homes we recommend engineered nine times out of ten."),
-            ("How long does the whole job take?", "A typical 1,200–1,800 sq ft hardwood install runs 3–5 working days from demo to walk-through. Day one is demolition and subfloor prep, day two is acclimation finishing and starting the install, days three through four are the bulk of the laydown plus transitions, day five is quarter-round and the final walkthrough. Herringbone and chevron jobs run 6–10 days. Stair treads add a day."),
+            ("Can I install solid hardwood on a Florida slab?", "Honestly, we'll talk you out of it almost every time. Slab moisture plus Gulf Coast humidity is the exact recipe that cups, crowns, and gaps solid hardwood once it's glued or nailed onto concrete, and we've torn out enough of those floors to stop pretending it's a coin flip. For the slab-on-grade homes that make up most of our Bradenton-to-Venice work, engineered hardwood and its cross-ply core is the right answer. The one workaround is floating a 5/8-inch plywood subfloor over the slab first — but that lifts your finished floor nearly an inch, which then has to be solved at every door, transition, and baseboard, and the cost usually lands you back at engineered anyway."),
+            ("How long does hardwood acclimate before install?", "Seventy-two hours on your jobsite is the floor, not the ceiling. We open the boxes on site, cross-stack the planks so air moves across every face, and run a hygrometer through the whole window — and that whole sequence is logged as part of the 47-Point Standard so you get the readings in writing. If the home is a fresh builder turnover with the AC only recently switched on, we'll often hold for a full week. Rushing this step is the single most common reason we get hired to fix somebody else's hardwood."),
+            ("Engineered vs. solid — what's actually different?", "Solid is one piece of wood, a full three-quarter inch, and you can sand it back to bare and refinish it a half-dozen times over its life — that's why it still wins on premium plywood-subfloor and second-floor jobs. Engineered is a real-oak wear layer bonded over a cross-ply substrate; it holds its shape through Florida's humidity swing far better, it'll go over a slab, and it usually has one or two refinishes in it. Underfoot and to the eye they're the same floor — the difference is what's hidden below the surface, and on a Gulf Coast slab that difference is the whole ballgame."),
+            ("How long does the whole job take?", "Budget three to five working days for a typical 1,200–1,800 square-foot install, demo to final walk. Day one is tear-out and subfloor prep, day two wraps acclimation and starts the laydown, the middle days are the bulk of the install plus transitions, and the last day is quarter-round and your walkthrough. Herringbone and chevron patterns roughly double the labor and run six to ten days; adding stairs adds a day. The real schedule lives in your written quote, not in a paragraph like this one."),
+        ],
+    },
+    "hardwood-refinishing": {
+        "name": "Hardwood Floor Refinishing",
+        "slug": "hardwood-refinishing",
+        "short": "Refinishing",
+        "h1_phrase": "Hardwood Floor Refinishing",
+        "card_image": "card-hardwood.webp",
+        "icon": "07",
+        "intro_lead": "Sand-and-refinish, screen-and-recoat, board lacing, and stain changes — bringing tired oak back to life across Bradenton, Sarasota, and the pre-war pockets of Tampa Bay, with HEPA dust containment and a finish that actually lasts.",
+        "intro_long_p1": "Refinishing is the highest-return flooring decision most Tampa Bay homeowners never realize they have. We pull carpet in a 1955 Palma Sola ranch or a Cherokee Park bungalow, and underneath is original red oak that three contractors already wrote off — and four times out of five it's sound, salvageable, and worth a fraction of what new wood would cost. The number that decides everything is how much wood is left above the tongue: solid hardwood gives you roughly four to six sandings across its whole life, and we measure the remaining thickness with a probe in a hidden spot before we ever quote a full sand. If the floor's been sanded to the edge already, we'll tell you that to your face instead of blowing through the tongue and handing you a delamination.",
+        "intro_long_p2": "There are three honest paths and we match the floor to the right one. A <strong>full sand-and-refinish</strong> — three sandings, grain raise, and two or three coats of poly — is for floors with real wear, pet damage, or graying around old leaks. A <strong>screen-and-recoat</strong> abrades just the existing finish and lays a fresh coat or two, the right call for a floor that's only dull, at a fraction of the cost and the downtime. And a <strong>partial sand with section replacement</strong> handles localized damage — a water-stained patch, a badly-repaired run — by lacing in matching boards and blending the whole floor to one tone. We finish with water-based poly when you want white oak to stay pale and modern, or oil-based when you want red oak and walnut to amber the way a period floor should — and we run a HEPA dust-containment system on every job so the rest of your house stays livable.",
+        "scope_items": [
+            "Full sand-and-refinish on solid hardwood (three-pass grit sequence)",
+            "Screen-and-recoat on lightly worn floors",
+            "Remaining-thickness probe test before any full sand",
+            "Water-based polyurethane finish (Bona Traffic HD &amp; equivalent)",
+            "Oil-based polyurethane finish (period-correct amber)",
+            "Hardwood stain color change with hidden-spot sample test",
+            "Board lacing &amp; single-plank replacement to match",
+            "Pet-stain and water-stain board cut-out and replacement",
+            "Parquet and herringbone hand-refinishing (orbital, no flat-pad blowout)",
+            "Heart-pine and antique-floor restoration",
+            "Edge and corner detail sanding (no drum scallops)",
+            "Stair-tread refinishing to match the floor",
+            "HEPA dust-containment system on every job",
+            "Furniture move, toilet pull-and-reset, debris haul-away",
+            "Care-and-maintenance handout + 12-month workmanship warranty",
+        ],
+        "pricing_rows": [
+            ("Screen &amp; Recoat (no sand)", "$1.65–$2.65/sq ft", "Dull finish, no deep wear"),
+            ("Full Sand &amp; Refinish (water-based poly)", "$3.65–$5.25/sq ft", "Three sandings + 2-coat poly"),
+            ("Full Sand &amp; Refinish (oil-based poly)", "$4.25–$6.25/sq ft", "Period-correct amber, longer cure"),
+            ("Stain Color Change", "+$0.85–$1.60/sq ft", "Light-to-dark or vice versa"),
+            ("HEPA Dust-Containment Upgrade", "+$1.10/sq ft", "Keeps the rest of the house clean"),
+            ("Board Lacing / Plank Repair (each)", "$14–$32 per board", "Hand-stained to match the field"),
+            ("Pet / Water-Stain Board Replacement", "$5.50–$9/sq ft", "Cut-out + replace + blend"),
+            ("Parquet Hand-Refinish", "$6.50–$10/sq ft", "Orbital, grain-direction passes"),
+            ("Stair-Tread Refinish (per tread)", "$35–$70 each", "Matched to the floor below"),
+        ],
+        "faqs": [
+            ("Can my old hardwood floor actually be refinished?", "Usually the answer is yes, and the deciding factor is how much wood is left above the tongue — the structural part you can't sand into. A solid floor has roughly four to six refinishes in it across its life, each pass taking about a thirty-second of an inch. Before we quote a full sand we drive a slim probe into a hidden spot — under trim or in a closet — and read the remaining thickness, so we know whether you're looking at a full sand, a lighter screen-and-recoat, or a partial repair. If a floor's already been sanded to the edge, we'll say so rather than take it one pass too far and delaminate it."),
+            ("Screen-and-recoat or full sand — what's the difference?", "A screen-and-recoat just scuffs the existing finish with a fine screen and lays a fresh coat or two over the top — it's for a floor that's only gone dull, it's done in a couple of days, and it costs a fraction of a full job because nothing below the original finish gets touched. A full sand-and-refinish takes the floor down to raw wood in three grit passes, raises the grain, and builds back two or three fresh coats of poly — that's what you need for deep scratches, pet damage, or graying around old water. We won't sell you a full sand on a floor that only needs a recoat, and we won't recoat a floor that's actually worn through."),
+            ("Water-based or oil-based polyurethane?", "Both are durable; they just age differently and we pick to the wood. Water-based poly (Bona Traffic HD and its peers) cures fast, has almost no odor, and dries crystal-clear and stays that way — the right call for white oak you want to keep pale and modern. Oil-based ambers warmly over the years and is the traditional, period-correct choice for red oak and walnut in a 1920s Old Northeast or Hyde Park home. The old idea that water-based wears out faster hasn't been true for a decade. We'll show you both on your actual floor before you decide."),
+            ("How disruptive is a refinish, and how long until I can walk on it?", "Moderately, and that's mostly the cure window. We run a HEPA dust-containment system on every job so the rest of the house stays clean, but the room being finished has to stay empty while each poly coat cures — eight to twenty-four hours a coat depending on the product. Most clients stay elsewhere for the five to eight days a full sand takes. You can walk the floor in socks within about a day of the final coat, but rugs and furniture go back at the two-week mark so the finish fully hardens first."),
         ],
     },
     "vinyl-plank-flooring": {
@@ -310,8 +378,8 @@ SERVICES = {
         "card_image": "card-vinyl.webp",
         "icon": "02",
         "intro_lead": "100% waterproof, scratch-resistant, dimensionally stable in Florida humidity, and the smartest dollar-per-square-foot floor you can install in a Tampa Bay rental, kitchen, or family room.",
-        "intro_long_p1": "Luxury vinyl plank (LVP) and stone-plastic composite (SPC) have become the dominant new-floor category in Tampa Bay for a stack of practical reasons: they're 100% waterproof, they shrug off dog claws and dropped pans, they cost a fraction of real hardwood, and the visual gap between a good SPC plank and an actual oak floor has gotten genuinely small. We install both <strong>click-lock floating systems</strong> (faster install, no glue, individual planks replaceable down the road) and <strong>full glue-down systems</strong> (more permanent, zero flex, the right answer for open-plan rooms over eight hundred square feet and for high-traffic commercial work).",
-        "intro_long_p2": "Where we really earn our keep is short-term rental work — Anna Maria Island, Siesta Key, Lido Key, Longboat, and the Wellen Park rental cluster. STR floors take five times the traffic of a primary residence, get cleaned with chemicals most homeowners would never use, and need to look new in listing photos for the next decade. We've completed more than a hundred and forty STR re-floorings since 2020. For most Florida residential clients we land on a click-lock SPC plank at 6.5 mm with a 22-mil wear layer — that's the sweet spot for durability, price, and visual quality.",
+        "intro_long_p1": "Vinyl plank is the floor we install more of than anything else, and we're upfront about why: dollar for dollar, nothing else in our catalog returns more usable floor. A premium SPC plank is waterproof through the core, laughs off a Labrador's nails and a dropped cast-iron skillet, and lands at a fraction of real oak — and the honest truth is that from across a Lakewood Ranch great room, a good 22-mil plank reads as wood to almost everyone who walks in. We set it two ways depending on the room. <strong>Click-lock floating</strong> goes down fast, takes no adhesive, and lets us pop and swap a single damaged plank years later; <strong>full glue-down</strong> is dead-solid underfoot and is what we insist on for open-plan rooms past about eight hundred square feet, for anything with a pool table or gun safe over it, and for every commercial and rental floor we touch.",
+        "intro_long_p2": "Rental work is where this service earns its reputation. A short-term rental on Anna Maria, Siesta, Lido, or in the Wellen Park cluster eats floor at several times the rate of a family home — turnover crews mopping with whatever's under the sink, suitcase wheels, and beach sand grinding in daily. We've re-floored well over a hundred and forty of them since 2020, almost always on a tight vacancy window, and we glue them down because a floating floor gives up at the pivot points first. For an owner-occupied Bradenton or Sarasota home, our default recommendation is a click-lock SPC around 6.5 mm with a 22-mil wear layer — the point on the curve where durability, price, and a believable wood look all line up. If the better plank pushes the project past comfortable, that's exactly the kind of job our financing partners exist for; we'd rather you buy the floor once.",
         "scope_items": [
             "Click-lock LVP installation (floating, no adhesive)",
             "Full glue-down LVP installation (large open-plan spaces, commercial)",
@@ -329,20 +397,20 @@ SERVICES = {
             "Vapor barrier installation on suspect slabs",
         ],
         "pricing_rows": [
-            ("Standard LVP (4 mm, 12-mil wear)", "$1.50–$3/sq ft installed", "Builder-grade, rental-friendly"),
-            ("Mid-Range LVP / SPC (6 mm, 20-mil)", "$2.50–$5/sq ft installed", "Most-installed for primary residences"),
-            ("Premium SPC (8 mm, 22+ mil wear)", "$4–$7/sq ft installed", "Pet-proof, lifetime residential warranty"),
-            ("Wide-Plank Luxury LVP (9″+)", "$5–$9/sq ft installed", "Hardwood-mimicking, premium look"),
-            ("Glue-Down Commercial LVP", "$3–$6/sq ft installed", "STRs, AirBnBs, high-traffic"),
-            ("LVP Stair Treads (per tread)", "$60–$95 each", "Includes nosing and matching riser"),
-            ("Slab Self-Leveling (per room)", "$200–$600", "When dip exceeds 3/16″ in 10 ft"),
-            ("Old Flooring Removal &amp; Haul", "$1.50–$3/sq ft", "Carpet/tile/sheet-vinyl demo"),
+            ("Standard LVP (4 mm, 12-mil wear)", "$1.75–$3.25/sq ft installed", "Builder-grade, rental-friendly"),
+            ("Mid-Range LVP / SPC (6 mm, 20-mil)", "$2.75–$5.25/sq ft installed", "Our most-installed residential tier"),
+            ("Premium SPC (8 mm, 22+ mil wear)", "$4.25–$7.50/sq ft installed", "Pet-proof, lifetime residential warranty"),
+            ("Wide-Plank Luxury LVP (9″+)", "$5.50–$9.50/sq ft installed", "Hardwood-mimicking, premium look"),
+            ("Glue-Down Commercial LVP", "$3.25–$6.50/sq ft installed", "Vacation rentals, STRs, high-traffic"),
+            ("LVP Stair Treads (per tread)", "$65–$100 each", "Includes nosing and matching riser"),
+            ("Slab Self-Leveling (per room)", "$225–$650", "When dip exceeds 3/16″ in 10 ft"),
+            ("Old Flooring Removal &amp; Haul", "$1.75–$3.25/sq ft", "Carpet/tile/sheet-vinyl demo"),
         ],
         "faqs": [
-            ("Is luxury vinyl plank really waterproof?", "Yes — fully. Modern LVP and SPC planks are 100% waterproof through the core; you can submerge a plank for days and it won't swell, warp, or delaminate. The seams where two planks meet are tight enough that surface water (a dishwasher leak, a pet accident, a hurricane-driven AC condensate overflow) won't penetrate to the subfloor for hours. That said: waterproof flooring doesn't make a waterproof house. Standing water against a baseboard for days will still get into the wall cavity behind the floor — the plank itself won't fail, but adjacent assemblies can."),
-            ("Click-lock vs. glue-down — which is right for me?", "Click-lock (floating) is faster to install, easier to repair (you can pop up a damaged plank and swap it), and gentler on subfloors with minor imperfections. Glue-down is more permanent, has zero flex underfoot (which feels closer to tile or real hardwood), and is the right answer for open-plan spaces over 800 sq ft, for commercial buildings, and for spaces with very heavy furniture (pool tables, gun safes, commercial-grade appliances). For most Florida residential work we install click-lock; for STRs and commercial, we glue down."),
-            ("Will LVP look fake?", "It depends entirely on what you buy. Builder-grade LVP at $1.50/sq ft has visible pattern repeats — you'll see the same knot or grain reappear every 4–6 planks, and the embossing doesn't always line up with the printed grain. Mid-tier and premium SPC ($4+/sq ft installed) has dozens of unique plank visuals, deeper embossing, and matte finishes that read remarkably close to real hardwood from anywhere outside ten feet. We bring samples to your home and show you the cost-vs-realism tradeoff in person."),
-            ("How long does an LVP install take?", "A typical 1,000–1,500 sq ft floating LVP install runs 2–3 days: day one demo and subfloor prep, day two installation, day three transitions and trim. Glue-down jobs typically add one to two days because of the adhesive cure time. Stair treads add a day. Any subfloor leveling work adds drying time before install can begin."),
+            ("Is luxury vinyl plank really waterproof?", "Through the core, yes, completely — you could leave a loose plank in a bucket for a week and it won't swell, warp, or come apart. The joints between planks are tight enough that a dishwasher drip, a pet accident, or an AC condensate overflow won't reach the subfloor for hours. The honest caveat we give every client: a waterproof floor is not a waterproof house. Let water stand against a baseboard for a day or two and it'll find the wall cavity through the expansion gap — the plank survives, but the framing behind it might not. Treat it as a wide margin against spills, not a license to ignore a real leak."),
+            ("Click-lock vs. glue-down — which is right for me?", "Click-lock floats over the subfloor: it goes down faster, forgives minor imperfections, and lets us pop and replace one damaged plank down the road. Glue-down bonds flat to the slab, has zero give underfoot — closer to the feel of tile or real wood — and is what we insist on for open spans past about 800 square feet, for anything carrying real weight like a pool table or safe, and for every rental and commercial floor. For an everyday Bradenton or Sarasota living room we usually float it; for a beach rental on a one-week turnaround, we glue it, because the floating joints are the first thing heavy traffic pulls apart."),
+            ("Will LVP look fake?", "Entirely depends on what you put down. The cheapest builder-grade plank repeats the same knot every four to six boards and the embossing doesn't track the printed grain, so it reads plastic from across the room. Step up to a real SPC and you get dozens of unique plank faces, deeper texture you can feel, and a matte finish that passes for oak from anywhere past arm's reach. Rather than argue it on the phone, we bring both to your house and stand them next to your trim in your own light — the gap between tiers is obvious the second you see them side by side."),
+            ("How long does an LVP install take?", "Plan on two to three days for a typical 1,000–1,500 square-foot floating install: tear-out and prep, then the install, then transitions and trim. Glue-down adds a day or two for adhesive cure, and stairs add a day. The variable that moves the schedule most is the subfloor — if we have to self-level dips, that pour needs to dry before a single plank goes down, and we'd rather wait the day than trap a problem under your new floor."),
         ],
     },
     "tile-installation": {
@@ -353,8 +421,8 @@ SERVICES = {
         "card_image": "card-tile.webp",
         "icon": "03",
         "intro_lead": "Porcelain, ceramic, natural stone, and large-format slabs — set flat, set straight, and set to the slope your shower pan actually needs.",
-        "intro_long_p1": "Tile is the most installation-sensitive flooring product on the market. The tile itself is durable, beautiful, and inert; the failure points are almost always underneath it — improperly prepared substrates, the wrong setting mortar, missing decoupling membranes, and skipped lippage controls. We install everything from 4-inch ceramic field tile to 24x48 large-format porcelain to 48x48 marble-look slabs, and the larger the format the more critical the prep becomes. A 24x48 porcelain tile on a slab with a 1/8-inch dip will sit visibly cupped in the room; the same dip is invisible under 12-inch tile.",
-        "intro_long_p2": "We follow the TCNA (Tile Council of North America) handbook for substrate prep, setting mortars, and crack-isolation membranes — that's the published spec for a tile floor that doesn't crack when the slab below it does. For wet areas (showers, primary bathrooms, splash zones near tubs) we install Schluter Kerdi or Wedi waterproofing systems before a single piece of tile gets set. The vast majority of our tile-failure repair calls trace back to the original installer skipping either the substrate prep or the waterproofing — and once tile is set wrong, the only real fix is to take it back out.",
+        "intro_long_p1": "Tile is the most unforgiving product we install, and almost none of that is the tile's fault. Porcelain is inert — it's beautiful, it's hard, it outlives the house. Everything that goes wrong with a tile floor happens in the inch beneath it: a slab that was never flattened, the wrong mortar troweled under a heavy plank, a missing decoupling layer, lippage nobody clipped. The bigger the format, the less margin you get. A 24×48 plank dropped onto a Heritage Harbour kitchen slab with an eighth-inch dip will sit there rocking and cupped where a 12-inch tile would have hidden it completely — which is exactly why we pull a straightedge across the whole floor before we open a single box, and why our large-format quotes carry real prep time instead of pretending the slab is flat.",
+        "intro_long_p2": "We build tile to the TCNA Handbook — the published industry spec for substrate flatness, mortar coverage, and crack isolation — because a Florida slab is going to crack eventually, and a Ditra membrane is the difference between a hairline in the concrete staying in the concrete and it telegraphing up through a $16-a-foot porcelain floor. In showers and any splash zone we set a bonded Schluter Kerdi or Wedi waterproofing system before the first tile goes up; there is no version of a wet-area floor we'll build without it. We say this plainly because most of the tile we're called to tear out and redo failed for one of two reasons — skipped prep or skipped waterproofing — and once tile is set wrong, the only honest fix is to take it back out and do it right.",
         "scope_items": [
             "Ceramic field tile (4″–18″ formats)",
             "Porcelain field tile (12″–24″ formats)",
@@ -373,21 +441,21 @@ SERVICES = {
             "Toilet pull-and-reset, appliance moves",
         ],
         "pricing_rows": [
-            ("Standard Ceramic Tile (12″–18″)", "$6–$9/sq ft installed", "Tile included, basic patterns"),
-            ("Porcelain Tile (12″–18″)", "$7–$11/sq ft installed", "Most-installed for primary living areas"),
-            ("Large-Format Porcelain (24×48)", "$10–$15/sq ft installed", "Premium look, longer prep time"),
-            ("Marble-Look Porcelain Slab (48×48+)", "$14–$22/sq ft installed", "Slab handling adds labor"),
-            ("Natural Stone (travertine/marble)", "$12–$20/sq ft installed", "Plus sealing on day of install"),
-            ("Mosaic / Decorative Inlay", "$25–$50/sq ft installed", "Labor-intensive, custom layouts"),
-            ("Schluter Kerdi Shower Waterproofing", "$1,200–$2,800", "Per standard 3×5 shower footprint"),
-            ("Crack-Isolation Membrane (Ditra)", "$2.50–$4/sq ft", "Critical over concrete slabs"),
-            ("Tile Demo &amp; Substrate Prep", "$3–$6/sq ft", "Old tile + thinset removal"),
+            ("Standard Ceramic Tile (12″–18″)", "$6.50–$9.75/sq ft installed", "Tile included, basic patterns"),
+            ("Porcelain Tile (12″–18″)", "$7.50–$11.50/sq ft installed", "Most-installed for primary living areas"),
+            ("Large-Format Porcelain (24×48)", "$10.75–$16/sq ft installed", "Premium look, longer prep time"),
+            ("Marble-Look Porcelain Slab (48×48+)", "$14.75–$23/sq ft installed", "Slab handling adds labor"),
+            ("Natural Stone (travertine/marble)", "$12.50–$21/sq ft installed", "Plus sealing on day of install"),
+            ("Mosaic / Decorative Inlay", "$26–$52/sq ft installed", "Labor-intensive, custom layouts"),
+            ("Schluter Kerdi Shower Waterproofing", "$1,350–$2,950", "Per standard 3×5 shower footprint"),
+            ("Crack-Isolation Membrane (Ditra)", "$2.75–$4.25/sq ft", "Critical over concrete slabs"),
+            ("Tile Demo &amp; Substrate Prep", "$3.25–$6.50/sq ft", "Old tile + thinset removal"),
         ],
         "faqs": [
-            ("Why does large-format tile cost so much more to install?", "Two reasons. First, the substrate has to be dramatically flatter — TCNA spec for tile under 15 inches allows 1/4-inch deviation over 10 feet; for tile 15 inches and larger that tightens to 1/8-inch over 10 feet. Florida slabs rarely meet that out of the box, so we frequently self-level. Second, the tiles are heavy, two-person lifts, and require back-buttering plus a fully troweled bed of mortar to avoid lippage. The tile may cost only slightly more — the labor is the real difference."),
-            ("Do I really need a waterproofing membrane in my shower?", "Yes — without question. The Florida Building Code requires a waterproof shower assembly; what varies is how it's built. The old method (tar paper plus a wire-lath mud bed plus a clamping drain) still passes code in some jurisdictions but has dozens of failure points. The modern method — a fully bonded sheet membrane like Schluter Kerdi or a foam panel system like Wedi — is dramatically more reliable, easier to inspect, and what we install on every shower job. Skipping it is the single most common cause of catastrophic bathroom failures we get called to fix."),
-            ("Can you tile over an old tile floor?", "Sometimes, but rarely well. The old tile has to be 100% bonded (no hollow spots under any tile when you tap them), the new tile has to be at least as big as the old (so no new joint sits over an old joint), and the height has to work — most homes can't absorb 3/4-inch of added floor height at every doorway. In practice we recommend tile demolition almost every time. The labor is real but the result is a floor that will outlast the structure."),
-            ("Sanded vs. unsanded grout — does it matter?", "It does. Unsanded grout is for joints 1/8-inch and narrower (most wall tile, mosaics, and tight-set marble); sanded grout is for joints 1/8-inch and wider (most floor tile, large-format porcelain, anything with a visible grout line). Pushing sanded grout into a narrow wall-tile joint scratches the tile surface; using unsanded grout in a wide joint causes the grout to crack out as it shrinks during cure. We pick the grout to match the joint width, not the visual preference."),
+            ("Why does large-format tile cost so much more to install?", "It's labor, not tile. The bigger the format, the flatter the substrate has to be: TCNA allows a quarter-inch of deviation over ten feet under tile below fifteen inches, but tightens that to an eighth of an inch once you're at fifteen inches and up — and a Florida slab almost never shows up that flat, so we self-level. Then the tiles themselves are heavy two-person lifts that have to be back-buttered and set into a fully troweled bed to keep lippage out. The plank might cost a couple dollars more a foot; the prep and the handling are where the real money goes, and skipping either is exactly why discount large-format jobs come back rocking."),
+            ("Do I really need a waterproofing membrane in my shower?", "Yes — this isn't a place we negotiate. Florida code requires a waterproof shower assembly; the only question is how it's built. The old tar-paper-and-mud-bed approach still squeaks past inspection in some jurisdictions, but it has a dozen places to fail and we won't build one. We set a fully bonded Schluter Kerdi sheet or a Wedi foam-panel system on every shower, every time, because it's more reliable, an inspector can actually verify it, and the catastrophic bathroom leaks we get called to demo almost always trace back to a shower somebody waterproofed the cheap way."),
+            ("Can you tile over an old tile floor?", "Occasionally it's possible, but it's rarely the right call, and we'll usually tell you so. For it to even be on the table the old tile has to be fully bonded with no hollow spots when we sound it, the new tile has to be at least as large so no fresh joint lands over an old one, and your doorways have to be able to swallow another three-quarters of an inch of height — which most can't without trapping doors and transitions. Nine times out of ten we recommend pulling the old tile. It's real labor, but you end up with a floor that outlasts the house instead of inheriting whatever was wrong underneath."),
+            ("Sanded vs. unsanded grout — does it matter?", "More than most people expect. Unsanded grout belongs in joints an eighth-inch and narrower — most wall tile, mosaics, tight-set marble — and sanded grout in anything wider, which is most floor tile and large-format porcelain. Force sanded grout into a narrow wall joint and the grit scratches the tile face; use unsanded in a wide floor joint and it shrinks and cracks out as it cures. We pick the grout to the joint, not to whatever's on sale, and on premium jobs we'll often steer you to a urethane or epoxy that never needs sealing in the first place."),
         ],
     },
     "laminate-flooring": {
@@ -398,8 +466,8 @@ SERVICES = {
         "card_image": "card-laminate.webp",
         "icon": "04",
         "intro_lead": "Modern AC4 and AC5 laminate — installed with a proper expansion gap, the right underlayment for your slab, and the moisture-barrier work that keeps the floor flat in year five.",
-        "intro_long_p1": "Laminate is the misunderstood middle child of the flooring market — frequently confused with LVP, frequently dismissed as 'cheap fake wood,' and frequently the right answer when the budget is real and the application is right. Modern AC4 and AC5-rated laminate has a melamine wear layer that resists scratches better than most real hardwood. The visuals are remarkably good above the mid-tier price point. And the click-lock floating installation is fast, clean, and inexpensive — typically 30 to 40 percent less than comparable engineered hardwood installed.",
-        "intro_long_p2": "Where laminate isn't the right call: kitchens (water exposure at the sink will eventually swell the seams), full bathrooms, and slab-on-grade homes without a proper vapor barrier. The HDF core that gives laminate its rigidity is the same property that makes it fail in wet conditions — it's wood-based, and wood-based products swell when they get wet. For Florida slab installs we always specify a 6-mil vapor barrier underlayment minimum; for primary residences we usually recommend the homeowner go LVP/SPC instead. But for bedrooms, living rooms, and home offices on plywood subfloors — and especially for rental properties where the per-square-foot budget is real — laminate at the AC4 / AC5 tier remains a fully defensible install.",
+        "intro_long_p1": "Laminate gets dismissed as cheap fake wood and confused with vinyl at the showroom, and both reactions miss what it's genuinely good at. A modern AC4 or AC5 laminate wears a melamine surface that shrugs off scratches better than most real oak, the better visuals are legitimately convincing once you're past the bottom tier, and it clicks together fast and clean — usually thirty to forty percent under a comparable engineered hardwood, installed. When a Parrish landlord is putting durable, good-looking floor into a rental and the math has to work, or a homeowner wants real value in the bedrooms while spending the budget on the main living areas, laminate is frequently the smart, honest answer rather than the compromise.",
+        "intro_long_p2": "We're just as clear about where it doesn't belong. Laminate's HDF core is wood-based — the same rigidity that makes it feel solid underfoot is what swells it at the seams when liquid water sits on it — so we won't put it in a kitchen, a full bath, or any slab home that hasn't got a proper vapor barrier under it. On every slab install we spec a 6-mil barrier minimum, no exceptions, and for a primary-residence whole-home job we'll usually steer you to SPC vinyl instead and tell you why. But for bedrooms, dens, and home offices over a plywood subfloor — and for rentals where the per-foot budget is real — a properly installed AC4 or AC5 laminate is a floor we'll stand behind for fifteen to twenty years, and one our financing partners can spread out if the right product still stretches the project.",
         "scope_items": [
             "Click-lock floating laminate installation",
             "AC3, AC4, and AC5-rated commercial laminate",
@@ -417,20 +485,20 @@ SERVICES = {
             "Expansion gap maintenance at all walls and fixed objects",
         ],
         "pricing_rows": [
-            ("Standard AC3 Laminate (8 mm)", "$2–$3.50/sq ft installed", "Rental-friendly, bedrooms"),
-            ("Mid-Range AC4 Laminate (10 mm)", "$3–$5/sq ft installed", "Most-installed for primary residences"),
-            ("Premium AC5 Commercial Laminate (12 mm)", "$5–$7/sq ft installed", "High-traffic, hand-scraped textures"),
-            ("Wide-Plank Premium Laminate (7″+)", "$5.50–$8/sq ft installed", "Hardwood-mimicking visuals"),
-            ("Vapor Barrier Underlayment", "$0.50–$1/sq ft", "Required on slab installs"),
-            ("Acoustic / Cork Underlayment", "$0.80–$1.50/sq ft", "Reduces sound transfer in condos"),
-            ("Laminate Stair Treads (per tread)", "$70–$110 each", "Includes nosing and matching riser"),
-            ("Old Flooring Removal &amp; Haul", "$1.50–$3/sq ft", "Carpet/tile/sheet-vinyl demo"),
+            ("Standard AC3 Laminate (8 mm)", "$2.25–$3.75/sq ft installed", "Rental-friendly, bedrooms"),
+            ("Mid-Range AC4 Laminate (10 mm)", "$3.25–$5.25/sq ft installed", "Our most-installed laminate tier"),
+            ("Premium AC5 Commercial Laminate (12 mm)", "$5.25–$7.50/sq ft installed", "High-traffic, hand-scraped textures"),
+            ("Wide-Plank Premium Laminate (7″+)", "$5.75–$8.50/sq ft installed", "Hardwood-mimicking visuals"),
+            ("Vapor Barrier Underlayment", "$0.55–$1.10/sq ft", "Required on slab installs"),
+            ("Acoustic / Cork Underlayment", "$0.85–$1.60/sq ft", "Reduces sound transfer in condos"),
+            ("Laminate Stair Treads (per tread)", "$75–$115 each", "Includes nosing and matching riser"),
+            ("Old Flooring Removal &amp; Haul", "$1.75–$3.25/sq ft", "Carpet/tile/sheet-vinyl demo"),
         ],
         "faqs": [
-            ("Laminate vs. LVP — what's actually different?", "The cores are different products. Laminate has an HDF (high-density fiberboard) wood-based core; LVP/SPC has a plastic or stone-plastic composite core. That single difference cascades into every meaningful spec: laminate isn't waterproof, LVP is; laminate is more rigid and feels closer to real hardwood underfoot; LVP is more forgiving on imperfect subfloors. For most Florida primary residences we recommend LVP. For rental bedrooms, home offices, and budget-driven primary-bedroom installs, modern AC4/AC5 laminate is still a defensible choice."),
-            ("Is laminate okay for Florida humidity?", "On the surface, yes — modern laminate is far more humidity-tolerant than it was twenty years ago. The HDF core won't swell from ambient humidity alone. What it won't tolerate is liquid water sitting on a seam for hours, which is why we never recommend it in kitchens, full baths, or unconditioned spaces. For air-conditioned bedrooms, living rooms, and home offices, a properly installed AC4 laminate over a vapor barrier will hold up for fifteen to twenty years."),
-            ("Why do I need an expansion gap?", "Every floating floor (laminate, LVP, click-lock engineered hardwood) is going to expand and contract slightly with seasonal humidity changes. If the floor is set tight against walls, baseboards, or fixed objects (toilets, kitchen islands, built-ins) without a 3/8-inch expansion gap, the floor will buckle as it tries to expand and has nowhere to go. The gap is hidden by baseboards and quarter-round after installation — but skipping it is the number-one preventable cause of laminate failure."),
-            ("How long does a laminate install take?", "A typical 1,000–1,500 sq ft laminate install runs 2–3 working days: day one demolition, subfloor prep, and underlayment, day two installation, day three transitions and trim. Stair treads add a day. Laminate is one of the fastest floors to install — about 30% faster than a comparable engineered hardwood floor."),
+            ("Laminate vs. LVP — what's actually different?", "It comes down to the core, and everything else follows from there. Laminate is built on an HDF — a dense wood-fiber board — while LVP and SPC are built on a plastic or stone-plastic composite. That one difference decides the rest: laminate isn't waterproof and LVP is; laminate is stiffer and reads a little more like real wood underfoot; LVP shrugs off an imperfect subfloor more gracefully. For a whole Florida home we'll usually point you to LVP, but for rental bedrooms, a home office, or a budget-driven primary-bedroom job, a modern AC4 or AC5 laminate is a floor we'll happily stand behind."),
+            ("Is laminate okay for Florida humidity?", "Ambient humidity alone, yes — today's laminate is a different animal than the stuff from twenty years ago, and the HDF core won't swell just from damp air in a conditioned house. What it can't take is standing liquid sitting on a seam for hours, which is the whole reason we keep it out of kitchens, full baths, and anything unconditioned. Put it in air-conditioned bedrooms, living rooms, and offices over a proper vapor barrier and a good AC4 plank will give you fifteen to twenty solid years."),
+            ("Why do I need an expansion gap?", "Because every floating floor — laminate, LVP, click-lock engineered — breathes a little with the seasons, and it has to have somewhere to go. Set it tight against the walls, the baseboards, a kitchen island, or a toilet flange with no gap and the first humid stretch buckles it in the middle of the room, because the boards are pushing against something that won't move. We hold a three-eighths-inch gap at every wall and fixed object and then hide it under baseboard and quarter-round. Skipping that gap is the number-one preventable laminate failure we see, full stop."),
+            ("How long does a laminate install take?", "Two to three working days for a typical 1,000–1,500 square-foot job: demo, prep and underlayment, then the install, then transitions and trim. Stairs add a day. Laminate is genuinely one of the quickest floors we lay — roughly thirty percent faster than a comparable engineered hardwood — which is part of why the installed price comes in lower."),
         ],
     },
     "stair-treads": {
@@ -441,8 +509,8 @@ SERVICES = {
         "card_image": "card-stairs.webp",
         "icon": "05",
         "intro_lead": "Solid hardwood, engineered, LVP, and laminate stair treads — custom-cut, riser-matched, and finished to match the floor you're tying them into.",
-        "intro_long_p1": "Stair treads are the most-walked-on surface in any two-story home and the most visible carpentry work in the entire house — the spot where every guest's eye lands as they come through the front door. They're also the most under-priced and under-respected piece of flooring work in our industry. A bad stair install is immediately obvious: uneven nosing reveals, gappy returns at the wall, ill-matched stain on the riser, finger-jointed treads that show seams in raked light. We treat every stair install as finish carpentry, not as flooring.",
-        "intro_long_p2": "We install solid hardwood treads (most common — typically 5/4 oak, hickory, or walnut, finished to match the surrounding hardwood floor), engineered treads (manufactured to match an engineered floor), LVP and laminate treads with manufacturer-matched nosing pieces, and full custom builds with stainable risers, return-nose details, and skirt-board scribing. Most of our stair work is part of a full first-floor reflooring project, where the upstairs carpet stays but the steps need to match the new wood downstairs.",
+        "intro_long_p1": "A staircase is the one piece of carpentry every visitor's eye lands on the second they walk in, and it's the single most under-respected job in our trade. A bad set of treads announces itself instantly — nosing reveals that wander, returns that gap at the wall, a riser stained two shades off, finger-jointed treads showing their seams the moment afternoon light rakes across them. We don't quote stairs like flooring; we quote them like finish carpentry, because that's what they are. The fastest way to make a fresh downstairs floor look amateur is to bolt builder-grade steps onto it, and the fastest way to make a modest project look custom is to get the stairs exactly right.",
+        "intro_long_p2": "Our most common stair job is the back half of a first-floor reflooring: the upstairs carpet stays, but the steps have to marry into the new wood or plank we just laid. We cut solid hardwood treads — usually 5/4 oak, hickory, or walnut, site-finished to the surrounding floor — plus factory-matched engineered treads, LVP and laminate treads with the manufacturer's own nosing, and full custom builds with stainable risers, mitered return-nose detail on open sides, and skirt-board scribing. Every tread gets cut to its own position rather than to one average dimension, because no two steps in a Florida tract home are actually the same depth, and that single habit is what separates our stairs from the ones we get hired to redo.",
         "scope_items": [
             "Solid hardwood stair treads (5/4 thickness, custom cut)",
             "Engineered hardwood treads with matched nosing",
@@ -460,20 +528,20 @@ SERVICES = {
             "Underlying tread plywood inspection and repair",
         ],
         "pricing_rows": [
-            ("LVP / Laminate Treads (per tread)", "$60–$95 installed", "Manufacturer-matched nosing"),
-            ("Engineered Hardwood Treads (per tread)", "$110–$160 installed", "Pre-finished, matched to floor"),
-            ("Solid Hardwood Treads (per tread)", "$130–$200 installed", "5/4 oak/hickory/walnut, site-finished"),
-            ("Stainable Poplar Risers (per riser)", "$35–$55 installed", "White paint standard"),
-            ("Hardwood Risers (per riser, matched)", "$60–$95 installed", "Stain-matched to tread"),
-            ("Return-Nose Detail (per open-side tread)", "+$20–$40 each", "For open-sided staircases"),
-            ("Iron Baluster Install (each)", "$45–$75 installed", "Through new tread, set in epoxy"),
-            ("Site-Finished Poly Coat (2 coats)", "$15–$25/tread", "If treads are raw or refinished"),
+            ("LVP / Laminate Treads (per tread)", "$65–$105 installed", "Manufacturer-matched nosing"),
+            ("Engineered Hardwood Treads (per tread)", "$115–$170 installed", "Pre-finished, matched to floor"),
+            ("Solid Hardwood Treads (per tread)", "$135–$210 installed", "5/4 oak/hickory/walnut, site-finished"),
+            ("Stainable Poplar Risers (per riser)", "$38–$60 installed", "White paint standard"),
+            ("Hardwood Risers (per riser, matched)", "$65–$100 installed", "Stain-matched to tread"),
+            ("Return-Nose Detail (per open-side tread)", "+$22–$42 each", "For open-sided staircases"),
+            ("Iron Baluster Install (each)", "$48–$80 installed", "Through new tread, set in epoxy"),
+            ("Site-Finished Poly Coat (2 coats)", "$16–$27/tread", "If treads are raw or refinished"),
         ],
         "faqs": [
-            ("How long does a stair tread install take?", "Most jobs run 2–3 days for a typical 14-tread staircase: day one carpet removal, plywood inspection, and substrate prep; day two tread and riser install; day three nosing, return details, finish coat, and final walkthrough. Site-finished solid hardwood treads add a day or two for stain and poly cure. Full custom builds (open-sided stairs with return-nose detail and iron balusters) can run 4–5 days."),
-            ("Can you match the new treads to my existing hardwood floor?", "Yes — that's actually our most common stair-tread scenario. We bring sample treads in your floor's species and finish, hold them up to your existing floor in natural light, and match the stain. If your floor is a pre-finished engineered product, we'll source matching treads from the same manufacturer. If your floor is site-finished solid hardwood, we'll stain the treads onsite to match. The finish coat on the treads will be slightly different than a sand-and-refinish, but in normal light the match is invisible."),
-            ("Do I need to refinish my existing hardwood when I redo the stairs?", "Usually not. The stair-floor transition is a natural break point in the visual flow of the house, so a slight color or finish-sheen difference between new treads and an older hardwood floor reads as intentional. If your hardwood is severely worn we'll often recommend a full sand-and-refinish at the same time — but it's not a requirement, and most clients keep their existing floor."),
-            ("What about pets and slippery treads?", "Pre-finished hardwood and LVP stair treads are smoother (and therefore more slippery) than carpeted stairs. For homes with older dogs or cats with traction issues, we install stair-tread grip strips — clear silicone strips applied 1 inch back from the nose of each tread, nearly invisible from standing height, that give pets the grip they need. We include those on request, no extra labor charge."),
+            ("How long does a stair tread install take?", "A typical fourteen-tread staircase runs two to three days: carpet pull, plywood inspection and prep, then treads and risers, then nosing, return details, and your walkthrough. Site-finished solid hardwood treads add a day or two for stain and poly to cure. A full custom build — open sides with mitered return-nose detail and iron balusters set through the treads — can stretch to four or five. We work top-down on install day so the bottom of the run stays usable while we go."),
+            ("Can you match the new treads to my existing hardwood floor?", "This is our single most common stair job, so yes. We bring sample treads in your floor's species and hold them against the actual floor in daylight before we commit to anything. If your downstairs is a pre-finished engineered product, we source treads from the same manufacturer so the match is exact; if it's site-finished solid hardwood, we stain the treads on site to match it. A factory tread next to a site-finished floor will carry a slightly different sheen up close, but at the stair-to-floor break — a spot the eye already reads as a transition — it disappears."),
+            ("Do I need to refinish my existing hardwood when I redo the stairs?", "Almost never. The line where the stairs meet the floor is a natural break in the house, so a small shift in color or sheen between fresh treads and an older floor reads as deliberate, not mismatched. The exception is a downstairs floor that's genuinely worn out — then we'll sometimes suggest sanding and refinishing it in the same visit so the whole thing lifts together — but it's a choice, not a requirement, and most clients keep the floor they have."),
+            ("What about pets and slippery treads?", "Pre-finished hardwood and LVP treads are smoother than carpet, and an older dog can lose its footing on them going down. The fix is a clear silicone grip strip run about an inch back from each tread nose — nearly invisible from standing height and a real difference for traction. Tell us at the estimate that you've got pets and we'll build them in at no added labor; it's a five-minute step that saves a lot of slipping."),
         ],
     },
     "floor-repair": {
@@ -484,8 +552,8 @@ SERVICES = {
         "card_image": "card-repair.webp",
         "icon": "06",
         "intro_lead": "Plank replacement, board lacing, sand-and-refinish, water-damage rebuilds, and the slab-prep work that nobody else wants to touch.",
-        "intro_long_p1": "Repair is the trade test for any flooring installer. New installs are linear — demo, prep, lay, trim, done. Repairs are detective work. Why did this hardwood floor cup? Why is there a squeak under this LVP plank? Why is this tile delaminating eighteen inches from the wall but not anywhere else? Most floor failures have a root cause that's not visible from above — moisture under the slab, a buried roof leak, a settled subfloor joist, a missing expansion gap — and an installer who skips the diagnosis is going to leave you with the same problem in nine months.",
-        "intro_long_p2": "Our repair work spans every flooring category we install: lacing in new hardwood planks to match an existing finish (the hardest job in the trade, period), full sand-and-refinish on aged oak, replacing single tiles without disturbing the field, swapping out damaged LVP planks on click-lock systems, and full-room rebuilds after hurricane water intrusion, plumbing failures, or appliance leaks. We also do the unglamorous foundational repair work — slab self-leveling, subfloor patching, joist sistering — that has to happen before any new floor can go down on top.",
+        "intro_long_p1": "Repair is the part of this trade that separates installers from craftsmen, because a new floor is linear — demo, prep, lay, trim, done — and a repair is a diagnosis. Why did this floor cup over here and nowhere else? Why does one LVP plank squeak when you cross the kitchen? Why is the tile letting go eighteen inches off the wall but holding everywhere else? Almost every failure we get called to in Bradenton, Sarasota, and across the bay has a cause you can't see from standing height: moisture wicking up a slab, a slow roof leak that found the subfloor, a joist that settled, an expansion gap somebody set tight. The crew that patches the symptom and skips the cause is just scheduling you a second repair nine months out, on your dime.",
+        "intro_long_p2": "We repair every category we install. We lace new hardwood into an existing finish — genuinely the hardest thing we do — sand and refinish tired oak, swap a single cracked tile without touching its neighbors, pull and replace a damaged plank on a click-lock run, and rebuild whole rooms after a supply line lets go or a storm pushes water in. We also do the unglamorous structural work nobody else wants — slab self-leveling, subfloor patching, joist sistering — that has to happen before any finish floor earns the right to go back down on top. Roughly a third of this work runs through a homeowner's insurance claim, so we document moisture readings, scope, and dated photos in the format adjusters expect, and we'll hand you that file whether or not the claim is ours to win.",
         "scope_items": [
             "Hardwood plank replacement and lacing-in",
             "Sand-and-refinish on solid hardwood",
@@ -504,27 +572,27 @@ SERVICES = {
             "Insurance-claim documentation with moisture readings",
         ],
         "pricing_rows": [
-            ("Hardwood Plank Replacement (lacing)", "$8–$15/sq ft", "Matches existing finish, hardest repair"),
-            ("Full Sand-and-Refinish (per sq ft)", "$4–$7/sq ft", "Three sandings + stain + 2-coat poly"),
-            ("Engineered Plank Replacement", "$6–$11/sq ft", "When matching product is available"),
-            ("Single Tile Replacement (each)", "$85–$175 per tile", "Includes grout match"),
-            ("Loose-Tile Re-bonding (per tile)", "$45–$85 per tile", "Injection-bonding when caught early"),
-            ("Water-Damage Rebuild (per sq ft)", "$8–$18/sq ft", "Demo + subfloor + new floor"),
-            ("Subfloor Patching (per patch)", "$120–$280 each", "Plywood replacement, screwed and glued"),
-            ("Slab Self-Leveling (per room)", "$200–$600", "Liquid pour, cures overnight"),
-            ("Squeak Repair (per squeak)", "$45–$95 each", "Diagnosis included"),
+            ("Hardwood Plank Replacement (lacing)", "$8.50–$16/sq ft", "Matches existing finish, hardest repair"),
+            ("Full Sand-and-Refinish (per sq ft)", "$4.25–$7.50/sq ft", "Three sandings + stain + 2-coat poly"),
+            ("Engineered Plank Replacement", "$6.50–$11.50/sq ft", "When matching product is available"),
+            ("Single Tile Replacement (each)", "$90–$185 per tile", "Includes grout match"),
+            ("Loose-Tile Re-bonding (per tile)", "$48–$90 per tile", "Injection-bonding when caught early"),
+            ("Water-Damage Rebuild (per sq ft)", "$8.50–$19/sq ft", "Demo + subfloor + new floor"),
+            ("Subfloor Patching (per patch)", "$130–$295 each", "Plywood replacement, screwed and glued"),
+            ("Slab Self-Leveling (per room)", "$225–$650", "Liquid pour, cures overnight"),
+            ("Squeak Repair (per squeak)", "$48–$100 each", "Diagnosis included"),
             ("Insurance-Claim Documentation", "Included free", "Moisture readings + photo report"),
         ],
         "faqs": [
-            ("Can you really make a replaced hardwood plank invisible?", "Yes, in most cases — and we charge accordingly because plank lacing is the hardest job in the entire trade. The trick is matching three things at once: the species and grade of the original wood, the existing finish color and sheen, and the existing wear pattern on the surrounding planks. We source matching planks from our salvage stock, hand-stain them on-site, and feather the new plank in with toothing cuts so the seams don't fall on a straight line. The result usually reads as 'invisible' from standing height; in raked late-afternoon sun, an expert might spot the lace. For most homeowners it's a non-issue."),
-            ("My hardwood floor squeaks — can you fix that without ripping it up?", "Usually, yes. Squeaks come from two sources: the flooring rubbing against the subfloor (fixable from above with hidden trim-head screws), or the subfloor rubbing against the joists below (fixable from below in a crawlspace, or from above with longer screws into the joists). We diagnose the squeak source first — most floors have multiple squeaks with different causes — and quote per squeak, not per square foot. Most jobs run $45–$95 per squeak."),
-            ("How do I know if my water-damaged floor can be saved vs. needs full replacement?", "Three tests: First, a calcium chloride moisture reading on the subfloor — if it's below 4 lbs/1,000 sq ft, the floor can likely dry out and be reused. Second, a visual inspection for cupping, crowning, and gapping — minor cupping can usually sand-and-refinish back to flat; severe cupping and any crowning typically can't. Third, a pin-meter reading on the planks themselves — if the wood moisture exceeds 14% it's still actively wet, and we'll dry it before judging it. We document all three readings as part of every insurance-claim job."),
-            ("Do you work with insurance companies on water-damage claims?", "Yes — about 30% of our repair work is insurance-driven. We document everything (calcium chloride readings, pin-meter readings, dated photos, sub-floor condition, scope of damage) in a format that insurance adjusters expect. We don't bill the insurance company directly (the homeowner does), but our documentation has been used successfully on dozens of claims with carriers including State Farm, Citizens, Universal, USAA, and Tower Hill."),
+            ("Can you really make a replaced hardwood plank invisible?", "In most cases, yes — and we price it honestly, because lacing a plank in is the hardest thing we do. You're matching three moving targets at once: the species and grade of the original board, the color and sheen of a finish that's aged, and the wear the surrounding floor has already taken. We pull boards from our salvage stock, hand-stain them on site, and tooth the new plank into the field so the seams never land on one straight line. From standing height it reads as untouched; if an expert crouches into raked late-day sun they might find the lace. For the people who actually live there, it's a non-issue — and that's the bar we're after."),
+            ("My hardwood floor squeaks — can you fix that without ripping it up?", "Usually without lifting a single board. A squeak is either the floor rubbing the subfloor — which we kill from above with hidden trim-head screws — or the subfloor rubbing the joists, which we hit from the crawlspace or with longer screws driven into the framing from on top. The catch is that most floors squeak in several places for several different reasons, so we survey the whole floor first, mark each one, and quote per squeak rather than per square foot. It's a half-day on a typical home and it resolves the overwhelming majority of them for good."),
+            ("How do I know if my water-damaged floor can be saved vs. needs full replacement?", "We run three readings before anyone makes that call. A calcium-chloride test on the subfloor tells us whether it's drying out or still holding water — under about four pounds and we can usually save and reuse it. A close look for cupping, crowning, and gapping tells us how far the boards moved — light cupping often sands back flat, but crowning and severe cupping generally won't. And a pin meter in the planks themselves tells us if the wood is still actively wet, over roughly fourteen percent, in which case we dry it before we judge it. All three numbers go straight into your file, which is exactly what an adjuster wants to see."),
+            ("Do you work with insurance companies on water-damage claims?", "Constantly — it's roughly a third of our repair work. We document the whole picture the way carriers expect it: calcium-chloride and pin-meter readings, dated photos, subfloor condition, and a clear scope of damage. We don't bill your insurer directly — that's between you and them — but the file we hand you has carried dozens of successful claims with State Farm, Citizens, Universal, USAA, Tower Hill and others. Call us early; the first 24 hours after the water decides how much of the floor we can still save."),
         ],
     },
 }
 
-SERVICE_ORDER = ["hardwood-flooring","vinyl-plank-flooring","tile-installation","laminate-flooring","stair-treads","floor-repair"]
+SERVICE_ORDER = ["hardwood-flooring","hardwood-refinishing","vinyl-plank-flooring","tile-installation","laminate-flooring","stair-treads","floor-repair"]
 
 
 # ============================================================================
@@ -842,6 +910,9 @@ for svc_slug, svc in SERVICES.items():
         if svc_slug == "hardwood-flooring":
             post_slug = f"hardwood-flooring-cost-{city_slug}"
             keyword = "hardwood flooring"
+        elif svc_slug == "hardwood-refinishing":
+            post_slug = f"hardwood-refinishing-cost-{city_slug}"
+            keyword = "hardwood floor refinishing"
         elif svc_slug == "vinyl-plank-flooring":
             post_slug = f"vinyl-plank-flooring-cost-{city_slug}"
             keyword = "vinyl plank flooring"
@@ -866,11 +937,11 @@ for svc_slug, svc in SERVICES.items():
             "city_name": city["name"],
             "keyword": keyword,
             "title": f"{svc['short']} Cost in {city['name']}, FL (2026)",
-            "meta_desc": (
+            "meta_desc": clip_desc(
                 f"What {keyword} actually costs in {city['name']}, FL in 2026. "
                 f"Transparent rates by material grade, real install timelines, and "
                 f"{city['name']}-specific factors. 5★ rated · free estimate."
-            )[:158],
+            ),
             "category": "Pricing",
             "primary_city": city["name"],
             "primary_service": svc_slug,
@@ -880,6 +951,96 @@ for svc_slug, svc in SERVICES.items():
             "date_modified": "2026-01-15",
         })
 
+
+# ============================================================================
+# GUIDES — /guides/ hub + long-form decision guides.
+# Topics chosen to NOT overlap the cost blog (pricing) or the 5 general posts,
+# and intentionally distinct from competitor/sibling angles (no generic
+# "engineered vs. solid hardwood" explainer). Bodies live in _build_guides.py.
+# ============================================================================
+GUIDES = [
+    {
+        "slug": "is-herringbone-worth-it",
+        "title": "Is Herringbone Worth the Premium? (Tampa Bay, 2026)",
+        "meta_desc": "Herringbone and chevron run 50–90% more in labor than straight plank. When the pattern pays off in a Bradenton or Sarasota home — and when it doesn't.",
+        "category": "Design Decision",
+        "date_published": "2026-05-20",
+        "date_modified": "2026-05-20",
+    },
+    {
+        "slug": "porcelain-vs-lvp-florida-kitchen",
+        "title": "Porcelain vs. LVP in a Florida Kitchen: Which Wins?",
+        "meta_desc": "The kitchen is the one room where porcelain tile and luxury vinyl plank genuinely compete. How we choose between them in Tampa Bay homes, room by room.",
+        "category": "Room-by-Room",
+        "date_published": "2026-05-06",
+        "date_modified": "2026-05-06",
+    },
+    {
+        "slug": "how-to-read-a-flooring-quote",
+        "title": "How to Read a Flooring Quote (and Spot the Padding)",
+        "meta_desc": "A line-by-line guide to a real flooring estimate — what every line should say, where contractors pad, and the questions that expose a lowball bid.",
+        "category": "Buyer Education",
+        "date_published": "2026-04-22",
+        "date_modified": "2026-04-22",
+    },
+    {
+        "slug": "wide-plank-vs-standard-width",
+        "title": "Wide-Plank vs. Standard Width: What Actually Changes",
+        "meta_desc": "Plank width changes more than looks — install method, movement, subfloor prep, and cost all shift with it. A Tampa Bay installer's breakdown.",
+        "category": "Material Decision",
+        "date_published": "2026-04-08",
+        "date_modified": "2026-04-08",
+    },
+    {
+        "slug": "slab-moisture-explained",
+        "title": "Slab Moisture, Explained: Why Florida Floors Fail",
+        "meta_desc": "Most Gulf Coast floor failures start in the slab, not the floor. What calcium-chloride and RH probe numbers mean, and the readings that change the install.",
+        "category": "How It Works",
+        "date_published": "2026-03-25",
+        "date_modified": "2026-03-25",
+    },
+    {
+        "slug": "hoa-condo-flooring-rules",
+        "title": "Flooring an HOA Condo in Tampa Bay: Rules & Approvals",
+        "meta_desc": "Second-floor condos and HOA communities have sound-rating rules, underlayment specs, and approval steps that change the floor. What to handle before install day.",
+        "category": "Logistics",
+        "date_published": "2026-03-11",
+        "date_modified": "2026-03-11",
+    },
+]
+
+# ============================================================================
+# GLOSSARY — /glossary/ — 26 flooring terms in plain English.
+# Pure data; rendered by _build_guides.py. Each term gets an anchor id.
+# ============================================================================
+GLOSSARY = [
+    ("Acclimation", "Letting flooring material sit inside the actual conditioned room for a set period — 72 hours for hardwood, 48 for engineered and laminate — so its moisture content matches the home before install. Skipping it is the leading cause of gapping and cupping on Gulf Coast floors."),
+    ("AC Rating", "Abrasion Class — a 1-to-5 durability scale for laminate. AC3 is light residential, AC4 is general residential/light commercial, AC5 is commercial. We spec AC4 minimum for any primary living area."),
+    ("Back-buttering", "Spreading a thin coat of mortar onto the back of a tile in addition to the troweled bed underneath it. Required on large-format tile to get full coverage and prevent hollow spots and lippage."),
+    ("Calcium Chloride Test", "A moisture test that measures how many pounds of water vapor a 1,000 sq ft slab emits over 24 hours. A reading too high means a glue-down floor will fail; we run one before any adhesive touches concrete."),
+    ("Chevron", "A flooring pattern where planks are cut at an angle and meet point-to-point in a continuous zigzag, forming clean V's. Distinct from herringbone (which uses square-cut planks) and the most labor-intensive wood install we offer."),
+    ("Crack-Isolation Membrane", "A sheet or liquid layer (e.g., Schluter Ditra) installed between a slab and tile that decouples the two, so a hairline crack in the concrete doesn't telegraph up and crack the tile above it."),
+    ("Cupping", "When the edges of a wood plank rise higher than its center, creating a concave 'cup,' caused by moisture imbalance — usually too much moisture from below. The classic failure mode of solid hardwood on a Florida slab."),
+    ("Engineered Hardwood", "Real-wood flooring built as a hardwood wear layer bonded over a cross-ply or HDF core. The cross-grain construction resists humidity-driven movement, which is why it goes over slabs where solid hardwood can't."),
+    ("Expansion Gap", "The 3/8-inch space left between a floating floor and every wall or fixed object, hidden by baseboard, that gives the floor room to expand and contract with humidity. Skipping it buckles the floor."),
+    ("Floating Floor", "A floor whose planks lock to each other but aren't fastened to the subfloor — it 'floats' as one sheet. Click-lock LVP, laminate, and some engineered hardwood install this way."),
+    ("Glue-Down", "An install method where each plank or tile is bonded directly to the subfloor with adhesive. More permanent and solid underfoot than floating; required for large open spans, heavy loads, and most rentals and commercial floors."),
+    ("HDF Core", "High-Density Fiberboard — the dense wood-based center of a laminate plank. It gives laminate its rigid, wood-like feel but also makes it swell if liquid water sits on a seam, which is why laminate stays out of wet rooms."),
+    ("Herringbone", "A pattern of square-cut rectangular planks laid at 90 degrees in a staggered, broken-zigzag. A timeless look that roughly doubles install labor versus straight plank."),
+    ("Janka Hardness", "A scale measuring a wood species' resistance to denting. White oak (~1,350) and hickory (~1,820) sit high; American walnut (~1,010) sits lower. Higher Janka means better scratch and dent resistance for high-traffic Florida homes."),
+    ("Lacing (Plank Weaving)", "A repair technique where new boards are feathered into an existing floor — staggering joints and toothing cuts so the patch blends invisibly instead of forming a visible seam. The hardest skill in the trade."),
+    ("Lippage", "A height difference between two adjacent tiles or planks, where one edge sits higher than its neighbor. Controlled during install with leveling clips; uncontrolled lippage is a trip hazard and the mark of a rushed job."),
+    ("LVP / SPC", "Luxury Vinyl Plank and Stone-Plastic Composite — rigid-core, 100% waterproof vinyl planks. SPC has a denser stone-aggregate core that resists subfloor imperfections better. The most-installed flooring category in Tampa Bay."),
+    ("Moisture Barrier (Vapor Barrier)", "A 6-mil polyethylene sheet or coated underlayment placed between a slab and the new floor to block water vapor from wicking up into the flooring. Non-negotiable on Florida slab installs for laminate and many wood products."),
+    ("Nosing", "The rounded or squared front edge of a stair tread that overhangs the riser below it. Matching the nosing profile to the tread is what makes a stair install read as finished rather than pieced-together."),
+    ("PEI Rating", "Porcelain Enamel Institute scale (1–5) for a tile's surface wear resistance. PEI 1–2 are wall-only or light use; we recommend PEI 4 minimum for any floor because Florida sand is abrasive."),
+    ("Riser", "The vertical face between two stair treads. Usually a white-painted poplar board, or a stain-matched hardwood riser on premium open staircases."),
+    ("Sand-and-Refinish", "Taking a worn solid-wood floor down to bare wood in three grit passes, then rebuilding the surface with fresh stain and polyurethane. A solid floor can take this four to six times across its life before the wood gets too thin."),
+    ("Screen-and-Recoat", "A light refresh that abrades only the existing finish and adds a new top coat — no sanding to bare wood. The right, lower-cost call for a floor that's merely dull rather than worn through."),
+    ("Self-Leveling", "Pouring a liquid cement underlayment that flows flat to correct dips and high spots in a subfloor before flooring goes down. Florida slabs rarely meet large-format tile's flatness spec without it."),
+    ("Sleeper System", "A subfloor of plywood (often over a vapor barrier) floated or fastened over a concrete slab, creating a nailing surface so solid hardwood can be installed where it otherwise couldn't. Adds height and cost."),
+    ("Wear Layer", "The clear top surface of an LVP or laminate plank that takes the abuse, measured in mils for vinyl (12-mil budget, 20–22 mil premium). A thicker wear layer is the single biggest driver of how long the floor stays looking new."),
+]
 
 # ============================================================================
 # SHARED COPY SNIPPETS (used across pages)

@@ -3,7 +3,7 @@
 import os, sys
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _data import BUSINESS, CITIES, SERVICES, SERVICE_ORDER, GENERAL_BLOG_POSTS, COST_BLOG_POSTS
+from _data import BUSINESS, CITIES, SERVICES, SERVICE_ORDER, GENERAL_BLOG_POSTS, COST_BLOG_POSTS, GUIDES, GLOSSARY
 
 DOMAIN = BUSINESS["domain"]
 SITE = f"https://{DOMAIN}"
@@ -29,6 +29,14 @@ def build_sitemap():
     for s in SERVICE_ORDER:
         for c in CITIES:
             urls.append((f"{SITE}/{s}/{c}/", TODAY, "monthly", "0.7"))
+
+    # Guides hub + guides — priority 0.7 / 0.6
+    urls.append((f"{SITE}/guides/", TODAY, "weekly", "0.7"))
+    for g in GUIDES:
+        urls.append((f"{SITE}/guides/{g['slug']}/", g.get("date_modified", TODAY), "monthly", "0.6"))
+
+    # Glossary — priority 0.6
+    urls.append((f"{SITE}/glossary/", TODAY, "monthly", "0.6"))
 
     # Blog index — priority 0.7
     urls.append((f"{SITE}/blog/", TODAY, "weekly", "0.7"))
@@ -113,8 +121,11 @@ Allow: /
 # Sitemap
 Sitemap: {SITE}/sitemap.xml
 
-# LLM-readable site summary
+# LLM-readable site summaries (llmstxt.org)
+LLMs-txt: {SITE}/llms.txt
+LLMs-txt: {SITE}/llms-full.txt
 # {SITE}/llms.txt
+# {SITE}/llms-full.txt
 '''
     with open("robots.txt", "w", encoding="utf-8") as f:
         f.write(txt)
@@ -140,10 +151,15 @@ def build_llms_txt():
         f"- [{p['title']}]({SITE}/blog/{p['slug']}/): {p['meta_desc']}"
         for p in GENERAL_BLOG_POSTS
     )
+    decision_guide_lines = "\n".join(
+        f"- [{g['title']}]({SITE}/guides/{g['slug']}/): {g['meta_desc']}"
+        for g in GUIDES
+    )
     txt = f'''# {BUSINESS["name"]}
 
 > {BUSINESS["tagline_long"]} Licensed & insured flooring contractor based in {BUSINESS["city"]}, {BUSINESS["state_long"]},
 > serving the Tampa Bay – Sarasota corridor since {BUSINESS["year_founded"]}.
+> Full extended version with services, pricing tiers and glossary: {SITE}/llms-full.txt
 
 ## Key Facts
 
@@ -171,6 +187,14 @@ def build_llms_txt():
 
 {guide_lines}
 
+## Decision Guides
+
+{decision_guide_lines}
+
+## Glossary
+
+- [Flooring Glossary]({SITE}/glossary/): {len(GLOSSARY)} flooring terms explained in plain English (acclimation, calcium chloride, lippage, SPC, wear layer, and more).
+
 ## Cost Guides (2026 pricing by city)
 
 {cost_lines}
@@ -186,6 +210,97 @@ def build_llms_txt():
     with open("llms.txt", "w", encoding="utf-8") as f:
         f.write(txt)
     print("Wrote llms.txt")
+
+
+def _plain(s):
+    """Strip HTML tags and decode the few entities used in the data, for plain-text llms-full."""
+    import re
+    s = str(s)
+    repl = {
+        "&mdash;": "—", "&ndash;": "–", "&rsquo;": "’", "&lsquo;": "‘",
+        "&ldquo;": "“", "&rdquo;": "”", "&amp;": "&", "&times;": "×",
+        "&nbsp;": " ", "&rarr;": "→", "&deg;": "°",
+    }
+    for k, v in repl.items():
+        s = s.replace(k, v)
+    s = re.sub(r"<[^>]+>", "", s)        # strip any HTML tags
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def build_llms_full():
+    """llms-full.txt — the extended, content-rich version referenced by llms.txt.
+    A single plain-text document an LLM can ingest to answer detailed questions about
+    Napa's services, pricing tiers, city coverage, guides and terminology."""
+    parts = []
+    parts.append(f"# {BUSINESS['name']} — Full Site Brief\n")
+    parts.append(
+        f"> {_plain(BUSINESS['tagline_long'])} Licensed & insured flooring contractor based in "
+        f"{BUSINESS['city']}, {BUSINESS['state_long']}, serving the Tampa Bay – Sarasota corridor "
+        f"since {BUSINESS['year_founded']}.\n"
+    )
+
+    parts.append("## Business Facts\n")
+    parts.append(
+        f"- Legal name: {BUSINESS['legal_name']}\n"
+        f"- Phone: {BUSINESS['phone_display']}  | Email: {BUSINESS['email']}\n"
+        f"- Address: {BUSINESS['street']}, {BUSINESS['city']}, {BUSINESS['state']} {BUSINESS['zip']}\n"
+        f"- Founded: {BUSINESS['year_founded']}  | Google rating: {BUSINESS['rating']}★ ({BUSINESS['review_count']} reviews)\n"
+        f"- Track record: {_plain(BUSINESS['unique_stat_full'])}\n"
+        f"- Warranty: {_plain(BUSINESS['guarantee'])}\n"
+        f"- Quality standard: {BUSINESS['checklist_name']} ({BUSINESS['checklist_points']} verification points on every job)\n"
+        f"- Financing: third-party 0% promotional and fixed-payment options on jobs over $2,500\n"
+        f"- Service area: Bradenton, Lakewood Ranch, Palmetto, Parrish, Sarasota, St. Petersburg, Tampa, Venice (Florida)\n"
+    )
+
+    parts.append("## Services (with pricing tiers and FAQs)\n")
+    for s in SERVICE_ORDER:
+        svc = SERVICES[s]
+        parts.append(f"### {svc['name']} — {SITE}/{s}/")
+        parts.append(_plain(svc["intro_lead"]))
+        parts.append(_plain(svc["intro_long_p1"]))
+        parts.append("Pricing tiers (2026 Tampa Bay, installed):")
+        for label, price, note in svc["pricing_rows"]:
+            parts.append(f"- {_plain(label)}: {_plain(price)} ({_plain(note)})")
+        parts.append("FAQs:")
+        for q, a in svc["faqs"]:
+            parts.append(f"- Q: {_plain(q)}\n  A: {_plain(a)}")
+        parts.append("")
+
+    parts.append("## Service Areas (local context)\n")
+    for slug, c in CITIES.items():
+        parts.append(f"### {c['name']}, FL ({c['county']}) — {SITE}/{slug}/")
+        parts.append(_plain(c["context_short"]))
+        parts.append(f"Humidity/install note: {_plain(c['humidity_note'])}")
+        parts.append(f"Primary market: {_plain(c['primary_market'])}")
+        parts.append("")
+
+    parts.append("## Decision Guides\n")
+    for g in GUIDES:
+        parts.append(f"- {g['title']} — {SITE}/guides/{g['slug']}/: {_plain(g['meta_desc'])}")
+    parts.append("")
+
+    parts.append("## Buyer's Guides (Journal)\n")
+    for p in GENERAL_BLOG_POSTS:
+        parts.append(f"- {p['title']} — {SITE}/blog/{p['slug']}/: {_plain(p['meta_desc'])}")
+    parts.append("")
+
+    parts.append("## Glossary\n")
+    for t, d in GLOSSARY:
+        parts.append(f"- {t}: {_plain(d)}")
+    parts.append("")
+
+    parts.append("## Company Pages\n")
+    parts.append(
+        f"- About: {SITE}/about/\n"
+        f"- FAQ: {SITE}/faq/\n"
+        f"- Warranty (12-month workmanship): {SITE}/warranty/\n"
+        f"- Financing: {SITE}/financing/\n"
+        f"- Contact (free estimate within 24 hours): {SITE}/contact/\n"
+    )
+
+    with open("llms-full.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(parts) + "\n")
+    print("Wrote llms-full.txt")
 
 
 def build_headers():
@@ -250,6 +365,12 @@ https://www.napasflooring.com/* https://napasflooring.com/:splat 301!
 /staircase/* /stair-treads/:splat 301
 /repair/* /floor-repair/:splat 301
 /floor-installation/* /:splat 301
+/refinishing/* /hardwood-refinishing/:splat 301
+/refinish/* /hardwood-refinishing/:splat 301
+/sand-and-refinish/* /hardwood-refinishing/:splat 301
+/hardwood-floor-refinishing/* /hardwood-refinishing/:splat 301
+/floor-refinishing/* /hardwood-refinishing/:splat 301
+/guide/* /guides/:splat 301
 
 # City variations
 /st-pete/* /st-petersburg/:splat 301
@@ -270,5 +391,6 @@ if __name__ == "__main__":
     build_sitemap()
     build_robots()
     build_llms_txt()
+    build_llms_full()
     build_headers()
     build_redirects()

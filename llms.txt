@@ -2,6 +2,7 @@
 
 > Tampa Bay's craft-first flooring crew — hardwood, vinyl, tile, laminate and stair treads installed by hand. Licensed & insured flooring contractor based in Bradenton, Florida,
 > serving the Tampa Bay – Sarasota corridor since 2020.
+> Full extended version with services, pricing tiers and glossary: https://napasflooring.com/llms-full.txt
 
 ## Key Facts
 
@@ -20,6 +21,7 @@
 ## Services
 
 - [Hardwood Flooring](https://napasflooring.com/hardwood-flooring/): Solid plank, engineered plank, and wide-board European white oak — installed by hand, acclimated for the Gulf Coast, and finished to outlast the next twenty years of Tampa Bay living.
+- [Hardwood Floor Refinishing](https://napasflooring.com/hardwood-refinishing/): Sand-and-refinish, screen-and-recoat, board lacing, and stain changes — bringing tired oak back to life across Bradenton, Sarasota, and the pre-war pockets of Tampa Bay, with HEPA dust containment and a finish that actually lasts.
 - [Luxury Vinyl Plank (LVP) Flooring](https://napasflooring.com/vinyl-plank-flooring/): 100% waterproof, scratch-resistant, dimensionally stable in Florida humidity, and the smartest dollar-per-square-foot floor you can install in a Tampa Bay rental, kitchen, or family room.
 - [Tile Installation](https://napasflooring.com/tile-installation/): Porcelain, ceramic, natural stone, and large-format slabs — set flat, set straight, and set to the slope your shower pan actually needs.
 - [Laminate Flooring](https://napasflooring.com/laminate-flooring/): Modern AC4 and AC5 laminate — installed with a proper expansion gap, the right underlayment for your slab, and the moisture-barrier work that keeps the floor flat in year five.
@@ -45,6 +47,19 @@
 - [Stair Tread Replacement, Explained: Carpet to Wood in 2 Days](https://napasflooring.com/blog/stair-tread-replacement-explained/): Step-by-step guide to replacing carpeted stair treads with hardwood, LVP, or laminate. Real costs, real timeline, what goes wrong, and how Napa's avoids it.
 - [Engineered Hardwood vs. SPC Vinyl Plank: A Lakewood Ranch Field Test](https://napasflooring.com/blog/engineered-hardwood-vs-spc-lakewood-ranch/): Side-by-side comparison of premium engineered hardwood and 22-mil SPC vinyl plank — durability, cost, install, resale impact in Lakewood Ranch homes.
 
+## Decision Guides
+
+- [Is Herringbone Worth the Premium? (Tampa Bay, 2026)](https://napasflooring.com/guides/is-herringbone-worth-it/): Herringbone and chevron run 50–90% more in labor than straight plank. When the pattern pays off in a Bradenton or Sarasota home — and when it doesn't.
+- [Porcelain vs. LVP in a Florida Kitchen: Which Wins?](https://napasflooring.com/guides/porcelain-vs-lvp-florida-kitchen/): The kitchen is the one room where porcelain tile and luxury vinyl plank genuinely compete. How we choose between them in Tampa Bay homes, room by room.
+- [How to Read a Flooring Quote (and Spot the Padding)](https://napasflooring.com/guides/how-to-read-a-flooring-quote/): A line-by-line guide to a real flooring estimate — what every line should say, where contractors pad, and the questions that expose a lowball bid.
+- [Wide-Plank vs. Standard Width: What Actually Changes](https://napasflooring.com/guides/wide-plank-vs-standard-width/): Plank width changes more than looks — install method, movement, subfloor prep, and cost all shift with it. A Tampa Bay installer's breakdown.
+- [Slab Moisture, Explained: Why Florida Floors Fail](https://napasflooring.com/guides/slab-moisture-explained/): Most Gulf Coast floor failures start in the slab, not the floor. What calcium-chloride and RH probe numbers mean, and the readings that change the install.
+- [Flooring an HOA Condo in Tampa Bay: Rules & Approvals](https://napasflooring.com/guides/hoa-condo-flooring-rules/): Second-floor condos and HOA communities have sound-rating rules, underlayment specs, and approval steps that change the floor. What to handle before install day.
+
+## Glossary
+
+- [Flooring Glossary](https://napasflooring.com/glossary/): 26 flooring terms explained in plain English (acclimation, calcium chloride, lippage, SPC, wear layer, and more).
+
 ## Cost Guides (2026 pricing by city)
 
 - [Hardwood Cost in Bradenton, FL (2026)](https://napasflooring.com/blog/hardwood-flooring-cost-bradenton/)
@@ -55,6 +70,14 @@
 - [Hardwood Cost in St. Petersburg, FL (2026)](https://napasflooring.com/blog/hardwood-flooring-cost-st-petersburg/)
 - [Hardwood Cost in Tampa, FL (2026)](https://napasflooring.com/blog/hardwood-flooring-cost-tampa/)
 - [Hardwood Cost in Venice, FL (2026)](https://napasflooring.com/blog/hardwood-flooring-cost-venice/)
+- [Refinishing Cost in Bradenton, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-bradenton/)
+- [Refinishing Cost in Lakewood Ranch, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-lakewood-ranch/)
+- [Refinishing Cost in Palmetto, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-palmetto/)
+- [Refinishing Cost in Parrish, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-parrish/)
+- [Refinishing Cost in Sarasota, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-sarasota/)
+- [Refinishing Cost in St. Petersburg, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-st-petersburg/)
+- [Refinishing Cost in Tampa, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-tampa/)
+- [Refinishing Cost in Venice, FL (2026)](https://napasflooring.com/blog/hardwood-refinishing-cost-venice/)
 - [Vinyl Plank Cost in Bradenton, FL (2026)](https://napasflooring.com/blog/vinyl-plank-flooring-cost-bradenton/)
 - [Vinyl Plank Cost in Lakewood Ranch, FL (2026)](https://napasflooring.com/blog/vinyl-plank-flooring-cost-lakewood-ranch/)
 - [Vinyl Plank Cost in Palmetto, FL (2026)](https://napasflooring.com/blog/vinyl-plank-flooring-cost-palmetto/)

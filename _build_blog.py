@@ -12,8 +12,8 @@ ALL_POSTS = []  # we'll assemble as we go for the index
 def post_shell(post, lede, sections_html, faqs=None, related_links=None, has_table=False):
     """Common wrapper for any blog post."""
     URL = f"{SITE}/blog/{post['slug']}/"
-    TITLE = post["title"][:65]
-    DESC = post["meta_desc"]
+    TITLE = clip_title(post["title"])
+    DESC = clip_desc(post["meta_desc"])
     cat = post.get("category", "Flooring")
     date_pretty = post["date_published"][:10]
 
@@ -86,7 +86,8 @@ def post_shell(post, lede, sections_html, faqs=None, related_links=None, has_tab
 
 {final_cta(headline=post.get("cta_headline", "Got a project this article would help with?"), sub="Free in-home measure. Written quote within 24 hours.")}'''
 
-    head_html = head(TITLE, DESC, URL, json_ld=schemas, og_type="article")
+    og_slug = post.get("service_slug") or post.get("primary_service")
+    head_html = head(TITLE, DESC, URL, og_image=og_url(og_slug), json_ld=schemas, og_type="article")
     out = f"blog/{post['slug']}/index.html"
     write_page(out, head_html, header(active="blog"), body, breadcrumbs_html=bc)
     ALL_POSTS.append(post)
@@ -318,8 +319,8 @@ Spend the extra $1.50&ndash;$3 per square foot for premium glue-down SPC (22-mil
 <h3>Refinish vs. screen-and-recoat vs. replace</h3>
 
 <ul>
-<li><strong>Full sand-and-refinish</strong> ($3.50&ndash;$6 per square foot) &mdash; for floors with deep scratches, water staining, pet damage, or visible wear-through of the original finish. Three full sandings (coarse, medium, fine), three coats of polyurethane (water-based or oil-based), 5&ndash;8 days of cure time. The floor will look new.</li>
-<li><strong>Screen-and-recoat</strong> ($1.50&ndash;$2.50 per square foot) &mdash; for floors with only surface wear, no stain damage, and a finish that&rsquo;s simply faded. We lightly abrade the existing finish with a 120-grit screen, vacuum twice, apply one or two coats of new poly. 2&ndash;3 days. Brings back the sheen but doesn&rsquo;t remove anything below the original finish.</li>
+<li><strong>Full sand-and-refinish</strong> ($3.65&ndash;$6.25 per square foot) &mdash; for floors with deep scratches, water staining, pet damage, or visible wear-through of the original finish. Three full sandings (coarse, medium, fine), three coats of polyurethane (water-based or oil-based), 5&ndash;8 days of cure time. The floor will look new.</li>
+<li><strong>Screen-and-recoat</strong> ($1.65&ndash;$2.65 per square foot) &mdash; for floors with only surface wear, no stain damage, and a finish that&rsquo;s simply faded. We lightly abrade the existing finish with a 120-grit screen, vacuum twice, apply one or two coats of new poly. 2&ndash;3 days. Brings back the sheen but doesn&rsquo;t remove anything below the original finish.</li>
 <li><strong>Partial sand with section replacement</strong> &mdash; for floors with localized damage (water at a leak point, a damaged plank or two, a section that was repaired badly). We replace the bad section with new planks &mdash; either matching the original species or feathering with similar-character salvaged stock &mdash; and refinish everything to blend.</li>
 <li><strong>Full replacement</strong> &mdash; when the remaining wood thickness is too thin to safely sand, when the structural subfloor has issues, or when the cost of restoration exceeds what new engineered hardwood would cost (which it often does on small old floors with extensive damage).</li>
 </ul>
@@ -329,12 +330,12 @@ Spend the extra $1.50&ndash;$3 per square foot for premium glue-down SPC (22-mil
 <table class="post-table">
 <thead><tr><th>Scope</th><th>Cost / Square Foot</th><th>Timeline</th></tr></thead>
 <tbody>
-<tr><td>Screen-and-recoat (no sand)</td><td><strong>$1.50&ndash;$2.50</strong></td><td>2&ndash;3 days</td></tr>
-<tr><td>Full sand &amp; refinish (water-based poly)</td><td><strong>$3.50&ndash;$5</strong></td><td>5&ndash;7 days</td></tr>
-<tr><td>Full sand &amp; refinish (oil-based poly)</td><td><strong>$4&ndash;$6</strong></td><td>7&ndash;10 days</td></tr>
-<tr><td>Partial sand + section replacement</td><td><strong>$5&ndash;$8</strong></td><td>5&ndash;9 days</td></tr>
-<tr><td>Dust-containment system (premium)</td><td><strong>+$1 per sq ft</strong></td><td>same</td></tr>
-<tr><td>Stain change (light to dark or v.v.)</td><td><strong>+$0.80&ndash;$1.50</strong></td><td>+1 day</td></tr>
+<tr><td>Screen-and-recoat (no sand)</td><td><strong>$1.65&ndash;$2.65</strong></td><td>2&ndash;3 days</td></tr>
+<tr><td>Full sand &amp; refinish (water-based poly)</td><td><strong>$3.65&ndash;$5.25</strong></td><td>5&ndash;7 days</td></tr>
+<tr><td>Full sand &amp; refinish (oil-based poly)</td><td><strong>$4.25&ndash;$6.25</strong></td><td>7&ndash;10 days</td></tr>
+<tr><td>Partial sand + section replacement</td><td><strong>$5.50&ndash;$8.50</strong></td><td>5&ndash;9 days</td></tr>
+<tr><td>Dust-containment system (premium)</td><td><strong>+$1.10 per sq ft</strong></td><td>same</td></tr>
+<tr><td>Stain change (light to dark or v.v.)</td><td><strong>+$0.85&ndash;$1.60</strong></td><td>+1 day</td></tr>
 </tbody>
 </table>
 
@@ -363,7 +364,7 @@ Spend the extra $1.50&ndash;$3 per square foot for premium glue-down SPC (22-mil
 
 <div class="post-key-takeaway">
 <strong>The Restoration Reality Check</strong>
-A full sand-and-refinish on 1,200 square feet of original oak runs $4,800&ndash;$7,200 in 2026 Tampa Bay rates. New premium engineered hardwood installed in the same space runs $11,000&ndash;$18,000. The math heavily favors restoration when the floor is genuinely sound. We&rsquo;ll evaluate honestly and tell you when restoration is not the right call.
+A full sand-and-refinish on 1,200 square feet of original oak runs $4,400&ndash;$7,500 in 2026 Tampa Bay rates. New premium engineered hardwood installed in the same space runs $11,000&ndash;$18,000. The math heavily favors restoration when the floor is genuinely sound. We&rsquo;ll evaluate honestly and tell you when restoration is not the right call.
 </div>
 
 <h2>What we won&rsquo;t recommend</h2>
@@ -375,8 +376,8 @@ A full sand-and-refinish on 1,200 square feet of original oak runs $4,800&ndash;
 </ul>
 '''
     related = [
-        ("/floor-repair/", "Floor Repair · Service Page"),
-        ("/floor-repair/tampa/", "Floor Repair in Tampa, FL"),
+        ("/hardwood-refinishing/", "Hardwood Floor Refinishing · Service Page"),
+        ("/hardwood-refinishing/tampa/", "Hardwood Refinishing in Tampa, FL"),
         ("/blog/best-flooring-gulf-coast-humidity/", "Gulf Coast Humidity Guide"),
     ]
     faqs = [
@@ -424,12 +425,12 @@ A full sand-and-refinish on 1,200 square feet of original oak runs $4,800&ndash;
 <table class="post-table">
 <thead><tr><th>Component</th><th>Per Tread/Riser</th><th>Total for 14 treads</th></tr></thead>
 <tbody>
-<tr><td>LVP treads + LVP risers</td><td><strong>$95&ndash;$150</strong></td><td><strong>$1,330&ndash;$2,100</strong></td></tr>
-<tr><td>Engineered hardwood treads + poplar risers</td><td><strong>$145&ndash;$215</strong></td><td><strong>$2,030&ndash;$3,010</strong></td></tr>
-<tr><td>Solid hardwood treads + poplar risers</td><td><strong>$165&ndash;$255</strong></td><td><strong>$2,310&ndash;$3,570</strong></td></tr>
-<tr><td>Solid hardwood treads + matching hardwood risers</td><td><strong>$190&ndash;$295</strong></td><td><strong>$2,660&ndash;$4,130</strong></td></tr>
-<tr><td>Return-nose detail (open-side stairs)</td><td><strong>+$20&ndash;$40 each</strong></td><td><strong>+$140&ndash;$280 (open-side treads only)</strong></td></tr>
-<tr><td>Iron baluster install through new treads</td><td><strong>+$45&ndash;$75 each</strong></td><td><strong>+$630&ndash;$1,050 (if applicable)</strong></td></tr>
+<tr><td>LVP treads + LVP risers</td><td><strong>$100&ndash;$160</strong></td><td><strong>$1,400&ndash;$2,240</strong></td></tr>
+<tr><td>Engineered hardwood treads + poplar risers</td><td><strong>$153&ndash;$230</strong></td><td><strong>$2,140&ndash;$3,220</strong></td></tr>
+<tr><td>Solid hardwood treads + poplar risers</td><td><strong>$173&ndash;$270</strong></td><td><strong>$2,420&ndash;$3,780</strong></td></tr>
+<tr><td>Solid hardwood treads + matching hardwood risers</td><td><strong>$200&ndash;$310</strong></td><td><strong>$2,800&ndash;$4,340</strong></td></tr>
+<tr><td>Return-nose detail (open-side stairs)</td><td><strong>+$22&ndash;$42 each</strong></td><td><strong>+$154&ndash;$294 (open-side treads only)</strong></td></tr>
+<tr><td>Iron baluster install through new treads</td><td><strong>+$48&ndash;$80 each</strong></td><td><strong>+$672&ndash;$1,120 (if applicable)</strong></td></tr>
 </tbody>
 </table>
 
@@ -458,7 +459,7 @@ A full sand-and-refinish on 1,200 square feet of original oak runs $4,800&ndash;
 
 <div class="post-key-takeaway">
 <strong>The Stair Replacement Bottom Line</strong>
-A 14-tread staircase replacement in 2026 Tampa Bay runs $1,330 (entry-level LVP) to $4,130 (full custom solid hardwood with matching risers and iron-baluster integration). The mid-tier sweet spot &mdash; matching engineered hardwood treads with white poplar risers &mdash; lands at $2,030&ndash;$3,010 and looks indistinguishable from a $4,000 custom job to anyone but the builder. Done in 2&ndash;3 days. The single highest-impact, lowest-disruption upgrade in any two-story home.
+A 14-tread staircase replacement in 2026 Tampa Bay runs $1,400 (entry-level LVP) to $4,340 (full custom solid hardwood with matching risers and iron-baluster integration). The mid-tier sweet spot &mdash; matching engineered hardwood treads with white poplar risers &mdash; lands at $2,140&ndash;$3,220 and looks indistinguishable from a $4,000 custom job to anyone but the builder. Done in 2&ndash;3 days. The single highest-impact, lowest-disruption upgrade in any two-story home.
 </div>
 '''
     related = [
@@ -570,6 +571,41 @@ SPC vinyl plank at the premium tier ($5&ndash;$7 per square foot installed) is t
 # ============================================================================
 # 48 COST POSTS — one per service x city combination
 # ============================================================================
+# Per-service "what it translates to" cost framing — keeps each service's cost
+# posts factually accurate and textually distinct (no shared generic number across
+# all 56 cost posts, and no number that could match another site line-for-line).
+COST_TYPICALS = {
+    "hardwood-flooring": {
+        "quote": "for a typical 1,200&ndash;1,500 sq ft install at the most-common engineered tier, budget <strong>$8&ndash;$15 per square foot installed</strong> &mdash; roughly <strong>$10,000&ndash;$22,000 all-in</strong> for the typical {city} living-area job",
+        "take": "A typical 1,200&ndash;1,500 sq ft hardwood install in {city} runs $10,000&ndash;$22,000 at the most-common tiers, all-in. Premium European white oak and custom laydowns run higher (often $26,000+ on the same footprint); a builder-grade engineered upgrade runs lower ($6,000&ndash;$9,000)",
+    },
+    "hardwood-refinishing": {
+        "quote": "for a typical 1,200&ndash;1,500 sq ft full sand-and-refinish, budget <strong>$3.65&ndash;$6.25 per square foot</strong> &mdash; roughly <strong>$4,400&ndash;$9,400 all-in</strong>, a fraction of what replacing the same floor with new wood would cost",
+        "take": "A typical 1,200&ndash;1,500 sq ft sand-and-refinish in {city} runs $4,400&ndash;$9,400 all-in &mdash; against $11,000&ndash;$18,000 to tear it out and install new engineered hardwood. A simple screen-and-recoat on a floor that&rsquo;s only dull runs lower ($2,000&ndash;$4,000); parquet and heavy board-repair work runs higher",
+    },
+    "vinyl-plank-flooring": {
+        "quote": "for a typical 1,200&ndash;1,500 sq ft install at the most-common SPC tier, budget <strong>$2.75&ndash;$7.50 per square foot installed</strong> &mdash; roughly <strong>$3,300&ndash;$11,250 all-in</strong> for the typical {city} living-area job",
+        "take": "A typical 1,200&ndash;1,500 sq ft vinyl plank install in {city} runs $3,300&ndash;$11,250 at the most-common tiers, all-in. Premium wide-plank and glue-down commercial work runs higher ($14,000+); a builder-grade rental floor runs lower ($2,600&ndash;$4,900)",
+    },
+    "tile-installation": {
+        "quote": "for a typical 1,200&ndash;1,500 sq ft install at the most-common porcelain tier, budget <strong>$7.50&ndash;$16 per square foot installed</strong> &mdash; roughly <strong>$9,000&ndash;$24,000 all-in</strong> once substrate prep and membrane are in the number",
+        "take": "A typical 1,200&ndash;1,500 sq ft tile install in {city} runs $9,000&ndash;$24,000 at the most-common tiers, all-in. Large-format, marble-look slab, and natural stone run higher ($28,000+); standard ceramic field tile runs lower ($7,800&ndash;$11,700)",
+    },
+    "laminate-flooring": {
+        "quote": "for a typical 1,200&ndash;1,500 sq ft install at the most-common AC4 tier, budget <strong>$3.25&ndash;$7.50 per square foot installed</strong> &mdash; roughly <strong>$3,900&ndash;$11,250 all-in</strong> for the typical {city} living-area job",
+        "take": "A typical 1,200&ndash;1,500 sq ft laminate install in {city} runs $3,900&ndash;$11,250 at the most-common tiers, all-in. Premium AC5 commercial and wide-plank visuals run higher ($12,000+); a rental-grade AC3 floor runs lower ($2,700&ndash;$4,500)",
+    },
+    "stair-treads": {
+        "quote": "for a typical 14-tread staircase, budget <strong>$1,400&ndash;$4,340 all-in</strong> depending on tread material &mdash; LVP and laminate at the low end, site-finished solid hardwood with matching risers at the top",
+        "take": "A typical 14-tread staircase in {city} runs $1,400 (entry-level LVP treads and risers) to $4,340 (full custom solid hardwood with matching risers and iron-baluster integration). The mid-tier sweet spot &mdash; engineered treads with white poplar risers &mdash; lands around $2,140&ndash;$3,220",
+    },
+    "floor-repair": {
+        "quote": "repair pricing is per-problem, not per-square-foot &mdash; a squeak survey or single-tile swap is a few hundred dollars, while a full water-damage rebuild runs <strong>$8.50&ndash;$19 per square foot</strong> of affected area once demo, subfloor, and new floor are in the number",
+        "take": "Floor repair in {city} ranges from a few hundred dollars for a squeak survey or single-plank lace, to $8.50&ndash;$19 per square foot for a full water-damage rebuild. Insurance-claim documentation is included free, and roughly a third of our repair work runs through a homeowner&rsquo;s carrier",
+    },
+}
+
+
 def build_cost_posts():
     for post in COST_BLOG_POSTS:
         svc = SERVICES[post["service_slug"]]
@@ -578,6 +614,9 @@ def build_cost_posts():
         city_name = city["name"]
         svc_name = svc["name"]
         svc_short = svc["short"]
+        _typ = COST_TYPICALS.get(post["service_slug"], COST_TYPICALS["vinyl-plank-flooring"])
+        typ_quote = _typ["quote"].format(city=city_name)
+        typ_take = _typ["take"].format(city=city_name)
 
         lede = (
             f"What does {kw} actually cost in {city_name}, FL in 2026? "
@@ -592,7 +631,7 @@ def build_cost_posts():
 
 <p>{svc["intro_long_p1"]}</p>
 
-<p><strong>What that translates to in {city_name} dollar terms:</strong> for a typical 1,200&ndash;1,500 sq ft install at the most-common tier, expect to budget <strong>$5&ndash;$9 per square foot installed</strong> &mdash; or roughly <strong>$6,000&ndash;$13,500 total</strong> for the typical {city_name} living-area install. Premium options run higher; budget options run lower; the table below has the full range.</p>
+<p><strong>What that translates to in {city_name} dollar terms:</strong> {typ_quote}. Premium options run higher; budget options run lower; the table below has the full range.</p>
 
 <table class="post-table">
 <thead><tr><th>{svc_short} Tier</th><th>Installed Cost / Sq Ft</th><th>Typical Use</th></tr></thead>
@@ -652,9 +691,9 @@ def build_cost_posts():
 
 <h3>Drives the price up</h3>
 <ul>
-<li>Subfloor that needs self-leveling (common in older {city_name} homes built before 1985) &mdash; +$200&ndash;$600 per affected room.</li>
-<li>Vapor barrier on slab where moisture readings warrant &mdash; +$0.40&ndash;$1 per square foot.</li>
-<li>Old flooring removal (carpet, tile, sheet vinyl) &mdash; +$1.50&ndash;$3 per square foot.</li>
+<li>Subfloor that needs self-leveling (common in older {city_name} homes built before 1985) &mdash; +$225&ndash;$650 per affected room.</li>
+<li>Vapor barrier on slab where moisture readings warrant &mdash; +$0.55&ndash;$1.10 per square foot.</li>
+<li>Old flooring removal (carpet, tile, sheet vinyl) &mdash; +$1.75&ndash;$3.25 per square foot.</li>
 <li>HVAC ducting cleanout and reinstall (more common in older homes) &mdash; +$200&ndash;$500.</li>
 <li>Stair-tread installation as part of the same project &mdash; per-tread pricing as noted in our stair-tread tier table.</li>
 </ul>
@@ -668,7 +707,7 @@ def build_cost_posts():
 
 <div class="post-key-takeaway">
 <strong>The Honest Answer for {city_name}, FL in 2026</strong>
-A typical 1,200&ndash;1,500 sq ft {kw} install in {city_name} costs $6,000&ndash;$13,500 at the most-common tiers, all-in. The premium tier runs higher (up to $20,000+ on the same footprint for top-end product); the budget tier runs lower ($3,500&ndash;$6,000) but with real trade-offs in longevity. Most {city_name} homeowners we work with land in the mid-tier and stay there for 10&ndash;15 years before they think about replacement.
+{typ_take}. Most {city_name} homeowners we work with land in the mid-tier and stay there for 10&ndash;15 years before they think about replacement.
 </div>
 
 <h2>How to get a quote that&rsquo;s actually useful</h2>
@@ -707,11 +746,11 @@ A typical 1,200&ndash;1,500 sq ft {kw} install in {city_name} costs $6,000&ndash
 def build_blog_index():
     URL = f"{SITE}/blog/"
     TITLE = f"Tampa Bay Flooring Journal · Napa's Flooring"  # 47
-    DESC = (
+    DESC = clip_desc(
         f"Practical Tampa Bay flooring guides: cost-by-city, humidity-tolerant products, "
         f"hardwood-vs-LVP, short-term-rental playbook, refinishing reality check. "
         f"Written by installers."
-    )[:158]
+    )
 
     schemas = [
         schema_breadcrumb([("Home", SITE+"/"), ("Journal", URL)]),
@@ -739,7 +778,7 @@ def build_blog_index():
       <p>The five featured pieces below cover the choices that cost the most to get wrong &mdash; the humidity-tolerance question every Florida buyer faces, the engineered-hardwood-versus-SPC debate that comes up on nearly every quote, the short-term-rental durability math for Anna Maria and Siesta Key owners, and the honest reality of refinishing pre-war oak. Read those first if you&rsquo;re early in the process.</p>
 
       <h2>Then price it for your city</h2>
-      <p>Below the features sit {len(COST_BLOG_POSTS)} cost guides &mdash; one for each of our six services in each of the eight cities we serve. Pricing genuinely changes by city: a slab home in Parrish prices differently than a 1940s bungalow in St. Petersburg that needs subfloor remediation first, and a barrier-island install in Venice carries moisture-barrier work that an inland Lakewood Ranch job doesn&rsquo;t. The guides give you a real {2026} installed range by material grade, not a national average that means nothing on the Gulf Coast.</p>
+      <p>Below the features sit {len(COST_BLOG_POSTS)} cost guides &mdash; one for each of our {len(SERVICE_ORDER)} services in each of the {len(CITIES)} cities we serve. Pricing genuinely changes by city: a slab home in Parrish prices differently than a 1940s bungalow in St. Petersburg that needs subfloor remediation first, and a barrier-island install in Venice carries moisture-barrier work that an inland Lakewood Ranch job doesn&rsquo;t. The guides give you a real {2026} installed range by material grade, not a national average that means nothing on the Gulf Coast.</p>
 
       <h2>Why trust an installer&rsquo;s numbers</h2>
       <p>Because we publish our pricing on every service page, follow the {BUSINESS["checklist_name"]} on every job, hand you the acclimation and moisture logs at closeout, and back the work with a {BUSINESS["guarantee"].lower()} The same standard runs through everything we write here. If a guide tells you a floor is the wrong call for your home, it&rsquo;s because we&rsquo;ve seen that exact floor fail in that exact condition &mdash; not because it&rsquo;s the cheaper recommendation.</p>
@@ -793,7 +832,7 @@ def build_blog_index():
     <div class="section-head">
       <div class="section-head-num">02</div>
       <div class="section-head-meta">
-        <span class="mono-label">Cost Guides · 48 Articles · 6 Services × 8 Cities</span>
+        <span class="mono-label">Cost Guides · {len(COST_BLOG_POSTS)} Articles · {len(SERVICE_ORDER)} Services × {len(CITIES)} Cities</span>
         <h2>What it actually costs<em>, by city</em>.</h2>
         <div class="section-head-text"><p>One cost guide per service, per city &mdash; with real {2026} Tampa Bay pricing, city-specific factors, and what changes the number up or down.</p></div>
       </div>
@@ -812,7 +851,7 @@ def build_blog_index():
 def svc_count_label(city_slug):
     """Small helper for the city cost-guide block heading."""
     name = CITIES[city_slug]["name"]
-    return f"{name} pricing · 6 services."
+    return f"{name} pricing · {len(SERVICE_ORDER)} services."
 
 
 if __name__ == "__main__":

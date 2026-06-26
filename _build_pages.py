@@ -10,11 +10,11 @@ from _gen import *
 def build_about():
     URL = f"{SITE}/about/"
     TITLE = f"About Napa's Flooring · Tampa Bay's Craft-First Crew"  # 53
-    DESC = (
+    DESC = clip_desc(
         f"Meet Napa's — a small, craft-first flooring crew working out of east Bradenton, "
         f"serving Tampa Bay since {BUSINESS['year_founded']}. The standards we hold, the work we "
         f"refuse, the warranty in writing."
-    )[:158]
+    )
 
     schemas = [
         schema_webpage(URL, "About Napa's Flooring", DESC),
@@ -101,10 +101,10 @@ def build_about():
 def build_contact():
     URL = f"{SITE}/contact/"
     TITLE = f"Contact Napa's Flooring · Free Quote · {BUSINESS['city']} FL"  # 60
-    DESC = (
+    DESC = clip_desc(
         f"Get a free, written flooring estimate within 24 hours. Call {BUSINESS['phone_display']}, "
         f"email {BUSINESS['email']}, or send your project details below. Serving all of Tampa Bay."
-    )[:158]
+    )
 
     schemas = [
         schema_webpage(URL, "Contact Napa's Flooring", DESC),
@@ -213,11 +213,11 @@ def build_contact():
 def build_faq():
     URL = f"{SITE}/faq/"
     TITLE = f"Flooring FAQ · Tampa Bay · Napa's Flooring"  # 47
-    DESC = (
+    DESC = clip_desc(
         f"Answers to the questions Tampa Bay homeowners ask most: install costs, "
         f"timelines, warranty, what holds up to Florida humidity, and which floor fits "
         f"your room. {BUSINESS['rating']}★ rated."
-    )[:158]
+    )
 
     site_faqs = [
         ("How quickly can you start a job?", f"Most {BUSINESS['city']}-area projects can start within 2–4 weeks of the signed estimate. Smaller jobs (single rooms, staircases, repair work) often slot in inside a week. Larger whole-home installs usually book 4–6 weeks out, depending on the season and material lead times. We&rsquo;ll give you a real timeline in the written quote, not a guess."),
@@ -262,11 +262,11 @@ def build_faq():
 def build_financing():
     URL = f"{SITE}/financing/"
     TITLE = f"Flooring Financing · 0% Options · Napa's Flooring"  # 53
-    DESC = (
+    DESC = clip_desc(
         f"Flooring financing options for Tampa Bay homeowners. 0% promotional periods, "
         f"fixed-payment plans, no in-house pressure. Apply through trusted third-party "
         f"lenders."
-    )[:158]
+    )
     schemas = [
         schema_webpage(URL, "Flooring Financing", DESC),
         schema_breadcrumb([("Home", SITE+"/"), ("Financing", URL)]),
@@ -339,10 +339,10 @@ def build_financing():
 def build_warranty():
     URL = f"{SITE}/warranty/"
     TITLE = f"12-Month Workmanship Warranty · Napa's Flooring"  # 50
-    DESC = (
+    DESC = clip_desc(
         f"Our 12-month workmanship warranty on every Tampa Bay flooring install, in writing. "
         f"What&rsquo;s covered, what isn&rsquo;t, and how to make a claim. {BUSINESS['rating']}★ rated."
-    )[:158]
+    )
     schemas = [
         schema_webpage(URL, "Workmanship Warranty", DESC),
         schema_breadcrumb([("Home", SITE+"/"), ("Warranty", URL)]),

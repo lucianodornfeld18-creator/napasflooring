@@ -5,10 +5,33 @@ Bold/Editorial design system: ink black + paper cream + orange accent.
 Used by every _build_*.py script.
 """
 import json
-from _data import BUSINESS, CITIES, SERVICES, SERVICE_ORDER, CHECKLIST, REVIEWS, WA_LINK, TEL_LINK, SMS_LINK, WHY_US_POINTS, PROCESS_STEPS, HERO_TRUST_BADGES, GENERAL_BLOG_POSTS, COST_BLOG_POSTS
+from _data import BUSINESS, CITIES, SERVICES, SERVICE_ORDER, CHECKLIST, REVIEWS, WA_LINK, TEL_LINK, SMS_LINK, WHY_US_POINTS, PROCESS_STEPS, HERO_TRUST_BADGES, GENERAL_BLOG_POSTS, COST_BLOG_POSTS, clip_desc, clip_title
 
 DOMAIN = BUSINESS["domain"]
 SITE = f"https://{DOMAIN}"
+
+# ============================================================================
+# OPEN GRAPH IMAGE per category — so social/AI previews differ by service/topic
+# instead of every page sharing one og-default.jpg.
+# ============================================================================
+OG_BY_SERVICE = {
+    "hardwood-flooring":    "/images/photo-hardwood-dark.jpg",
+    "hardwood-refinishing": "/images/photo-hardwood-espresso.jpg",
+    "vinyl-plank-flooring": "/images/photo-lvp-living.jpg",
+    "tile-installation":    "/images/photo-tile-marble.jpg",
+    "laminate-flooring":    "/images/photo-lvp-landing.jpg",
+    "stair-treads":         "/images/photo-lvp-sunroom.jpg",
+    "floor-repair":         "/images/photo-tile-shower.jpg",
+}
+OG_CITY      = "/images/photo-lvp-sunroom.jpg"
+OG_GUIDES    = "/images/photo-hardwood-white-oak.webp"
+OG_GLOSSARY  = "/images/photo-tile-marble3.jpg"
+
+def og_url(service_slug=None, path=None):
+    """Absolute OG image URL for a given service slug (or explicit path)."""
+    if path:
+        return f"{SITE}{path}"
+    return f"{SITE}{OG_BY_SERVICE.get(service_slug, '/images/og-default.jpg')}"
 
 # ============================================================================
 # CSS — Bold/Editorial design system
@@ -611,6 +634,7 @@ def header(active=""):
         <div class="dropdown">{city_links}</div>
       </li>
       <li{' class="' + a_blog + '"' if a_blog else ''}><a href="/blog/">Journal</a></li>
+      <li{' class="active"' if active=="guides" else ''}><a href="/guides/">Guides</a></li>
       <li{' class="' + a_about + '"' if a_about else ''}><a href="/about/">About</a></li>
       <li{' class="' + a_cont + '"' if a_cont else ''}><a href="/contact/">Contact</a></li>
     </ul>
@@ -695,7 +719,7 @@ def footer():
   <div class="footer-bigtype"><span>NAPA&rsquo;S FLOORING.</span></div>
   <div class="footer-bottom">
     <span>© {BUSINESS["year_founded"]}–2026 {BUSINESS["legal_name"]} · Licensed &amp; Insured</span>
-    <span><a href="/about/">About</a> &nbsp;·&nbsp; <a href="/warranty/">Warranty</a> &nbsp;·&nbsp; <a href="/financing/">Financing</a> &nbsp;·&nbsp; <a href="/faq/">FAQ</a></span>
+    <span><a href="/about/">About</a> &nbsp;·&nbsp; <a href="/guides/">Guides</a> &nbsp;·&nbsp; <a href="/glossary/">Glossary</a> &nbsp;·&nbsp; <a href="/warranty/">Warranty</a> &nbsp;·&nbsp; <a href="/financing/">Financing</a> &nbsp;·&nbsp; <a href="/faq/">FAQ</a></span>
   </div>
 </footer>'''
 

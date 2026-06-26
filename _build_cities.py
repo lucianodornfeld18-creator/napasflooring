@@ -17,7 +17,7 @@ def city_faqs(city):
 
     return [
         (f"How much does flooring installation cost in {name}, FL?",
-         f"Pricing in {name} runs the same range as the rest of our Tampa Bay service area: budget LVP and laminate jobs land in the $2&ndash;$4 per square foot installed range, mid-range engineered hardwood and premium SPC vinyl plank in the $5&ndash;$9 range, and high-end European white oak hardwood, large-format porcelain, and natural stone in the $10&ndash;$22 range. {name}-specific factors that affect pricing are travel time from our {BUSINESS['city']} home base (minimal, since we serve {cnty} regularly), subfloor condition (older homes in {name} sometimes require self-leveling; newer slab homes typically don&rsquo;t), and material delivery logistics. You&rsquo;ll get a written, line-itemized quote within 24 hours of the in-home measure &mdash; no &lsquo;starting at&rsquo; language, no hidden change orders."),
+         f"Pricing in {name} runs the same range as the rest of our Tampa Bay service area: budget LVP and laminate jobs land in the $2.25&ndash;$4 per square foot installed range, mid-range engineered hardwood and premium SPC vinyl plank in the $5&ndash;$9.50 range, and high-end European white oak hardwood, large-format porcelain, and natural stone in the $10.75&ndash;$23 range. Sand-and-refinish on existing oak runs lower &mdash; $3.65&ndash;$6.25 installed. {name}-specific factors that affect pricing are travel time from our {BUSINESS['city']} home base (minimal, since we serve {cnty} regularly), subfloor condition (older homes in {name} sometimes require self-leveling; newer slab homes typically don&rsquo;t), and material delivery logistics. You&rsquo;ll get a written, line-itemized quote within 24 hours of the in-home measure &mdash; no &lsquo;starting at&rsquo; language, no hidden change orders."),
         (f"How long does an install take in {name}?",
          f"Typical timelines for {name} homes: 2&ndash;3 working days for a 1,000&ndash;1,500 sq ft floating LVP or laminate install; 3&ndash;4 days for the same size engineered hardwood; 5&ndash;8 days for tile (mortar cure time is the long pole); 2&ndash;3 days for a standard 14-tread staircase. Whole-home reflooring jobs in 2,500&ndash;4,000 sq ft homes in {name} (common in {neigh_sample[0]} and {neigh_sample[1]}) typically run 8&ndash;14 working days. The real schedule lives in your written quote, not in this paragraph."),
         (f"Do you actually live and work in {name}?",
@@ -92,9 +92,9 @@ def city_services_grid(city):
     <div class="section-head">
       <div class="section-head-num">03</div>
       <div class="section-head-meta">
-        <span class="mono-label">Six services · {name}, FL</span>
+        <span class="mono-label">Seven services · {name}, FL</span>
         <h2>Every floor we install,<br><em>installed in {name}</em>.</h2>
-        <div class="section-head-text"><p>Hardwood, vinyl plank, tile, laminate, stair treads, repair &mdash; pick what you&rsquo;re after. Each service page has {name}-specific pricing, scope, and FAQ.</p></div>
+        <div class="section-head-text"><p>Hardwood, refinishing, vinyl plank, tile, laminate, stair treads, repair &mdash; pick what you&rsquo;re after. Each service page has {name}-specific pricing, scope, and FAQ.</p></div>
       </div>
     </div>
     <div class="services-grid">{cards}</div>
@@ -185,13 +185,12 @@ def build_city(slug):
     URL = f"{SITE}/{slug}/"
 
     # SEO
-    TITLE_RAW = f"Flooring Contractor {name} FL · Napa's Flooring 5★"
-    TITLE = TITLE_RAW[:65]
-    DESC = (
+    TITLE = clip_title(f"Flooring Contractor {name} FL · Napa's Flooring 5★")
+    DESC = clip_desc(
         f"Flooring installation in {name}, FL — hardwood, vinyl plank, tile, laminate, "
         f"stair treads. {len(city['neighborhoods'])}+ neighborhoods served. "
         f"5★ Google · 47-point standard · 12-month warranty."
-    )[:158]
+    )
 
     faqs = city_faqs(city)
     schemas = [
@@ -268,7 +267,7 @@ def build_city(slug):
 
     body = "\n".join([hero, intro, why_here, services_grid_html, checklist_html, neigh_html, reviews_html, faq_html, related_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
-    head_html = head(TITLE, DESC, URL, json_ld=schemas)
+    head_html = head(TITLE, DESC, URL, og_image=og_url(path=OG_CITY), json_ld=schemas)
     write_page(f"{slug}/index.html", head_html, header(active="areas"), body, breadcrumbs_html=bc)
     print(f"Wrote /{slug}/index.html")
 

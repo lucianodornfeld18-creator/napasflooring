@@ -24,6 +24,12 @@ https://www.napasflooring.com/* https://napasflooring.com/:splat 301!
 /staircase/* /stair-treads/:splat 301
 /repair/* /floor-repair/:splat 301
 /floor-installation/* /:splat 301
+/refinishing/* /hardwood-refinishing/:splat 301
+/refinish/* /hardwood-refinishing/:splat 301
+/sand-and-refinish/* /hardwood-refinishing/:splat 301
+/hardwood-floor-refinishing/* /hardwood-refinishing/:splat 301
+/floor-refinishing/* /hardwood-refinishing/:splat 301
+/guide/* /guides/:splat 301
 
 # City variations
 /st-pete/* /st-petersburg/:splat 301

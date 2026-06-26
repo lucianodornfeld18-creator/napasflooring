@@ -80,6 +80,18 @@ MISTAKES_BY_SERVICE = {
         ("Ignoring the squeak.",
          "Floor squeaks are caused by relative movement between the finish floor and the subfloor, or between the subfloor and the underlying framing. They almost never &lsquo;heal&rsquo; on their own; they get worse over time as the gap that&rsquo;s producing the friction widens. A &lsquo;squeak survey&rsquo; (walking the floor in a grid, marking every squeak with a piece of painter&rsquo;s tape, and screwing through the finish floor into the framing from above) takes a half-day on a typical home and resolves 90%+ of squeaks permanently. Don&rsquo;t live with the squeak."),
     ],
+    "hardwood-refinishing": [
+        ("Sanding a floor that&rsquo;s already too thin.",
+         "Every full sand removes about a thirty-second of an inch, and a solid floor only has so much wood above the tongue before you hit structure. A crew that skips the remaining-thickness check and just runs the drum is gambling with your floor &mdash; one pass too many and the tongue is exposed, the boards delaminate, and a refinish becomes a full replacement. We probe a hidden spot and read the remaining thickness before we quote, every time. If the floor can&rsquo;t take another sand, you&rsquo;ll hear that from us before a machine touches it."),
+        ("Paying for a full sand when a recoat would do.",
+         "The flip side of the same coin. A floor that&rsquo;s only gone dull &mdash; no deep scratches, no staining, no wear-through &mdash; doesn&rsquo;t need a three-pass sand down to raw wood. It needs a screen-and-recoat at a fraction of the cost and the downtime. Plenty of contractors quote the full job on every floor because it bills more. We&rsquo;ll tell you when a recoat is genuinely all your floor needs, even though it&rsquo;s the smaller ticket."),
+        ("Trusting a drum sander in the wrong hands.",
+         "A drum sander left sitting a half-second too long gouges a dish into the wood that no amount of finish will hide, and it shows up forever in raked light. Edges and corners the drum can&rsquo;t reach get scalloped by a careless edger. This is muscle memory you only get from hundreds of floors. We keep the machine moving, we feather the edge work by hand, and we check the floor in low-angle light before a drop of poly goes down &mdash; because once it&rsquo;s sealed, the only fix is to sand it again."),
+        ("Staining a species that won&rsquo;t take the color.",
+         "Red oak and white oak drink stain completely differently; maple blotches; heart pine fights almost every color you throw at it. Picking a stain off a chip in the showroom and committing the whole floor to it is how you end up with a muddy, uneven result you have to sand off and redo. We test the actual stain on a hidden patch of your actual floor and let you see it cured before we commit the room. The chip lies; the test panel doesn&rsquo;t."),
+        ("Skipping dust containment to save a few dollars.",
+         "Open-air floor sanding puts a fine wood dust into every room, every vent, and every soft surface in the house &mdash; it&rsquo;s in your closets for weeks. A HEPA dust-containment system captures the overwhelming majority of it at the machine, and it&rsquo;s a small upgrade against the cost of cleaning the whole house twice. We run containment on every job; the homeowners who&rsquo;ve lived through the no-containment version never go back."),
+    ],
 }
 
 # ============================================================================
@@ -102,7 +114,7 @@ def pricing_table_html(svc, city_name=None):
         <thead><tr><th>Tier</th><th>What it&rsquo;s best for</th><th>Installed cost</th></tr></thead>
         <tbody>{rows}</tbody>
       </table>
-      <div class="pricing-note">All prices include labor, prep, and standard transition trim. Old-floor removal $1.50&ndash;$3/sq ft. <a href="/contact/#quote">Free written quote within 24 hrs →</a></div>
+      <div class="pricing-note">All prices include labor, prep, and standard transition trim. Old-floor removal $1.75&ndash;$3.25/sq ft. Financing available on jobs over $2,500. <a href="/contact/#quote">Free written quote within 24 hrs →</a></div>
     </div>
   </div>
 </section>'''
@@ -168,13 +180,12 @@ def build_service_city(service_slug, city_slug):
     # SEO: Title <65 chars, keyword-first
     short = svc["short"]
     city_name = city["name"]
-    TITLE_RAW = f"{short} {city_name} FL | Napa's Flooring 5★"
-    TITLE = TITLE_RAW[:65]
-    DESC = (
+    TITLE = clip_title(f"{short} {city_name} FL | Napa's Flooring 5★")
+    DESC = clip_desc(
         f"{svc['name']} in {city_name}, FL. Installed by hand · "
         f"acclimated · 47-point standard. {len(city['neighborhoods'])}+ neighborhoods. "
         f"5★ Google · 12-month warranty · free estimate in 24 hrs."
-    )[:158]
+    )
 
     schemas = [
         schema_local_business(URL, f"{svc['name']} in {city_name}, FL", city=city_name, service=svc["name"]),
@@ -324,7 +335,7 @@ def build_service_city(service_slug, city_slug):
 
     body = "\n".join([hero, lead, scope_html, checklist_html, neigh_html, mistakes_html, pricing_html, reviews_html, faq_html, related_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
-    head_html = head(TITLE, DESC, URL, json_ld=schemas)
+    head_html = head(TITLE, DESC, URL, og_image=og_url(service_slug), json_ld=schemas)
     out = f"{service_slug}/{city_slug}/index.html"
     write_page(out, head_html, header(active="services"), body, breadcrumbs_html=bc)
 
@@ -336,13 +347,12 @@ def build_service_hub(service_slug):
     svc = SERVICES[service_slug]
     URL = f"{SITE}/{service_slug}/"
 
-    TITLE_RAW = f"{svc['name']} · Tampa Bay & Sarasota · Napa's Flooring"
-    TITLE = TITLE_RAW[:65]
-    DESC = (
+    TITLE = clip_title(f"{svc['h1_phrase']} · Tampa Bay FL · Napa's Flooring")
+    DESC = clip_desc(
         f"{svc['name']} across Bradenton, Sarasota, Tampa &amp; Gulf Coast. "
         f"Installed by hand, acclimated, 47-point standard. 5★ Google · "
         f"12-month warranty · free quote in 24 hrs."
-    )[:158]
+    )
 
     schemas = [
         schema_local_business(URL, f"{svc['name']} contractor", service=svc["name"]),
@@ -440,7 +450,7 @@ def build_service_hub(service_slug):
 
     body = "\n".join([hero, lead, scope_html, checklist_html, mistakes_html, pricing_html, cities_html, reviews_html, faq_html, f'<div class="container">{contact_banner()}</div>', final_html])
 
-    head_html = head(TITLE, DESC, URL, json_ld=schemas)
+    head_html = head(TITLE, DESC, URL, og_image=og_url(service_slug), json_ld=schemas)
     out = f"{service_slug}/index.html"
     write_page(out, head_html, header(active="services"), body, breadcrumbs_html=bc)
 

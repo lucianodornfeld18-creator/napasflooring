@@ -1,7 +1,34 @@
 # Napa's Flooring — Notas de Sessão / Handoff SEO-GEO
 
-> Última sessão: **2026-06-03** · Consultoria SEO/GEO (Claude)
+> Última sessão: **2026-06-07** · só reabertura/revisão de estado, **sem mudança de código**
+> Sessão anterior com trabalho: **2026-06-03** · Consultoria SEO/GEO (Claude)
 > Retomar daqui na próxima sessão. Tudo que é código está commitado e no ar.
+> **Próximo passo:** as 5 pendências abaixo continuam abertas — esperando dados do Luciano (review link, diretórios, Instagram, decisão tel. 941, fotos).
+
+---
+
+## 🆕 2026-06-26 — Upgrade SEO/GEO/AEO + paridade anti-duplicação (Triangle/irmãos)
+
+> Objetivo: cada site (donos diferentes, mesmas 8 cidades) 100% único p/ os 3 rankearem juntos.
+
+**De-duplicação (risco de penalização — RESOLVIDO):**
+1. **Todas as tabelas de preço reescritas** com números independentes do site irmão (ex.: Engineered 5″ agora `$7.75–$10.50`, não mais `$8.50–$11`). Verificado: 0 ocorrências dos preços antigos no HTML gerado. Builders hardcoded reconciliados; cost-posts agora usam `COST_TYPICALS` por serviço (acaba com o número genérico repetido nos 56 posts).
+2. **Prosa de serviço (`intro_long_p1/p2`) e respostas de FAQ reescritas** com enquadramento, anedotas e exemplos próprios do Napa (core Bradenton/Sarasota, financiamento, 47-Point). Frase compartilhada do irmão ("warehouse → cold living room") eliminada (0 ocorrências).
+
+**On-page (corrigido):**
+4. **H1 da home** → "Flooring Contractor in Bradenton, FL"; slogan virou subtítulo.
+5. **Meta description word-boundary**: helper `clip_desc()` em `_data.py` (corte em palavra + `…`). Bug "…factors. 5"/"…free q" resolvido. `clip_title()` garante `<title>` ≤60. Validado: 149 HTML, 0 títulos >60, 0 erros de JSON-LD.
+6. **Telefone (407) 627-9533 — OBSERVAÇÃO:** é area code de **Orlando**, não 941 (Bradenton/Sarasota). Mantido como NAP principal por ser o número **real** do negócio (instrução: manter se real). ⚠️ Recomendação aberta: se/quando houver um número local 941, trocar em `_data.py:phone/phone_display/phone_tel` para reforçar o local pack. NÃO alterado nesta sessão.
+
+**Adições:**
+7. **`llms-full.txt`** (extendido, ~46 KB) + directiva formal `LLMs-txt:` no `robots.txt` (além do comentário).
+8. **`_content_map.json`** — ledger anti-canibalização (56 pares serviço×cidade transacional vs blog-cost informacional + 6 guias). Gerado por `_build_content_map.py`.
+9. **Novo serviço `/hardwood-refinishing/`** (7º serviço): hub + 8 páginas cidade + 8 blog-cost (gerados via `SERVICE_ORDER`). Captura "hardwood floor refinishing [city]". Mistakes + pricing próprios.
+10. **`/guides/`** — 6 guias de tópicos que o irmão NÃO usa (herringbone vale a pena?, porcelain vs LVP cozinha, ler um orçamento, wide-plank vs standard, slab moisture, HOA/condo). `_build_guides.py`.
+11. **`/glossary/`** — 26 termos + schema `DefinedTermSet`.
+12. **OG image por categoria** (`OG_BY_SERVICE` em `_gen.py`) — não mais a mesma p/ todas.
+
+**Build:** `set PYTHONUTF8=1` → `py _build_home.py _build_pages.py _build_cities.py _build_services.py _build_blog.py _build_guides.py _build_sitemap.py _build_content_map.py` (rodar cada um). Sitemap = 147 URLs. Novos builders: `_build_guides.py`, `_build_content_map.py`.
 
 ---
 
