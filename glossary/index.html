@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8G1FS3VQN5');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Flooring Glossary · Plain English · Napa's Flooring</title>
@@ -39,12 +30,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional"></noscript>
 
 <style>
 :root{
   --orange:#F5A623;
-  --orange-dark:#D68A0A;
+  --orange-dark:#8f5d00;   /* AA-compliant amber for orange TEXT on light (>=4.5:1) */
+  --orange-num:#a8680a;    /* deep amber for large decorative numbers (>=3:1 large text) */
+  --orange-bar:#D68A0A;    /* original bright amber kept for bars/borders/hover backgrounds */
   --orange-light:#FFF8EC;
   --dark:#1A1A1A;
   --white:#FFFFFF;
@@ -63,7 +58,7 @@
   --container-wide:1380px;
   /* compat aliases */
   --ink:#1A1A1A; --ink-soft:#2D2D2D; --paper:#FFFFFF; --paper-deep:#F7F7F7;
-  --orange-deep:#D68A0A; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
+  --orange-deep:#8f5d00; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
   --font-display:'Outfit','Inter',sans-serif; --font-editorial:'Georgia',serif;
   --font-mono:'Courier New',monospace;
 }
@@ -90,15 +85,15 @@ ul,ol{margin:0;padding:0}
 .mono-label.on-dark::before{background:var(--orange)}
 
 /* SECTION NUMBERS */
-.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange);line-height:1;letter-spacing:-.03em;display:inline-block}
+.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange-num);line-height:1;letter-spacing:-.03em;display:inline-block}
 .section-head{margin-bottom:3rem;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:start;border-bottom:3px solid var(--gray-border);padding-bottom:1.6rem}
-.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange);line-height:1;letter-spacing:-.04em;padding-right:10px}
+.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange-num);line-height:1;letter-spacing:-.04em;padding-right:10px}
 .section-head-meta{display:flex;flex-direction:column;gap:8px}
 .section-head h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
 .section-head h2 em{font-style:normal;color:var(--orange-dark)}
 .section-head-text p{font-size:1rem;color:var(--text-light);margin:0}
 .kicker{display:flex;align-items:baseline;gap:14px;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:2px solid var(--orange)}
-.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange);line-height:1;font-weight:800}
+.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange-num);line-height:1;font-weight:800}
 .kicker-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--dark)}
 
 /* BUTTONS */
@@ -244,7 +239,7 @@ section.tight{padding:48px 0}
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
 .why-item{padding:32px 24px;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:start}
 .why-item:nth-child(odd){border-right:1px solid var(--gray-border)}
-.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange);font-weight:800;line-height:1}
+.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange-num);font-weight:800;line-height:1}
 .why-item h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .why-item p{font-size:.94rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -267,7 +262,7 @@ section.tight{padding:48px 0}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:.5rem}
 .process-step{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);position:relative}
 .process-step::before{content:attr(data-num);position:absolute;top:-12px;left:24px;background:var(--orange);color:var(--dark);font-family:var(--font-head);font-weight:800;font-size:.82rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
-.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange);font-weight:800;line-height:1;margin-bottom:1rem}
+.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange-num);font-weight:800;line-height:1;margin-bottom:1rem}
 .process-step h3{font-size:1.18rem;margin-bottom:.6rem;font-weight:700}
 .process-step p{font-size:.9rem;color:var(--text-light);line-height:1.55;margin:0}
 
@@ -345,7 +340,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FEATURES / MISTAKES LIST */
 .features-list{display:flex;flex-direction:column;max-width:880px;margin:0 auto;border-top:1px solid var(--gray-border)}
 .feature-row{padding:26px 0;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start}
-.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange);font-weight:800;line-height:1}
+.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange-num);font-weight:800;line-height:1}
 .feature-body h3{font-size:1.22rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .feature-body p{font-size:.96rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -390,7 +385,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .footer-grid{max-width:var(--container-wide);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:3rem}
-.footer-col h4{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
+.footer-col h3{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
 .footer-brand-bar{display:flex;align-items:center;gap:12px;margin-bottom:1.1rem}
 .footer-brand-mark{width:42px;height:42px;background:var(--orange);display:grid;place-items:center;border-radius:7px}
 .footer-brand-mark span{color:var(--dark);font-family:var(--font-head);font-size:1.2rem;font-weight:800}
@@ -479,6 +474,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .intro-prose p{margin-bottom:1.1rem}
 .intro-prose strong{font-weight:700;color:var(--dark)}
 
+/* TAP TARGETS — ensure interactive text links meet the 24px min touch size */
+.footer-col li a,.footer-bottom a,.footer-contact-item a,.breadcrumbs a,.reviews-rating-bar a,.related-box li a{display:inline-block;min-height:24px;line-height:24px}
+.footer-col li{margin-bottom:.65rem}
+.nav-phone{min-height:40px}
+
 /* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -541,6 +541,26 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   .hero-inner{padding:50px 16px 40px}
 }
 </style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8G1FS3VQN5');
+  (function(){
+    var loaded=false;
+    function loadGA(){
+      if(loaded) return; loaded=true;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5';
+      document.head.appendChild(s);
+    }
+    if(document.readyState==='complete'){setTimeout(loadGA,2000);}
+    else{window.addEventListener('load',function(){setTimeout(loadGA,2000);});}
+    ['scroll','keydown','pointerdown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev,loadGA,{once:true,passive:true});
+    });
+  })();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://napasflooring.com/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://napasflooring.com/glossary/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://napasflooring.com/glossary/","url":"https://napasflooring.com/glossary/","name":"Flooring Glossary \u00b7 Plain English \u00b7 Napa's Flooring","description":"26 flooring terms explained in plain English by Tampa Bay installers \u2014 acclimation, calcium chloride, lippage, SPC, wear layer, and the rest of the\u2026","isPartOf":{"@id":"https://napasflooring.com/#website"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://napasflooring.com/glossary/#glossary","name":"Napa's Flooring Glossary","url":"https://napasflooring.com/glossary/","hasDefinedTerm":[{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-acclimation","name":"Acclimation","description":"Letting flooring material sit inside the actual conditioned room for a set period \u2014 72 hours for hardwood, 48 for engineered and laminate \u2014 so its moisture content matches the home before install. Skipping it is the leading cause of gapping and cupping on Gulf Coast floors.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-ac-rating","name":"AC Rating","description":"Abrasion Class \u2014 a 1-to-5 durability scale for laminate. AC3 is light residential, AC4 is general residential/light commercial, AC5 is commercial. We spec AC4 minimum for any primary living area.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-back-buttering","name":"Back-buttering","description":"Spreading a thin coat of mortar onto the back of a tile in addition to the troweled bed underneath it. Required on large-format tile to get full coverage and prevent hollow spots and lippage.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-calcium-chloride-test","name":"Calcium Chloride Test","description":"A moisture test that measures how many pounds of water vapor a 1,000 sq ft slab emits over 24 hours. A reading too high means a glue-down floor will fail; we run one before any adhesive touches concrete.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-chevron","name":"Chevron","description":"A flooring pattern where planks are cut at an angle and meet point-to-point in a continuous zigzag, forming clean V's. Distinct from herringbone (which uses square-cut planks) and the most labor-intensive wood install we offer.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-crack-isolation-membrane","name":"Crack-Isolation Membrane","description":"A sheet or liquid layer (e.g., Schluter Ditra) installed between a slab and tile that decouples the two, so a hairline crack in the concrete doesn't telegraph up and crack the tile above it.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-cupping","name":"Cupping","description":"When the edges of a wood plank rise higher than its center, creating a concave 'cup,' caused by moisture imbalance \u2014 usually too much moisture from below. The classic failure mode of solid hardwood on a Florida slab.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-engineered-hardwood","name":"Engineered Hardwood","description":"Real-wood flooring built as a hardwood wear layer bonded over a cross-ply or HDF core. The cross-grain construction resists humidity-driven movement, which is why it goes over slabs where solid hardwood can't.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-expansion-gap","name":"Expansion Gap","description":"The 3/8-inch space left between a floating floor and every wall or fixed object, hidden by baseboard, that gives the floor room to expand and contract with humidity. Skipping it buckles the floor.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-floating-floor","name":"Floating Floor","description":"A floor whose planks lock to each other but aren't fastened to the subfloor \u2014 it 'floats' as one sheet. Click-lock LVP, laminate, and some engineered hardwood install this way.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-glue-down","name":"Glue-Down","description":"An install method where each plank or tile is bonded directly to the subfloor with adhesive. More permanent and solid underfoot than floating; required for large open spans, heavy loads, and most rentals and commercial floors.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-hdf-core","name":"HDF Core","description":"High-Density Fiberboard \u2014 the dense wood-based center of a laminate plank. It gives laminate its rigid, wood-like feel but also makes it swell if liquid water sits on a seam, which is why laminate stays out of wet rooms.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-herringbone","name":"Herringbone","description":"A pattern of square-cut rectangular planks laid at 90 degrees in a staggered, broken-zigzag. A timeless look that roughly doubles install labor versus straight plank.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-janka-hardness","name":"Janka Hardness","description":"A scale measuring a wood species' resistance to denting. White oak (~1,350) and hickory (~1,820) sit high; American walnut (~1,010) sits lower. Higher Janka means better scratch and dent resistance for high-traffic Florida homes.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-lacing-plank-weaving","name":"Lacing (Plank Weaving)","description":"A repair technique where new boards are feathered into an existing floor \u2014 staggering joints and toothing cuts so the patch blends invisibly instead of forming a visible seam. The hardest skill in the trade.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-lippage","name":"Lippage","description":"A height difference between two adjacent tiles or planks, where one edge sits higher than its neighbor. Controlled during install with leveling clips; uncontrolled lippage is a trip hazard and the mark of a rushed job.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-lvp-spc","name":"LVP / SPC","description":"Luxury Vinyl Plank and Stone-Plastic Composite \u2014 rigid-core, 100% waterproof vinyl planks. SPC has a denser stone-aggregate core that resists subfloor imperfections better. The most-installed flooring category in Tampa Bay.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-moisture-barrier-vapor-barrier","name":"Moisture Barrier (Vapor Barrier)","description":"A 6-mil polyethylene sheet or coated underlayment placed between a slab and the new floor to block water vapor from wicking up into the flooring. Non-negotiable on Florida slab installs for laminate and many wood products.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-nosing","name":"Nosing","description":"The rounded or squared front edge of a stair tread that overhangs the riser below it. Matching the nosing profile to the tread is what makes a stair install read as finished rather than pieced-together.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-pei-rating","name":"PEI Rating","description":"Porcelain Enamel Institute scale (1\u20135) for a tile's surface wear resistance. PEI 1\u20132 are wall-only or light use; we recommend PEI 4 minimum for any floor because Florida sand is abrasive.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-riser","name":"Riser","description":"The vertical face between two stair treads. Usually a white-painted poplar board, or a stain-matched hardwood riser on premium open staircases.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-sand-and-refinish","name":"Sand-and-Refinish","description":"Taking a worn solid-wood floor down to bare wood in three grit passes, then rebuilding the surface with fresh stain and polyurethane. A solid floor can take this four to six times across its life before the wood gets too thin.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-screen-and-recoat","name":"Screen-and-Recoat","description":"A light refresh that abrades only the existing finish and adds a new top coat \u2014 no sanding to bare wood. The right, lower-cost call for a floor that's merely dull rather than worn through.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-self-leveling","name":"Self-Leveling","description":"Pouring a liquid cement underlayment that flows flat to correct dips and high spots in a subfloor before flooring goes down. Florida slabs rarely meet large-format tile's flatness spec without it.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-sleeper-system","name":"Sleeper System","description":"A subfloor of plywood (often over a vapor barrier) floated or fastened over a concrete slab, creating a nailing surface so solid hardwood can be installed where it otherwise couldn't. Adds height and cost.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"},{"@type":"DefinedTerm","@id":"https://napasflooring.com/glossary/#t-wear-layer","name":"Wear Layer","description":"The clear top surface of an LVP or laminate plank that takes the abuse, measured in mils for vinyl (12-mil budget, 20\u201322 mil premium). A thicker wear layer is the single biggest driver of how long the floor stays looking new.","inDefinedTermSet":"https://napasflooring.com/glossary/#glossary"}]}</script>
@@ -708,15 +728,15 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h3>Services</h3>
       <ul><li><a href="/hardwood-flooring/">Hardwood Flooring</a></li><li><a href="/hardwood-refinishing/">Hardwood Floor Refinishing</a></li><li><a href="/vinyl-plank-flooring/">Luxury Vinyl Plank (LVP) Flooring</a></li><li><a href="/tile-installation/">Tile Installation</a></li><li><a href="/laminate-flooring/">Laminate Flooring</a></li><li><a href="/stair-treads/">Stair Treads</a></li><li><a href="/floor-repair/">Floor Repair</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Service Areas</h4>
+      <h3>Service Areas</h3>
       <ul><li><a href="/bradenton/">Bradenton, FL</a></li><li><a href="/lakewood-ranch/">Lakewood Ranch, FL</a></li><li><a href="/palmetto/">Palmetto, FL</a></li><li><a href="/parrish/">Parrish, FL</a></li><li><a href="/sarasota/">Sarasota, FL</a></li><li><a href="/st-petersburg/">St. Petersburg, FL</a></li><li><a href="/tampa/">Tampa, FL</a></li><li><a href="/venice/">Venice, FL</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h3>Contact</h3>
       <div class="footer-contact-item">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         <a href="tel:+14076279533">(407) 627-9533</a>

@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8G1FS3VQN5');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Hardwood Lakewood Ranch FL | Napa's Flooring 5★</title>
@@ -39,12 +30,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional"></noscript>
 
 <style>
 :root{
   --orange:#F5A623;
-  --orange-dark:#D68A0A;
+  --orange-dark:#8f5d00;   /* AA-compliant amber for orange TEXT on light (>=4.5:1) */
+  --orange-num:#a8680a;    /* deep amber for large decorative numbers (>=3:1 large text) */
+  --orange-bar:#D68A0A;    /* original bright amber kept for bars/borders/hover backgrounds */
   --orange-light:#FFF8EC;
   --dark:#1A1A1A;
   --white:#FFFFFF;
@@ -63,7 +58,7 @@
   --container-wide:1380px;
   /* compat aliases */
   --ink:#1A1A1A; --ink-soft:#2D2D2D; --paper:#FFFFFF; --paper-deep:#F7F7F7;
-  --orange-deep:#D68A0A; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
+  --orange-deep:#8f5d00; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
   --font-display:'Outfit','Inter',sans-serif; --font-editorial:'Georgia',serif;
   --font-mono:'Courier New',monospace;
 }
@@ -90,15 +85,15 @@ ul,ol{margin:0;padding:0}
 .mono-label.on-dark::before{background:var(--orange)}
 
 /* SECTION NUMBERS */
-.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange);line-height:1;letter-spacing:-.03em;display:inline-block}
+.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange-num);line-height:1;letter-spacing:-.03em;display:inline-block}
 .section-head{margin-bottom:3rem;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:start;border-bottom:3px solid var(--gray-border);padding-bottom:1.6rem}
-.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange);line-height:1;letter-spacing:-.04em;padding-right:10px}
+.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange-num);line-height:1;letter-spacing:-.04em;padding-right:10px}
 .section-head-meta{display:flex;flex-direction:column;gap:8px}
 .section-head h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
 .section-head h2 em{font-style:normal;color:var(--orange-dark)}
 .section-head-text p{font-size:1rem;color:var(--text-light);margin:0}
 .kicker{display:flex;align-items:baseline;gap:14px;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:2px solid var(--orange)}
-.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange);line-height:1;font-weight:800}
+.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange-num);line-height:1;font-weight:800}
 .kicker-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--dark)}
 
 /* BUTTONS */
@@ -244,7 +239,7 @@ section.tight{padding:48px 0}
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
 .why-item{padding:32px 24px;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:start}
 .why-item:nth-child(odd){border-right:1px solid var(--gray-border)}
-.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange);font-weight:800;line-height:1}
+.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange-num);font-weight:800;line-height:1}
 .why-item h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .why-item p{font-size:.94rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -267,7 +262,7 @@ section.tight{padding:48px 0}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:.5rem}
 .process-step{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);position:relative}
 .process-step::before{content:attr(data-num);position:absolute;top:-12px;left:24px;background:var(--orange);color:var(--dark);font-family:var(--font-head);font-weight:800;font-size:.82rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
-.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange);font-weight:800;line-height:1;margin-bottom:1rem}
+.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange-num);font-weight:800;line-height:1;margin-bottom:1rem}
 .process-step h3{font-size:1.18rem;margin-bottom:.6rem;font-weight:700}
 .process-step p{font-size:.9rem;color:var(--text-light);line-height:1.55;margin:0}
 
@@ -345,7 +340,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FEATURES / MISTAKES LIST */
 .features-list{display:flex;flex-direction:column;max-width:880px;margin:0 auto;border-top:1px solid var(--gray-border)}
 .feature-row{padding:26px 0;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start}
-.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange);font-weight:800;line-height:1}
+.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange-num);font-weight:800;line-height:1}
 .feature-body h3{font-size:1.22rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .feature-body p{font-size:.96rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -390,7 +385,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .footer-grid{max-width:var(--container-wide);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:3rem}
-.footer-col h4{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
+.footer-col h3{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
 .footer-brand-bar{display:flex;align-items:center;gap:12px;margin-bottom:1.1rem}
 .footer-brand-mark{width:42px;height:42px;background:var(--orange);display:grid;place-items:center;border-radius:7px}
 .footer-brand-mark span{color:var(--dark);font-family:var(--font-head);font-size:1.2rem;font-weight:800}
@@ -479,6 +474,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .intro-prose p{margin-bottom:1.1rem}
 .intro-prose strong{font-weight:700;color:var(--dark)}
 
+/* TAP TARGETS — ensure interactive text links meet the 24px min touch size */
+.footer-col li a,.footer-bottom a,.footer-contact-item a,.breadcrumbs a,.reviews-rating-bar a,.related-box li a{display:inline-block;min-height:24px;line-height:24px}
+.footer-col li{margin-bottom:.65rem}
+.nav-phone{min-height:40px}
+
 /* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -541,6 +541,26 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   .hero-inner{padding:50px 16px 40px}
 }
 </style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8G1FS3VQN5');
+  (function(){
+    var loaded=false;
+    function loadGA(){
+      if(loaded) return; loaded=true;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5';
+      document.head.appendChild(s);
+    }
+    if(document.readyState==='complete'){setTimeout(loadGA,2000);}
+    else{window.addEventListener('load',function(){setTimeout(loadGA,2000);});}
+    ['scroll','keydown','pointerdown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev,loadGA,{once:true,passive:true});
+    });
+  })();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":"https://napasflooring.com/hardwood-flooring/lakewood-ranch/#business","name":"Napa's Flooring","url":"https://napasflooring.com/hardwood-flooring/lakewood-ranch/","telephone":"+14076279533","email":"napasflooring@gmail.com","image":"https://napasflooring.com/images/og-default.jpg","description":"Hardwood Flooring contractor in Lakewood Ranch, FL. Tampa Bay's craft-first flooring crew \u2014 hardwood, vinyl, tile, laminate and stair treads installed by hand.","address":{"@type":"PostalAddress","streetAddress":"5926 SR 70 E, Suite 200","addressLocality":"Bradenton","addressRegion":"FL","postalCode":"34212","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":"27.4806","longitude":"-82.4569"},"areaServed":{"@type":"City","name":"Lakewood Ranch"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"15","bestRating":"5"},"priceRange":"$$","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"16:00"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Hardwood Flooring","name":"Hardwood Flooring in Lakewood Ranch, FL","description":"Solid plank, engineered plank, and wide-board European white oak \u2014 installed by hand, acclimated for the Gulf Coast, and finished to outlast the next twenty years of Tampa Bay living.","provider":{"@id":"https://napasflooring.com/#organization"},"areaServed":{"@type":"City","name":"Lakewood Ranch"},"url":"https://napasflooring.com/hardwood-flooring/lakewood-ranch/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I install solid hardwood on a Florida slab?","acceptedAnswer":{"@type":"Answer","text":"Honestly, we'll talk you out of it almost every time. Slab moisture plus Gulf Coast humidity is the exact recipe that cups, crowns, and gaps solid hardwood once it's glued or nailed onto concrete, and we've torn out enough of those floors to stop pretending it's a coin flip. For the slab-on-grade homes that make up most of our Bradenton-to-Venice work, engineered hardwood and its cross-ply core is the right answer. The one workaround is floating a 5/8-inch plywood subfloor over the slab first \u2014 but that lifts your finished floor nearly an inch, which then has to be solved at every door, transition, and baseboard, and the cost usually lands you back at engineered anyway."}},{"@type":"Question","name":"How long does hardwood acclimate before install?","acceptedAnswer":{"@type":"Answer","text":"Seventy-two hours on your jobsite is the floor, not the ceiling. We open the boxes on site, cross-stack the planks so air moves across every face, and run a hygrometer through the whole window \u2014 and that whole sequence is logged as part of the 47-Point Standard so you get the readings in writing. If the home is a fresh builder turnover with the AC only recently switched on, we'll often hold for a full week. Rushing this step is the single most common reason we get hired to fix somebody else's hardwood."}},{"@type":"Question","name":"Engineered vs. solid \u2014 what's actually different?","acceptedAnswer":{"@type":"Answer","text":"Solid is one piece of wood, a full three-quarter inch, and you can sand it back to bare and refinish it a half-dozen times over its life \u2014 that's why it still wins on premium plywood-subfloor and second-floor jobs. Engineered is a real-oak wear layer bonded over a cross-ply substrate; it holds its shape through Florida's humidity swing far better, it'll go over a slab, and it usually has one or two refinishes in it. Underfoot and to the eye they're the same floor \u2014 the difference is what's hidden below the surface, and on a Gulf Coast slab that difference is the whole ballgame."}},{"@type":"Question","name":"How long does the whole job take?","acceptedAnswer":{"@type":"Answer","text":"Budget three to five working days for a typical 1,200\u20131,800 square-foot install, demo to final walk. Day one is tear-out and subfloor prep, day two wraps acclimation and starts the laydown, the middle days are the bulk of the install plus transitions, and the last day is quarter-round and your walkthrough. Herringbone and chevron patterns roughly double the labor and run six to ten days; adding stairs adds a day. The real schedule lives in your written quote, not in a paragraph like this one."}}]}</script>
@@ -892,15 +912,15 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h3>Services</h3>
       <ul><li><a href="/hardwood-flooring/">Hardwood Flooring</a></li><li><a href="/hardwood-refinishing/">Hardwood Floor Refinishing</a></li><li><a href="/vinyl-plank-flooring/">Luxury Vinyl Plank (LVP) Flooring</a></li><li><a href="/tile-installation/">Tile Installation</a></li><li><a href="/laminate-flooring/">Laminate Flooring</a></li><li><a href="/stair-treads/">Stair Treads</a></li><li><a href="/floor-repair/">Floor Repair</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Service Areas</h4>
+      <h3>Service Areas</h3>
       <ul><li><a href="/bradenton/">Bradenton, FL</a></li><li><a href="/lakewood-ranch/">Lakewood Ranch, FL</a></li><li><a href="/palmetto/">Palmetto, FL</a></li><li><a href="/parrish/">Parrish, FL</a></li><li><a href="/sarasota/">Sarasota, FL</a></li><li><a href="/st-petersburg/">St. Petersburg, FL</a></li><li><a href="/tampa/">Tampa, FL</a></li><li><a href="/venice/">Venice, FL</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h3>Contact</h3>
       <div class="footer-contact-item">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         <a href="tel:+14076279533">(407) 627-9533</a>

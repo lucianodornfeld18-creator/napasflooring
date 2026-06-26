@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8G1FS3VQN5');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Stairs Palmetto FL | Napa's Flooring 5★</title>
@@ -39,12 +30,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional"></noscript>
 
 <style>
 :root{
   --orange:#F5A623;
-  --orange-dark:#D68A0A;
+  --orange-dark:#8f5d00;   /* AA-compliant amber for orange TEXT on light (>=4.5:1) */
+  --orange-num:#a8680a;    /* deep amber for large decorative numbers (>=3:1 large text) */
+  --orange-bar:#D68A0A;    /* original bright amber kept for bars/borders/hover backgrounds */
   --orange-light:#FFF8EC;
   --dark:#1A1A1A;
   --white:#FFFFFF;
@@ -63,7 +58,7 @@
   --container-wide:1380px;
   /* compat aliases */
   --ink:#1A1A1A; --ink-soft:#2D2D2D; --paper:#FFFFFF; --paper-deep:#F7F7F7;
-  --orange-deep:#D68A0A; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
+  --orange-deep:#8f5d00; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
   --font-display:'Outfit','Inter',sans-serif; --font-editorial:'Georgia',serif;
   --font-mono:'Courier New',monospace;
 }
@@ -90,15 +85,15 @@ ul,ol{margin:0;padding:0}
 .mono-label.on-dark::before{background:var(--orange)}
 
 /* SECTION NUMBERS */
-.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange);line-height:1;letter-spacing:-.03em;display:inline-block}
+.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange-num);line-height:1;letter-spacing:-.03em;display:inline-block}
 .section-head{margin-bottom:3rem;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:start;border-bottom:3px solid var(--gray-border);padding-bottom:1.6rem}
-.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange);line-height:1;letter-spacing:-.04em;padding-right:10px}
+.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange-num);line-height:1;letter-spacing:-.04em;padding-right:10px}
 .section-head-meta{display:flex;flex-direction:column;gap:8px}
 .section-head h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
 .section-head h2 em{font-style:normal;color:var(--orange-dark)}
 .section-head-text p{font-size:1rem;color:var(--text-light);margin:0}
 .kicker{display:flex;align-items:baseline;gap:14px;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:2px solid var(--orange)}
-.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange);line-height:1;font-weight:800}
+.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange-num);line-height:1;font-weight:800}
 .kicker-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--dark)}
 
 /* BUTTONS */
@@ -244,7 +239,7 @@ section.tight{padding:48px 0}
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
 .why-item{padding:32px 24px;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:start}
 .why-item:nth-child(odd){border-right:1px solid var(--gray-border)}
-.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange);font-weight:800;line-height:1}
+.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange-num);font-weight:800;line-height:1}
 .why-item h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .why-item p{font-size:.94rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -267,7 +262,7 @@ section.tight{padding:48px 0}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:.5rem}
 .process-step{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);position:relative}
 .process-step::before{content:attr(data-num);position:absolute;top:-12px;left:24px;background:var(--orange);color:var(--dark);font-family:var(--font-head);font-weight:800;font-size:.82rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
-.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange);font-weight:800;line-height:1;margin-bottom:1rem}
+.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange-num);font-weight:800;line-height:1;margin-bottom:1rem}
 .process-step h3{font-size:1.18rem;margin-bottom:.6rem;font-weight:700}
 .process-step p{font-size:.9rem;color:var(--text-light);line-height:1.55;margin:0}
 
@@ -345,7 +340,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FEATURES / MISTAKES LIST */
 .features-list{display:flex;flex-direction:column;max-width:880px;margin:0 auto;border-top:1px solid var(--gray-border)}
 .feature-row{padding:26px 0;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start}
-.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange);font-weight:800;line-height:1}
+.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange-num);font-weight:800;line-height:1}
 .feature-body h3{font-size:1.22rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .feature-body p{font-size:.96rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -390,7 +385,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .footer-grid{max-width:var(--container-wide);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:3rem}
-.footer-col h4{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
+.footer-col h3{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
 .footer-brand-bar{display:flex;align-items:center;gap:12px;margin-bottom:1.1rem}
 .footer-brand-mark{width:42px;height:42px;background:var(--orange);display:grid;place-items:center;border-radius:7px}
 .footer-brand-mark span{color:var(--dark);font-family:var(--font-head);font-size:1.2rem;font-weight:800}
@@ -479,6 +474,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .intro-prose p{margin-bottom:1.1rem}
 .intro-prose strong{font-weight:700;color:var(--dark)}
 
+/* TAP TARGETS — ensure interactive text links meet the 24px min touch size */
+.footer-col li a,.footer-bottom a,.footer-contact-item a,.breadcrumbs a,.reviews-rating-bar a,.related-box li a{display:inline-block;min-height:24px;line-height:24px}
+.footer-col li{margin-bottom:.65rem}
+.nav-phone{min-height:40px}
+
 /* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -541,6 +541,26 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   .hero-inner{padding:50px 16px 40px}
 }
 </style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8G1FS3VQN5');
+  (function(){
+    var loaded=false;
+    function loadGA(){
+      if(loaded) return; loaded=true;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5';
+      document.head.appendChild(s);
+    }
+    if(document.readyState==='complete'){setTimeout(loadGA,2000);}
+    else{window.addEventListener('load',function(){setTimeout(loadGA,2000);});}
+    ['scroll','keydown','pointerdown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev,loadGA,{once:true,passive:true});
+    });
+  })();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":"https://napasflooring.com/stair-treads/palmetto/#business","name":"Napa's Flooring","url":"https://napasflooring.com/stair-treads/palmetto/","telephone":"+14076279533","email":"napasflooring@gmail.com","image":"https://napasflooring.com/images/og-default.jpg","description":"Stair Treads contractor in Palmetto, FL. Tampa Bay's craft-first flooring crew \u2014 hardwood, vinyl, tile, laminate and stair treads installed by hand.","address":{"@type":"PostalAddress","streetAddress":"5926 SR 70 E, Suite 200","addressLocality":"Bradenton","addressRegion":"FL","postalCode":"34212","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":"27.4806","longitude":"-82.4569"},"areaServed":{"@type":"City","name":"Palmetto"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"15","bestRating":"5"},"priceRange":"$$","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"16:00"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Stair Treads","name":"Stair Treads in Palmetto, FL","description":"Solid hardwood, engineered, LVP, and laminate stair treads \u2014 custom-cut, riser-matched, and finished to match the floor you're tying them into.","provider":{"@id":"https://napasflooring.com/#organization"},"areaServed":{"@type":"City","name":"Palmetto"},"url":"https://napasflooring.com/stair-treads/palmetto/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does a stair tread install take?","acceptedAnswer":{"@type":"Answer","text":"A typical fourteen-tread staircase runs two to three days: carpet pull, plywood inspection and prep, then treads and risers, then nosing, return details, and your walkthrough. Site-finished solid hardwood treads add a day or two for stain and poly to cure. A full custom build \u2014 open sides with mitered return-nose detail and iron balusters set through the treads \u2014 can stretch to four or five. We work top-down on install day so the bottom of the run stays usable while we go."}},{"@type":"Question","name":"Can you match the new treads to my existing hardwood floor?","acceptedAnswer":{"@type":"Answer","text":"This is our single most common stair job, so yes. We bring sample treads in your floor's species and hold them against the actual floor in daylight before we commit to anything. If your downstairs is a pre-finished engineered product, we source treads from the same manufacturer so the match is exact; if it's site-finished solid hardwood, we stain the treads on site to match it. A factory tread next to a site-finished floor will carry a slightly different sheen up close, but at the stair-to-floor break \u2014 a spot the eye already reads as a transition \u2014 it disappears."}},{"@type":"Question","name":"Do I need to refinish my existing hardwood when I redo the stairs?","acceptedAnswer":{"@type":"Answer","text":"Almost never. The line where the stairs meet the floor is a natural break in the house, so a small shift in color or sheen between fresh treads and an older floor reads as deliberate, not mismatched. The exception is a downstairs floor that's genuinely worn out \u2014 then we'll sometimes suggest sanding and refinishing it in the same visit so the whole thing lifts together \u2014 but it's a choice, not a requirement, and most clients keep the floor they have."}},{"@type":"Question","name":"What about pets and slippery treads?","acceptedAnswer":{"@type":"Answer","text":"Pre-finished hardwood and LVP treads are smoother than carpet, and an older dog can lose its footing on them going down. The fix is a clear silicone grip strip run about an inch back from each tread nose \u2014 nearly invisible from standing height and a real difference for traction. Tell us at the estimate that you've got pets and we'll build them in at no added labor; it's a five-minute step that saves a lot of slipping."}}]}</script>
@@ -883,15 +903,15 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h3>Services</h3>
       <ul><li><a href="/hardwood-flooring/">Hardwood Flooring</a></li><li><a href="/hardwood-refinishing/">Hardwood Floor Refinishing</a></li><li><a href="/vinyl-plank-flooring/">Luxury Vinyl Plank (LVP) Flooring</a></li><li><a href="/tile-installation/">Tile Installation</a></li><li><a href="/laminate-flooring/">Laminate Flooring</a></li><li><a href="/stair-treads/">Stair Treads</a></li><li><a href="/floor-repair/">Floor Repair</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Service Areas</h4>
+      <h3>Service Areas</h3>
       <ul><li><a href="/bradenton/">Bradenton, FL</a></li><li><a href="/lakewood-ranch/">Lakewood Ranch, FL</a></li><li><a href="/palmetto/">Palmetto, FL</a></li><li><a href="/parrish/">Parrish, FL</a></li><li><a href="/sarasota/">Sarasota, FL</a></li><li><a href="/st-petersburg/">St. Petersburg, FL</a></li><li><a href="/tampa/">Tampa, FL</a></li><li><a href="/venice/">Venice, FL</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h3>Contact</h3>
       <div class="footer-contact-item">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         <a href="tel:+14076279533">(407) 627-9533</a>

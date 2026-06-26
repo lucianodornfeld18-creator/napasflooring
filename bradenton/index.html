@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8G1FS3VQN5');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Flooring Contractor Bradenton FL · Napa's Flooring 5★</title>
@@ -39,12 +30,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=optional"></noscript>
 
 <style>
 :root{
   --orange:#F5A623;
-  --orange-dark:#D68A0A;
+  --orange-dark:#8f5d00;   /* AA-compliant amber for orange TEXT on light (>=4.5:1) */
+  --orange-num:#a8680a;    /* deep amber for large decorative numbers (>=3:1 large text) */
+  --orange-bar:#D68A0A;    /* original bright amber kept for bars/borders/hover backgrounds */
   --orange-light:#FFF8EC;
   --dark:#1A1A1A;
   --white:#FFFFFF;
@@ -63,7 +58,7 @@
   --container-wide:1380px;
   /* compat aliases */
   --ink:#1A1A1A; --ink-soft:#2D2D2D; --paper:#FFFFFF; --paper-deep:#F7F7F7;
-  --orange-deep:#D68A0A; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
+  --orange-deep:#8f5d00; --rule:#E5E5E5; --gray:#666666; --muted:#999999;
   --font-display:'Outfit','Inter',sans-serif; --font-editorial:'Georgia',serif;
   --font-mono:'Courier New',monospace;
 }
@@ -90,15 +85,15 @@ ul,ol{margin:0;padding:0}
 .mono-label.on-dark::before{background:var(--orange)}
 
 /* SECTION NUMBERS */
-.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange);line-height:1;letter-spacing:-.03em;display:inline-block}
+.section-num{font-family:var(--font-head);font-size:clamp(2rem,6vw,3.8rem);color:var(--orange-num);line-height:1;letter-spacing:-.03em;display:inline-block}
 .section-head{margin-bottom:3rem;display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:start;border-bottom:3px solid var(--gray-border);padding-bottom:1.6rem}
-.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange);line-height:1;letter-spacing:-.04em;padding-right:10px}
+.section-head-num{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,4.5rem);color:var(--orange-num);line-height:1;letter-spacing:-.04em;padding-right:10px}
 .section-head-meta{display:flex;flex-direction:column;gap:8px}
 .section-head h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
 .section-head h2 em{font-style:normal;color:var(--orange-dark)}
 .section-head-text p{font-size:1rem;color:var(--text-light);margin:0}
 .kicker{display:flex;align-items:baseline;gap:14px;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:2px solid var(--orange)}
-.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange);line-height:1;font-weight:800}
+.kicker-num{font-family:var(--font-head);font-size:1.8rem;color:var(--orange-num);line-height:1;font-weight:800}
 .kicker-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--dark)}
 
 /* BUTTONS */
@@ -244,7 +239,7 @@ section.tight{padding:48px 0}
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
 .why-item{padding:32px 24px;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:start}
 .why-item:nth-child(odd){border-right:1px solid var(--gray-border)}
-.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange);font-weight:800;line-height:1}
+.why-num{font-family:var(--font-head);font-size:2.4rem;color:var(--orange-num);font-weight:800;line-height:1}
 .why-item h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .why-item p{font-size:.94rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -267,7 +262,7 @@ section.tight{padding:48px 0}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:.5rem}
 .process-step{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-border);position:relative}
 .process-step::before{content:attr(data-num);position:absolute;top:-12px;left:24px;background:var(--orange);color:var(--dark);font-family:var(--font-head);font-weight:800;font-size:.82rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
-.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange);font-weight:800;line-height:1;margin-bottom:1rem}
+.process-num{font-family:var(--font-head);font-size:2.6rem;color:var(--orange-num);font-weight:800;line-height:1;margin-bottom:1rem}
 .process-step h3{font-size:1.18rem;margin-bottom:.6rem;font-weight:700}
 .process-step p{font-size:.9rem;color:var(--text-light);line-height:1.55;margin:0}
 
@@ -345,7 +340,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FEATURES / MISTAKES LIST */
 .features-list{display:flex;flex-direction:column;max-width:880px;margin:0 auto;border-top:1px solid var(--gray-border)}
 .feature-row{padding:26px 0;border-bottom:1px solid var(--gray-border);display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start}
-.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange);font-weight:800;line-height:1}
+.feature-num{font-family:var(--font-head);font-size:2.2rem;color:var(--orange-num);font-weight:800;line-height:1}
 .feature-body h3{font-size:1.22rem;margin-bottom:.6rem;font-weight:700;line-height:1.2}
 .feature-body p{font-size:.96rem;color:var(--text-light);line-height:1.6;margin:0}
 
@@ -390,7 +385,7 @@ table.pricing-table{width:100%;border-collapse:collapse}
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .footer-grid{max-width:var(--container-wide);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:3rem}
-.footer-col h4{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
+.footer-col h3{font-family:var(--font-head);color:var(--orange);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem}
 .footer-brand-bar{display:flex;align-items:center;gap:12px;margin-bottom:1.1rem}
 .footer-brand-mark{width:42px;height:42px;background:var(--orange);display:grid;place-items:center;border-radius:7px}
 .footer-brand-mark span{color:var(--dark);font-family:var(--font-head);font-size:1.2rem;font-weight:800}
@@ -479,6 +474,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
 .intro-prose p{margin-bottom:1.1rem}
 .intro-prose strong{font-weight:700;color:var(--dark)}
 
+/* TAP TARGETS — ensure interactive text links meet the 24px min touch size */
+.footer-col li a,.footer-bottom a,.footer-contact-item a,.breadcrumbs a,.reviews-rating-bar a,.related-box li a{display:inline-block;min-height:24px;line-height:24px}
+.footer-col li{margin-bottom:.65rem}
+.nav-phone{min-height:40px}
+
 /* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -541,6 +541,26 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
   .hero-inner{padding:50px 16px 40px}
 }
 </style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8G1FS3VQN5');
+  (function(){
+    var loaded=false;
+    function loadGA(){
+      if(loaded) return; loaded=true;
+      var s=document.createElement('script');
+      s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-8G1FS3VQN5';
+      document.head.appendChild(s);
+    }
+    if(document.readyState==='complete'){setTimeout(loadGA,2000);}
+    else{window.addEventListener('load',function(){setTimeout(loadGA,2000);});}
+    ['scroll','keydown','pointerdown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev,loadGA,{once:true,passive:true});
+    });
+  })();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":"https://napasflooring.com/bradenton/#business","name":"Napa's Flooring","url":"https://napasflooring.com/bradenton/","telephone":"+14076279533","email":"napasflooring@gmail.com","image":"https://napasflooring.com/images/og-default.jpg","description":"Flooring contractor in Bradenton, FL. Tampa Bay's craft-first flooring crew \u2014 hardwood, vinyl, tile, laminate and stair treads installed by hand.","address":{"@type":"PostalAddress","streetAddress":"5926 SR 70 E, Suite 200","addressLocality":"Bradenton","addressRegion":"FL","postalCode":"34212","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":"27.4806","longitude":"-82.4569"},"areaServed":{"@type":"City","name":"Bradenton"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"15","bestRating":"5"},"priceRange":"$$","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"16:00"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does flooring installation cost in Bradenton, FL?","acceptedAnswer":{"@type":"Answer","text":"Pricing in Bradenton runs the same range as the rest of our Tampa Bay service area: budget LVP and laminate jobs land in the $2.25&ndash;$4 per square foot installed range, mid-range engineered hardwood and premium SPC vinyl plank in the $5&ndash;$9.50 range, and high-end European white oak hardwood, large-format porcelain, and natural stone in the $10.75&ndash;$23 range. Sand-and-refinish on existing oak runs lower &mdash; $3.65&ndash;$6.25 installed. Bradenton-specific factors that affect pricing are travel time from our Bradenton home base (minimal, since we serve Manatee County regularly), subfloor condition (older homes in Bradenton sometimes require self-leveling; newer slab homes typically don&rsquo;t), and material delivery logistics. You&rsquo;ll get a written, line-itemized quote within 24 hours of the in-home measure &mdash; no &lsquo;starting at&rsquo; language, no hidden change orders."}},{"@type":"Question","name":"How long does an install take in Bradenton?","acceptedAnswer":{"@type":"Answer","text":"Typical timelines for Bradenton homes: 2&ndash;3 working days for a 1,000&ndash;1,500 sq ft floating LVP or laminate install; 3&ndash;4 days for the same size engineered hardwood; 5&ndash;8 days for tile (mortar cure time is the long pole); 2&ndash;3 days for a standard 14-tread staircase. Whole-home reflooring jobs in 2,500&ndash;4,000 sq ft homes in Bradenton (common in Heritage Harbour and River Strand) typically run 8&ndash;14 working days. The real schedule lives in your written quote, not in this paragraph."}},{"@type":"Question","name":"Do you actually live and work in Bradenton?","acceptedAnswer":{"@type":"Answer","text":"Our crew is based in east Bradenton, in the 34212 ZIP just south of SR-64 &mdash; about a 10&ndash;25 minute drive from anywhere in Bradenton, depending on which neighborhood. We work Bradenton every week. We know the gated-community access protocols at Heritage Harbour, the HOA flooring rules at River Strand, and the dumpster restrictions for GreyHawk Landing. We&rsquo;re not driving in from Tampa or Sarasota for the work &mdash; we&rsquo;re local."}},{"@type":"Question","name":"Why does Bradenton need different prep than other Florida cities?","acceptedAnswer":{"@type":"Answer","text":"Year-round dew points in Bradenton sit between 65 and 75\u00b0F from May through October, which is why we acclimate every hardwood and engineered plank for a minimum of 72 hours before a single nail goes in. The bigger picture: mix of gated golf-community new construction and 1960s\u20131980s ranch renovations. That dictates the products we recommend, the prep we do, and the timeline we quote. The same square footage in two different Bradenton neighborhoods can have completely different prep requirements &mdash; a 1965 ranch in Perico Bay needs subfloor leveling and a vapor barrier; a 2022 build in Heritage Harbour usually needs neither. We catch all of that at the in-home measure."}},{"@type":"Question","name":"Do you handle HOA-managed communities in Bradenton?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most of the gated and master-planned communities in Bradenton (including Heritage Harbour, River Strand, and GreyHawk Landing) have specific HOA rules around flooring installs &mdash; weekday-only work, quiet hours, dumpster placement, access through gate codes, and floor-type restrictions in second-floor condos. We&rsquo;ve worked in most of them and we know the playbook. We&rsquo;ll handle the HOA communication if you want us to, or just give us the gate code and we&rsquo;ll work within the rules."}},{"@type":"Question","name":"Can you start a Bradenton job within the week?","acceptedAnswer":{"@type":"Answer","text":"Sometimes &mdash; depends on the size of the job and our current schedule. Small jobs (single rooms, staircases, repair work) can often start within 5&ndash;7 days of the signed estimate, especially during the slower summer season. Larger whole-home installs typically book 3&ndash;6 weeks out, sometimes more during peak season (November through April). Material lead times are the other variable: most LVP and laminate is in stock at our suppliers within 48 hours; engineered hardwood from European mills can be 2&ndash;6 weeks. We&rsquo;ll give you the real start date in the quote."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://napasflooring.com/"},{"@type":"ListItem","position":2,"name":"Bradenton, FL","item":"https://napasflooring.com/bradenton/"}]}</script>
@@ -910,15 +930,15 @@ footer{background:var(--dark);color:rgba(255,255,255,.75);padding:70px 0 0}
       <p style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:1rem">300+ Tampa Bay floors finished since 2020</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h3>Services</h3>
       <ul><li><a href="/hardwood-flooring/">Hardwood Flooring</a></li><li><a href="/hardwood-refinishing/">Hardwood Floor Refinishing</a></li><li><a href="/vinyl-plank-flooring/">Luxury Vinyl Plank (LVP) Flooring</a></li><li><a href="/tile-installation/">Tile Installation</a></li><li><a href="/laminate-flooring/">Laminate Flooring</a></li><li><a href="/stair-treads/">Stair Treads</a></li><li><a href="/floor-repair/">Floor Repair</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Service Areas</h4>
+      <h3>Service Areas</h3>
       <ul><li><a href="/bradenton/">Bradenton, FL</a></li><li><a href="/lakewood-ranch/">Lakewood Ranch, FL</a></li><li><a href="/palmetto/">Palmetto, FL</a></li><li><a href="/parrish/">Parrish, FL</a></li><li><a href="/sarasota/">Sarasota, FL</a></li><li><a href="/st-petersburg/">St. Petersburg, FL</a></li><li><a href="/tampa/">Tampa, FL</a></li><li><a href="/venice/">Venice, FL</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h3>Contact</h3>
       <div class="footer-contact-item">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         <a href="tel:+14076279533">(407) 627-9533</a>
