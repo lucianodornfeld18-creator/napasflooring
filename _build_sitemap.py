@@ -121,9 +121,7 @@ Allow: /
 # Sitemap
 Sitemap: {SITE}/sitemap.xml
 
-# LLM-readable site summaries (llmstxt.org)
-LLMs-txt: {SITE}/llms.txt
-LLMs-txt: {SITE}/llms-full.txt
+# LLM-readable site summaries (llmstxt.org convention — comments, not directives)
 # {SITE}/llms.txt
 # {SITE}/llms-full.txt
 '''
