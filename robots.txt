@@ -49,8 +49,6 @@ Allow: /
 # Sitemap
 Sitemap: https://napasflooring.com/sitemap.xml
 
-# LLM-readable site summaries (llmstxt.org)
-LLMs-txt: https://napasflooring.com/llms.txt
-LLMs-txt: https://napasflooring.com/llms-full.txt
+# LLM-readable site summaries (llmstxt.org convention — comments, not directives)
 # https://napasflooring.com/llms.txt
 # https://napasflooring.com/llms-full.txt
